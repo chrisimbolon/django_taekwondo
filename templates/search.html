@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+hasil pencarian untuk {{search_term}}
+{% endblock title %}
+{% block content%}
+
+    <!-- Main Section -->
+    <div class="container">
+      <h3 class="heading font-weight-light">Hasil pencarian untuk {{search_term}}</h3>
+      <hr />
+    </div>
+
+    <div class="container main-part">
+    {% if Pelatihs  %}
+    {% for Pelatih in Pelatihs %}
+    {% include 'partials/_card.html' %}
+    {% endfor %}
+    {% else %}
+    <p>pelatih yang anda cari tidak ditemukan!</p>
+    {% endif %}
+
+    </div>
+    <!-- Main Section ends-->
+
+{% endblock content%}
+

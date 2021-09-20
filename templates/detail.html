@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+{% if Pelatih.Manager == request.user %}
+{{Pelatih.Nama_Lengkap}}
+{% else %}
+Anda Tidak Berhak Mengakses Halaman Ini
+{% endif %}
+{% endblock title %}
+
+{% block content%}
+{% if Pelatih.Manager == request.user %}
+  <!-- Main Section -->
+    <div class="container">
+      <h2 class="heading font-weight-light text-center">{{Pelatih.Nama_Lengkap}}</h2>
+      <hr />
+    </div>
+
+    <div class="container main-part">
+      <!-- Card for details -->
+      {% include 'partials/_card.html' %}
+    </div>
+    <div class="container mt3">
+    <h5 class="text-center my-3 font-weight-light">tanggal diinput: &nbsp; {{Pelatih.Tanggal_Input}} </h5>
+    <p class="text-center text-light">
+    <a class="btn btn-info px-5" href="{% url 'update' Pelatih.id %}">
+    <i class="far fa-edit"></i> &nbsp;Update
+    </a>
+    &nbsp;&nbsp;
+    <a class="btn btn-danger px-5" href="{% url 'delete' Pelatih.id %}">
+    <i class="fas fa-trash-alt "></i> &nbsp;Hapus
+    </a>
+    <p>
+    </div>
+    <!-- Main Section ends-->
+{% else %}
+    <div class="container">
+      <h2 class="heading font-weight-light text-center">Anda tidak berhak mengakses halaman ini</h2>
+      
+    </div>
+
+{% endif %}
+{% endblock content %}
