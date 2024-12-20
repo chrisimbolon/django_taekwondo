@@ -1,0 +1,52 @@
+.main-container {
+  background-image: url("../images/Taekwondo_landing.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+}
+
+/* Remove nav and footer spacing for this page */
+nav,
+footer {
+  display: none;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  width: 50%; /* Take half the viewport width */
+  height: 100%; /* Full container height */
+  padding: 2rem; /* Add padding for spacing */
+  position: relative; /* Ensure proper stacking */
+}
+
+/* Overlay effect */
+.hero-overlay {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: left;
+}
+
+/* Feature Section */
+/* Feature Section */
+.feature {
+  width: 50%; /* Occupies the other half of the viewport */
+  height: 100%; /* Full viewport height */
+  overflow-y: auto; /* Enable scrolling if content exceeds height */
+  padding: 2rem;
+  background-color: #f8f9fa; /* Light background color for contrast */
+}
+
+/* Feature cards */
+.feature .row {
+  display: flex;
+  flex-wrap: wrap; /* Ensures responsive layout */
+  gap: 1.5rem; /* Spacing between feature items */
+}

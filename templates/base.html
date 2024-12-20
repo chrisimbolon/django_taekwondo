@@ -8,7 +8,6 @@
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
-
     <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
@@ -16,7 +15,8 @@
     />
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{% static './css/main.css' %}" />
-
+    <!-- Index CSS -->
+    <link rel="stylesheet" href="{% static './css/index.css' %}" />
     <!-- Fonts & Icons -->
     <link
       href="https://fonts.googleapis.com/css?family=Lato"
@@ -26,64 +26,68 @@
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
     />
-    <link rel="title icon" href="{% static 'images/add-user.png'%}">
-    <title>
-    {% block title %}
-
-    {% endblock title %}		    
-    </title>
+    <link rel="title icon" href="{% static 'images/add-user.png' %}" />
+    <title>{% block title %} {% endblock title %}</title>
   </head>
   <body>
     <!-- Navbar -->
-
     <nav>
       <a class="logo" href="{% url 'home' %}">
         <i class="fas fa-user-circle"></i>&nbsp;Halaman Pelatih
       </a>
       <p class="feature-link m-0 p-0">
-      {% if request.user.is_authenticated%}
-      <a href="{% url 'logout'%}" class="mr-4 text-white">
-      <i class="fas fa-sign-in-alt"></i> &nbsp;keluar
-      </a>
-      <a href="{% url 'create'%}" class="mr-4 text-white">
-      <i class="fas fa-plus"></i> &nbsp;tambah pelatih
-      </a>
-      {% else %}
-      <a href="{% url 'signup'%}" class="mr-4 text-white">
-      <i class="fas fa-user-plus"></i> &nbsp;daftar
-      </a>
-      <a href="{% url 'login'%}" class="mr-4 text-white">
-      <i class="fas fa-sign-in-alt"></i> &nbsp;masuk
-      </a>
-
-      {% endif %}
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'logout' %}" class="mr-4 text-white">
+          <i class="fas fa-sign-in-alt"></i> &nbsp;keluar
+        </a>
+        <a href="{% url 'create' %}" class="mr-4 text-white">
+          <i class="fas fa-plus"></i> &nbsp;tambah pelatih
+        </a>
+        {% else %}
+        <a href="{% url 'signup' %}" class="mr-4 text-white">
+          <i class="fas fa-user-plus"></i> &nbsp;daftar
+        </a>
+        <a href="{% url 'login' %}" class="mr-4 text-white">
+          <i class="fas fa-sign-in-alt"></i> &nbsp;masuk
+        </a>
+        {% endif %}
       </p>
       <form class="form-inline my-2" action="{% url 'search' %}" method="GET">
-	<!-- sedang tidak digunakan {% csrf_token %} -->
+        <!-- sedang tidak digunakan {% csrf_token %} -->
         <input
           class="form-control search-box"
           type="search"
           placeholder="Cari Pelatih..."
-	  name="search_term"
-   	  value="{{search_term}}"
+          name="search_term"
+          value="{{ search_term }}"
         />
-       
       </form>
     </nav>
     <!-- Navbar ends -->
-    <br />
-    {% include "partials/_message.html" %}
-    {% block content %}
 
+    {% include "partials/_message.html" %} {% block content %}
+    <!-- Instead of -->
     {% endblock content %}
 
     <!-- footer -->
     <footer class="mt-4 p-2">
       <p class="text-center p-1 m-0">&copy; Powered By Randomblur Studio</p>
     </footer>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
     <!-- footer ends -->
   </body>
 </html>
