@@ -8,6 +8,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.contrib import messages
+from django.views.generic import TemplateView  # Import TemplateView
+
 
 # Create your views here.
 #def home(request):
@@ -22,14 +24,24 @@ from django.contrib import messages
 #    }
 #    return render(request, 'detail.html',context)
 
-class HomePageView(LoginRequiredMixin, ListView):
+class HomePageView(TemplateView):
     template_name = 'index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['custom_message'] = "Welcome to the Taekwondo App!"
+        return context
+
+
+class PelatihListView(LoginRequiredMixin, ListView):
+    template_name = 'coaches.html'
     model = Pelatih
     context_object_name = 'Pelatihs'
 
     def get_queryset(self):
         Pelatihs = super().get_queryset()
         return Pelatihs.filter(Manager = self.request.user)
+
 
 class PelatihDetailView(LoginRequiredMixin, DetailView):
     template_name = 'detail.html'
