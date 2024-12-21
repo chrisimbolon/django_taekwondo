@@ -1,43 +1,46 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 
-<section class="main-container">
-  <!-- Hero Section -->
-  <div class="hero">
-    <div class="hero-overlay">
-      <h1 class="display-4 font-weight-bold">
-        Effortlessly Manage Your Taekwondo Coaches
-      </h1>
-      <p class="lead mt-3">
-        Streamline your management process with a modern tool designed for
-        Taekwondo dojos. Keep track of your team with ease.
-      </p>
-      <a href="{% url 'coaches-list' %}" class="btn btn-warning btn-lg mt-4"
-        >Explore Coaches</a
-      >
-    </div>
-  </div>
+<section class="main-container d-flex flex-column align-content-center">
+  <div class="left-content">
+    <!-- Hero Section -->
 
-  <!-- Features Section -->
-  <div class="feature">
-    <h3 class="text-center">Why Choose Our App?</h3>
-    <div class="row mt-4">
-      <div class="col-md-4 text-center mb-3">
-        <i class="fas fa-user-shield fa-2x text-success"></i>
-        <h6 class="mt-2">Secure & Reliable</h6>
-        <p>All your coach data is stored securely and managed efficiently.</p>
-      </div>
-      <div class="col-md-4 text-center mb-3">
-        <i class="fas fa-stopwatch fa-2x text-info"></i>
-        <h6 class="mt-2">Time Efficient</h6>
-        <p>Save time with our intuitive and simple management tools.</p>
-      </div>
-      <div class="col-md-4 text-center mb-3">
-        <i class="fas fa-hand-holding-heart fa-2x text-primary"></i>
-        <h6 class="mt-2">Built for Taekwondo</h6>
-        <p>
-          Designed specifically with the needs of Taekwondo organizations in
-          mind.
+    <div class="hero">
+      <div class="hero-overlay">
+        <h1 class="display-4 font-weight-bold">
+          Effortlessly Manage Your Taekwondo Coaches
+        </h1>
+        <p class="lead mt-3">
+          Streamline your management process with a modern tool designed for
+          Taekwondo dojos. Keep track of your team with ease.
         </p>
+        <a href="{% url 'coaches-list' %}" class="btn btn-warning btn-lg mt-4"
+          >Explore Coaches</a
+        >
+      </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="feature">
+      <h3 class="text-center">Why Choose Our App?</h3>
+      <div class="row mt-4">
+        <div class="col-md-4 text-center mb-3">
+          <i class="fas fa-user-shield fa-2x text-success"></i>
+          <h6 class="mt-2">Secure & Reliable</h6>
+          <p>All your coach data is stored securely and managed efficiently.</p>
+        </div>
+        <div class="col-md-4 text-center mb-3">
+          <i class="fas fa-stopwatch fa-2x text-info"></i>
+          <h6 class="mt-2">Time Efficient</h6>
+          <p>Save time with our intuitive and simple management tools.</p>
+        </div>
+        <div class="col-md-4 text-center mb-3">
+          <i class="fas fa-hand-holding-heart fa-2x text-primary"></i>
+          <h6 class="mt-2">Built for Taekwondo</h6>
+          <p>
+            Designed specifically with the needs of Taekwondo organizations in
+            mind.
+          </p>
+        </div>
       </div>
     </div>
   </div>
