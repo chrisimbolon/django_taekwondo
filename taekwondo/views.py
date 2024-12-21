@@ -8,21 +8,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.contrib import messages
-from django.views.generic import TemplateView  # Import TemplateView
+from django.views.generic import TemplateView  
 
 
-# Create your views here.
-#def home(request):
-#    context = {
-#            'Pelatihs': Pelatih.objects.all()
-#    }
-#    return render(request, 'index.html',context)
-
-#def detail(request,id):
-#    contex ={
-#            'Pelatih':get_object_or_404(Pelatih,pk=id)
-#    }
-#    return render(request, 'detail.html',context)
 
 class HomePageView(TemplateView):
     template_name = 'index.html'
@@ -40,7 +28,15 @@ class PelatihListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         Pelatihs = super().get_queryset()
-        return Pelatihs.filter(Manager = self.request.user)
+        filtered = Pelatihs.filter(Manager=self.request.user)
+        print("Filtered Pelatihs:", filtered)  # Debug output
+        return filtered
+
+    # def get_queryset(self):
+    #     Pelatihs = super().get_queryset()
+    #     return Pelatihs.filter(Manager = self.request.user)
+
+
 
 
 class PelatihDetailView(LoginRequiredMixin, DetailView):

@@ -14,8 +14,7 @@
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
     />
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="{% static './css/main.css' %}" />
-    <!-- Index CSS -->
+    <link rel="stylesheet" href="{% static './css/style.css' %}" />
     <link rel="stylesheet" href="{% static './css/index.css' %}" />
     <!-- Fonts & Icons -->
 
@@ -36,9 +35,9 @@
   <body>
     <!-- Navbar -->
     <nav>
-      <a class="logo" href="{% url 'home' %}">
+      <!-- <a class="logo" href="{% url 'home' %}">
         <i class="fas fa-user-circle"></i>&nbsp;Halaman Pelatih
-      </a>
+      </a> -->
       <p class="feature-link m-0 p-0">
         {% if request.user.is_authenticated %}
         <a href="{% url 'logout' %}" class="mr-4 text-white">
