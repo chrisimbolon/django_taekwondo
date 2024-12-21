@@ -1,19 +1,22 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
 
 <section class="main-container d-flex flex-column align-content-center">
+  <img src="{% static 'images/Logo.png' %}" alt="App Logo" class="app-logo" />
   <div class="left-content">
+    <!-- Logo -->
+
     <!-- Hero Section -->
 
     <div class="hero">
       <div class="hero-overlay">
-        <h1 class="display-4 font-weight-bold">
+        <h1 class="display-4 font-weight-bold gradient-text">
           Effortlessly Manage Your Taekwondo Coaches
         </h1>
         <p class="lead mt-3">
           Streamline your management process with a modern tool designed for
           Taekwondo dojos. Keep track of your team with ease.
         </p>
-        <a href="{% url 'coaches-list' %}" class="btn btn-warning btn-lg mt-4"
+        <a href="{% url 'coaches-list' %}" class="btn-cta mt-5"
           >Explore Coaches</a
         >
       </div>

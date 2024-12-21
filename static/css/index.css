@@ -35,9 +35,15 @@ footer {
   /* position: relative; */
 }
 
+.gradient-text {
+  background: linear-gradient(to right, #171716, #ffa500);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 /* Overlay effect */
 .hero-overlay {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.2);
   padding: 20px;
   border-radius: 10px;
   text-align: left;
@@ -71,4 +77,55 @@ footer {
 
 .row {
   justify-content: center; /* Align feature items to the center */
+}
+
+.btn-cta {
+  width: 180px;
+  height: 50px;
+  border: none;
+  border-radius: 40px;
+  background: linear-gradient(
+    to right,
+    #bf953f,
+    #fcf6ba,
+    #b38728,
+    #fbf5b7,
+    #aa771c
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 20px;
+  color: rgb(121, 103, 3);
+  font-weight: 900;
+  position: relative;
+  z-index: 2;
+  transition-duration: 3s;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.144);
+  background-size: 200% 200%;
+  text-decoration: none;
+  cursor: pointer;
+
+  /*** full width block ***/
+  /* width: 100%; */
+}
+
+.btn-cta:hover {
+  transform: scale(0.95);
+  transition-duration: 2s;
+  animation: gradient 3s ease infinite;
+  background-position: right;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.app-logo {
+  width: 120px; /* Adjust size based on your design */
+
+  height: auto; /* Maintain aspect ratio */
+  top: 0;
+  margin: 0; /* Space below the logo */
+  align-self: flex-start; /* Align to the top-left corner */
+  cursor: pointer; /* Makes it look clickable */
 }
