@@ -43,19 +43,13 @@
         />
       </a>
       <p class="feature-link m-0 p-0">
-        <a href="{% url 'logout' %}" class="mr-4 text-dark">
-          <i class="fas fa-sign-in-alt"></i> &nbsp;Logout
-        </a>
+        <a href="{% url 'logout' %}" class="mr-4 text-dark"> &nbsp;Logout </a>
         <a href="{% url 'create' %}" class="mr-4 text-dark">
-          <i class="fas fa-plus"></i> &nbsp;tambah pelatih
+          &nbsp;Add coach
         </a>
 
-        <a href="{% url 'signup' %}" class="mr-4 text-dark">
-          <i class="fas fa-user-plus"></i> &nbsp;daftar
-        </a>
-        <a href="{% url 'login' %}" class="mr-4 text-dark">
-          <i class="fas fa-sign-in-alt"></i> &nbsp;masuk
-        </a>
+        <a href="{% url 'signup' %}" class="mr-4 text-dark"> &nbsp;Signup </a>
+        <a href="{% url 'login' %}" class="mr-4 text-dark"> &nbsp;Signin </a>
       </p>
       <form class="form-inline my-2" action="{% url 'search' %}" method="GET">
         <!-- sedang tidak digunakan {% csrf_token %} -->

@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404,redirect
-from .models import Pelatih
+from .models import Coach
 from django.views.generic import ListView, DetailView
 from django.db.models import Q
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -21,34 +21,28 @@ class HomePageView(TemplateView):
         return context
 
 
-class PelatihListView(LoginRequiredMixin, ListView):
+class CoachListView(LoginRequiredMixin, ListView):
     template_name = 'coaches.html'
-    model = Pelatih
-    context_object_name = 'Pelatihs'
+    model = Coach
+    context_object_name = 'Coaches'
 
     def get_queryset(self):
-        Pelatihs = super().get_queryset()
-        filtered = Pelatihs.filter(Manager=self.request.user)
-        print("Filtered Pelatihs:", filtered)  # Debug output
+        Coaches = super().get_queryset()
+        filtered = Coaches.filter(Manager=self.request.user)
+        print("Filtered Coaches:", filtered)  # Debug output
         return filtered
 
-    # def get_queryset(self):
-    #     Pelatihs = super().get_queryset()
-    #     return Pelatihs.filter(Manager = self.request.user)
 
-
-
-
-class PelatihDetailView(LoginRequiredMixin, DetailView):
+class CoachDetailView(LoginRequiredMixin, DetailView):
     template_name = 'detail.html'
-    model = Pelatih
-    context_object_name = 'Pelatih'
+    model = Coach
+    context_object_name = 'Coach'
 
 @login_required
 def search(request):
     if request.GET:
         search_term = request.GET['search_term']
-        search_result = Pelatih.objects.filter(
+        search_result = Coach.objects.filter(
                 Q(Nama_Lengkap__icontains=search_term)|
                 Q(Nama_Dojang__icontains=search_term)|
                 Q(Status__icontains=search_term)|
@@ -56,14 +50,14 @@ def search(request):
         )
         context={
             'search_term':search_term,
-            'Pelatihs':search_result.filter(Manager=request.user)
+            'Coaches':search_result.filter(Manager=request.user)
         }
         return render(request, 'search.html',context)
     else:
         return redirect('home')
 
-class PelatihCreateView(LoginRequiredMixin, CreateView):
-    model = Pelatih
+class CoachCreateView(LoginRequiredMixin, CreateView):
+    model = Coach
     template_name = 'create.html'
     fields = ['No_Reg','Nama_Lengkap','Tempat_Lahir','Tanggal_Lahir','Nama_Dojang',
             'Jenis_Kelamin','Provinsi_Asal','Kota_Asal','Status','Sabuk_Akhir','No_Telp',
@@ -73,12 +67,12 @@ class PelatihCreateView(LoginRequiredMixin, CreateView):
         instance = form.save(commit=False)
         instance.Manager = self.request.user
         instance.save()
-        messages.success(self.request,'Data Pelatih berhasil ditambah')
+        messages.success(self.request,'Data Coach berhasil ditambah')
         return redirect('home')
 
 
-class PelatihUpdateView(LoginRequiredMixin, UpdateView):
-    model = Pelatih
+class CoachUpdateView(LoginRequiredMixin, UpdateView):
+    model = Coach
     template_name = 'update.html'
     fields = ['No_Reg','Nama_Lengkap','Tempat_Lahir','Tanggal_Lahir','Nama_Dojang',
             'Jenis_Kelamin','Provinsi_Asal','Kota_Asal','Status','Sabuk_Akhir','No_Telp',
@@ -86,16 +80,16 @@ class PelatihUpdateView(LoginRequiredMixin, UpdateView):
 
     def form_valid(self,form):
         instance = form.save()
-        messages.success(self.request,'Data Pelatih berhasil diupdate')
+        messages.success(self.request,'Data Coach berhasil diupdate')
         return redirect('detail',instance.pk)
 
-class PelatihDeleteView(LoginRequiredMixin, DeleteView):
-    model = Pelatih
+class CoachDeleteView(LoginRequiredMixin, DeleteView):
+    model = Coach
     template_name = 'delete.html'
     success_url = '/'
 
     def delete(self, request, *args, **kwargs):
-        messages.success(self.request,'Data Pelatih berhasil dihapus')
+        messages.success(self.request,'Data Coach berhasil dihapus')
         return super().delete(self, request, *args, **kwargs)
 
 class SignUpView(CreateView):

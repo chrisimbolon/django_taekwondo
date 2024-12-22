@@ -1,6 +1,6 @@
 :root {
   --back: #363636;
-  /* --logo: #ff70a6; */
+
   --girl: #e64298;
   --boy: #2874dd;
 }
@@ -15,10 +15,10 @@ nav {
   font-size: 20px;
   display: flex;
   justify-content: space-around;
-  background-color: #b5b5b5;
+  background-color: #c2c2c2;
   align-items: center;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: 8px;
+  padding-bottom: 8px;
   box-shadow: 0 4px 8px 0 #daa520;
 }
 
@@ -29,10 +29,10 @@ nav {
 }
 
 .search-box {
-  border-radius: 0px !important;
+  border-radius: 0px;
   width: 250px;
-  border: none !important;
-  background-color: #f2f3f5 !important;
+  border: none;
+  background-color: #f2f3f5;
   box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2);
 }
 /* Navbar Styles end */

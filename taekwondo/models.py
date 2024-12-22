@@ -1,55 +1,62 @@
 from django.db import models
 from django.utils.timezone import datetime
 from django.contrib.auth.models import User
-# Create your models here.
+from django_countries.fields import CountryField
 
-class Provinsi(models.Model):
-    nama_provinsi = models.CharField(max_length=150)
 
-    def __str__(self):
-        return self.nama_provinsi
 
-class Kota(models.Model):
-    nama_kota = models.CharField(max_length=200)
-    provinsi = models.ForeignKey('Provinsi', on_delete=models.CASCADE)
+class Province(models.Model):  # Province/State
+    province_name = models.CharField(max_length=150)
+    country = CountryField()
 
     def __str__(self):
-        return self.nama_kota
+        return f"{self.province_name}, {self.country}"
+
+class City(models.Model):  # City
+    city_name = models.CharField(max_length=200)
+    province = models.ForeignKey('Province', on_delete=models.CASCADE, related_name='cities', null=True, blank=True)
+
+    def __str__(self):
+        if self.province:
+            return f"{self.city_name}, {self.province.province_name}, {self.province.country.country_name}"
+        return f"{self.city_name} (No Province)"
 
     def testing_function(self):
-        return self.provinsi
+        return self.province
 
-class Pelatih(models.Model):
-    Manager = models.ForeignKey(User, on_delete=models.CASCADE,default=None)
-    No_Reg = models.CharField(max_length=20)
-    Nama_Lengkap = models.CharField(max_length=50)
-    Tempat_Lahir = models.CharField(max_length=30)
-    Tanggal_Lahir = models.DateField()
-    Nama_Dojang = models.CharField(max_length=30)
-    Jenis_Kelamin = models.CharField(max_length=15,choices=(
-        ('laki-laki','Laki-laki'),
-        ('perempuan','Perempuan')
-    ))
-    Provinsi_Asal = models.ForeignKey('Provinsi', on_delete=models.SET_NULL, null=True)
-    Kota_Asal = models.ForeignKey('Kota', on_delete=models.SET_NULL, null=True)
-    Status =models.CharField(max_length=15,choices=(
-        ('aktif','Aktif'),
-        ('tidak aktif','Tidak Aktif')
-    ))
-    Sabuk_Akhir = models.CharField(max_length=15,choices=(
-        ('dan3','Dan III'),
-        ('dan2','Dan II'),
-        ('dan1','Dan I'),
-        ('hitam','HItam'),
-        ('merah','Merah')
-    ))
-    No_Telp = models.CharField(max_length=15)
-    Email = models.EmailField(max_length=50)
-    Photo = models.ImageField(upload_to='images/',blank=True)
-    Tanggal_Input = models.DateField(default=datetime.now)
+class Belt(models.Model):
+    rank_name = models.CharField(max_length=50)
+    rank_level = models.PositiveIntegerField()  # Level (e.g., 1 for White, 2 for Yellow)
+    is_black_belt = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.Nama_Lengkap
+        return self.rank_name
+
+class Coach(models.Model):
+    manager = models.ForeignKey(User, on_delete=models.CASCADE,default=None)
+    registration_number = models.CharField(max_length=20, unique=True)
+    full_name = models.CharField(max_length=50)
+    place_of_birth = models.CharField(max_length=30)
+    date_of_birth = models.DateField()
+    dojang_name = models.CharField(max_length=30)
+    sex = models.CharField(max_length=15,choices=(
+        ('male','Male'),
+        ('female','Female')
+    ))
+    province = models.ForeignKey('Province', on_delete=models.SET_NULL, null=True)
+    city = models.ForeignKey('City', on_delete=models.SET_NULL, null=True)
+    status =models.CharField(max_length=15,choices=(
+        ('active','Active'),
+        ('inactive','Inactive')
+    ))
+    belt = models.ForeignKey('Belt', on_delete=models.SET_NULL, null=True)
+    phone_number = models.CharField(max_length=15)
+    email = models.EmailField(max_length=50)
+    photo = models.ImageField(upload_to='images/',blank=True)
+    input_date = models.DateField(default=datetime.now)
+
+    def __str__(self):
+        return self.full_name
 
     class Meta:
         ordering = ['-id']
