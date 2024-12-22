@@ -29,8 +29,32 @@ class BeltAdmin(admin.ModelAdmin):
 
 @admin.register(Coach)
 class CoachAdmin(admin.ModelAdmin):
-    list_display = ('full_name', 'registration_number', 'sex', 'belt', 'status', 'province', 'city')  # Show these fields
+    list_display = ('full_name', 'registration_number', 'sex', 'belt', 'status', 'province', 'city', 'manager')  # Show these fields
     search_fields = ('full_name', 'registration_number', 'dojang_name', 'email')  # Add search functionality
     list_filter = ('sex', 'status', 'belt', 'province', 'city')  # Add filtering
     ordering = ('-id',)  # Order by ID in descending order
+
+# Editable fields in the list view
+    list_editable = ('status',)
+
+    # Fields shown when editing/adding
+    fields = (
+        'full_name',
+        'manager',
+        'registration_number',
+        'place_of_birth',
+        'date_of_birth',
+        'dojang_name',
+        'sex',
+        'province',
+        'city',
+        'status',
+        'belt',
+        'phone_number',
+        'email',
+        'photo',
+    )
+
+    # Read-only fields
+    readonly_fields = ('manager', 'date_of_birth',)
 

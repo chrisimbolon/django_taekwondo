@@ -1,8 +1,8 @@
 :root {
   --back: #363636;
 
-  --girl: #e64298;
-  --boy: #2874dd;
+  --girl: #2b323b;
+  --boy: #2b323b;
 }
 body {
   font-family: Roboto, sans-serif;
@@ -42,7 +42,7 @@ nav {
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-  max-width: 250px;
+  max-width: 270px;
   /* min-width: 250px; */
   box-sizing: border-box;
 }
