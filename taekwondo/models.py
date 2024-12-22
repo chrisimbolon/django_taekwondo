@@ -18,7 +18,7 @@ class City(models.Model):  # City
 
     def __str__(self):
         if self.province:
-            return f"{self.city_name}, {self.province.province_name}, {self.province.country.country_name}"
+            return f"{self.city_name}, {self.province.province_name}, {self.province.country}"
         return f"{self.city_name} (No Province)"
 
     def testing_function(self):
@@ -33,7 +33,7 @@ class Belt(models.Model):
         return self.rank_name
 
 class Coach(models.Model):
-    manager = models.ForeignKey(User, on_delete=models.CASCADE,default=None)
+    manager = models.ForeignKey(User, on_delete=models.CASCADE,null=True, blank=True)
     registration_number = models.CharField(max_length=20, unique=True)
     full_name = models.CharField(max_length=50)
     place_of_birth = models.CharField(max_length=30)

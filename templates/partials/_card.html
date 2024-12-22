@@ -1,54 +1,59 @@
-{% load static %}
-{% if Pelatih.Jenis_Kelamin == "laki-laki" %}
+<!-- Card style -->
+
+{% load static %} {% if Coach.sex == "male" %}
 <!-- Card for details -->
-        <div class="card my-2 mx-2 boy-card">
-        <img src="{% if Pelatih.Photo %}
-        {{ Pelatih.Photo.url }}
+<div class="card my-2 mx-2 boy-card">
+  <img
+    src="{% if Coach.Photo %}
+        {{ Coach.photo.url }}
         {% else %}
         {% static 'images/man.png' %}
-        {% endif %}" class="img-fluid" />
-        <div class="card-header">
-	  <a href="{% url 'detail' Pelatih.id %}" class="text-white header-link"
-            ><i class="fas fa-mars mr-2"></i>{{Pelatih.Nama_Lengkap}}</a
-          >
-        </div>
-        <div class="card-body pb-0">
-          <p>
-            <i class="fas fa-at mr-2"></i>
-            <a href="mailto:{{Pelatih.Email}}">{{Pelatih.Email}}</a>
-          </p>
-          <p>
-            <i class="fas fa-phone mr-2"></i>
-            <a href="tel:{{Pelatih.No_Telp}}">{{Pelatih.No_Telp}}</a>
-          </p>
-          <p><i class="fas fa-info-circle mr-2"></i> {{Pelatih.Status}}</p>
-        </div>
-      </div>
-      <!-- Card for details ends -->
-            {% else %}
-         <div class="card my-2 mx-2 girl-card">
-        <img src="{% if Pelatih.Photo %}
-        {{ Pelatih.Photo.url }}
+        {% endif %}"
+    class="img-fluid"
+  />
+  <div class="card-header">
+    <a href="{% url 'detail' Coach.id %}" class="text-white header-link"
+      ><i class="fas fa-mars mr-2"></i>{{Coach.full_name}}</a
+    >
+  </div>
+  <div class="card-body pb-0">
+    <p>
+      <i class="fas fa-at mr-2"></i>
+      <a href="mailto:{{Coach.email}}">{{Coach.email}}</a>
+    </p>
+    <p>
+      <i class="fas fa-phone mr-2"></i>
+      <a href="tel:{{Coach.phone_number}}">{{Coach.phone_number}}</a>
+    </p>
+    <p><i class="fas fa-info-circle mr-2"></i> {{Coach.status}}</p>
+  </div>
+</div>
+<!-- Card for details ends -->
+{% else %}
+<div class="card my-2 mx-2 girl-card">
+  <img
+    src="{% if Coach.photo %}
+        {{ Coach.photo.url }}
         {% else %}
         {% static 'images/woman.png' %}
-        {% endif %}"class="img-fluid" />
-        <div class="card-header">
-          <a href="{% url 'detail' Pelatih.id %}" class="text-white header-link"
-            ><i class="fas fa-venus mr-2"></i>{{Pelatih.Nama_Lengkap}}</a
-          >
-        </div>
-        <div class="card-body pb-0">
-          <p>
-            <i class="fas fa-at mr-2"></i>
-            <a href="mailto:{{Pelatih.Email}}">{{Pelatih.Email}}</a>
-          </p>
-          <p>
-            <i class="fas fa-phone mr-2"></i>
-            <a href="tel:{{Pelatih.No_Telp}}">{{Pelatih.No_Telp}}</a>
-          </p>
-          <p><i class="fas fa-info-circle mr-2"></i>{{Pelatih.Status}}</p>
-        </div>
-      </div>
+        {% endif %}"
+    class="img-fluid"
+  />
+  <div class="card-header">
+    <a href="{% url 'detail' Coach.id %}" class="text-white header-link"
+      ><i class="fas fa-venus mr-2"></i>{{Coach.full_name}}</a
+    >
+  </div>
+  <div class="card-body pb-0">
+    <p>
+      <i class="fas fa-at mr-2"></i>
+      <a href="mailto:{{Coach.email}}">{{Coach.email}}</a>
+    </p>
+    <p>
+      <i class="fas fa-phone mr-2"></i>
+      <a href="tel:{{Coach.phone_number}}">{{Coach.phone_number}}</a>
+    </p>
+    <p><i class="fas fa-info-circle mr-2"></i>{{Coach.status}}</p>
+  </div>
+</div>
 {% endif %}
-
-

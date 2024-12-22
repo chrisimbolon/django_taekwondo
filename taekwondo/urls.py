@@ -7,9 +7,9 @@ urlpatterns=[
         path('coaches/', views.CoachListView.as_view(), name='coaches-list'),
         path('detail/<int:pk>',views.CoachDetailView.as_view(),name='detail'),
         path('search/',views.search, name='search'),
-        path('Coach/tambah',views.CoachCreateView.as_view(),name='create'),
+        path('Coach/create',views.CoachCreateView.as_view(),name='create'),
         path('Coach/update/<int:pk>',views.CoachUpdateView.as_view(),name='update'),
-        path('Coach/hapus/<int:pk>',views.CoachDeleteView.as_view(),name='delete'),
-        path('daftar/',views.SignUpView.as_view(),name='signup')
+        path('Coach/delete/<int:pk>',views.CoachDeleteView.as_view(),name='delete'),
+        path('signup/',views.SignUpView.as_view(),name='signup')
 ]
   

@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.views.generic import TemplateView  
-
+from datetime import datetime
 
 
 class HomePageView(TemplateView):
@@ -28,9 +28,13 @@ class CoachListView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         Coaches = super().get_queryset()
-        filtered = Coaches.filter(Manager=self.request.user)
-        print("Filtered Coaches:", filtered)  # Debug output
-        return filtered
+        return Coaches
+
+    # def get_queryset(self):
+    #     Coaches = super().get_queryset()
+    #     filtered = Coaches.filter(manager=self.request.user)
+    #     print("Filtered Coaches:", filtered)  
+    #     return filtered
 
 
 class CoachDetailView(LoginRequiredMixin, DetailView):
@@ -59,17 +63,35 @@ def search(request):
 class CoachCreateView(LoginRequiredMixin, CreateView):
     model = Coach
     template_name = 'create.html'
-    fields = ['No_Reg','Nama_Lengkap','Tempat_Lahir','Tanggal_Lahir','Nama_Dojang',
-            'Jenis_Kelamin','Provinsi_Asal','Kota_Asal','Status','Sabuk_Akhir','No_Telp',
-                'Email','Photo',]
+    fields = [
+        'registration_number', 'full_name', 'place_of_birth', 'date_of_birth', 'dojang_name',
+        'sex', 'province', 'city', 'status', 'belt', 'phone_number', 'email', 'photo',
+    ]
 
-    def form_valid(self,form):
+    def post(self, request, *args, **kwargs):
+        # Intercept POST data to handle the date format
+        post_data = request.POST.copy()
+        raw_dob = post_data.get('date_of_birth')
+
+        if raw_dob:
+            try:
+                # Convert DD-MM-YYYY to YYYY-MM-DD
+                dob_converted = datetime.strptime(raw_dob, '%d-%m-%Y').strftime('%Y-%m-%d')
+                post_data['date_of_birth'] = dob_converted
+            except ValueError:
+                messages.error(request, "Invalid date format. Please use DD-MM-YYYY.")
+                return self.form_invalid(self.get_form())  # Return form with an error message
+
+        # Replace the request.POST with modified data
+        request.POST = post_data
+        return super().post(request, *args, **kwargs)
+
+    def form_valid(self, form):
         instance = form.save(commit=False)
-        instance.Manager = self.request.user
+        instance.manager = self.request.user  # Assign the logged-in user as the manager
         instance.save()
-        messages.success(self.request,'Data Coach berhasil ditambah')
-        return redirect('home')
-
+        messages.success(self.request, 'Coach data added successfully')
+        return redirect('coaches-list')
 
 class CoachUpdateView(LoginRequiredMixin, UpdateView):
     model = Coach
