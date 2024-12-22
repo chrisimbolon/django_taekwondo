@@ -12,4 +12,4 @@ urlpatterns=[
         path('Pelatih/hapus/<int:pk>',views.PelatihDeleteView.as_view(),name='delete'),
         path('daftar/',views.SignUpView.as_view(),name='signup')
 ]
- 
+  

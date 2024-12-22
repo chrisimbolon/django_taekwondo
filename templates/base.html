@@ -14,8 +14,8 @@
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
     />
     <!-- Custom CSS -->
+
     <link rel="stylesheet" href="{% static './css/style.css' %}" />
-    <link rel="stylesheet" href="{% static './css/index.css' %}" />
     <!-- Fonts & Icons -->
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -35,25 +35,27 @@
   <body>
     <!-- Navbar -->
     <nav>
-      <!-- <a class="logo" href="{% url 'home' %}">
-        <i class="fas fa-user-circle"></i>&nbsp;Halaman Pelatih
-      </a> -->
+      <a class="logo" href="{% url 'home' %}">
+        <img
+          src="{% static 'images/Logo.png' %}"
+          alt="App Logo"
+          class="app-logo"
+        />
+      </a>
       <p class="feature-link m-0 p-0">
-        {% if request.user.is_authenticated %}
-        <a href="{% url 'logout' %}" class="mr-4 text-white">
-          <i class="fas fa-sign-in-alt"></i> &nbsp;keluar
+        <a href="{% url 'logout' %}" class="mr-4 text-dark">
+          <i class="fas fa-sign-in-alt"></i> &nbsp;Logout
         </a>
-        <a href="{% url 'create' %}" class="mr-4 text-white">
+        <a href="{% url 'create' %}" class="mr-4 text-dark">
           <i class="fas fa-plus"></i> &nbsp;tambah pelatih
         </a>
-        {% else %}
-        <a href="{% url 'signup' %}" class="mr-4 text-white">
+
+        <a href="{% url 'signup' %}" class="mr-4 text-dark">
           <i class="fas fa-user-plus"></i> &nbsp;daftar
         </a>
-        <a href="{% url 'login' %}" class="mr-4 text-white">
+        <a href="{% url 'login' %}" class="mr-4 text-dark">
           <i class="fas fa-sign-in-alt"></i> &nbsp;masuk
         </a>
-        {% endif %}
       </p>
       <form class="form-inline my-2" action="{% url 'search' %}" method="GET">
         <!-- sedang tidak digunakan {% csrf_token %} -->

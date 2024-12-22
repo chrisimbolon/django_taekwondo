@@ -36,7 +36,6 @@ footer {
 }
 
 .gradient-text {
-  /* background: linear-gradient(to right, #171716, #ffa500); */
   background: linear-gradient(to right, #805b10, #b38728, #a47e1b);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -132,9 +131,9 @@ footer {
 }
 
 .app-logo:hover {
-  transform: scale(1.1); /* Slight zoom effect */
+  transform: scale(1.1);
   transition: transform 0.3s ease;
-  opacity: 0.9; /* Slight fade */
+  opacity: 0.9;
 }
 
 .custom-icon {
