@@ -47,14 +47,14 @@ def search(request):
     if request.GET:
         search_term = request.GET['search_term']
         search_result = Coach.objects.filter(
-                Q(Nama_Lengkap__icontains=search_term)|
-                Q(Nama_Dojang__icontains=search_term)|
-                Q(Status__icontains=search_term)|
-                Q(No_Telp__iexact=search_term)
+                Q(full_name__icontains=search_term)|
+                Q(dojang_name__icontains=search_term)|
+                Q(status__icontains=search_term)|
+                Q(phone_number__iexact=search_term)
         )
         context={
             'search_term':search_term,
-            'Coaches':search_result.filter(Manager=request.user)
+            'Coaches':search_result.filter(manager=request.user)
         }
         return render(request, 'search.html',context)
     else:
@@ -96,13 +96,14 @@ class CoachCreateView(LoginRequiredMixin, CreateView):
 class CoachUpdateView(LoginRequiredMixin, UpdateView):
     model = Coach
     template_name = 'update.html'
-    fields = ['No_Reg','Nama_Lengkap','Tempat_Lahir','Tanggal_Lahir','Nama_Dojang',
-            'Jenis_Kelamin','Provinsi_Asal','Kota_Asal','Status','Sabuk_Akhir','No_Telp',
-            'Email','Photo',]
+    fields = [
+        'registration_number', 'full_name', 'place_of_birth', 'date_of_birth', 'dojang_name',
+        'sex', 'province', 'city', 'status', 'belt', 'phone_number', 'email', 'photo',
+    ]
 
     def form_valid(self,form):
         instance = form.save()
-        messages.success(self.request,'Data Coach berhasil diupdate')
+        messages.success(self.request,'Coach data updated successfully')
         return redirect('detail',instance.pk)
 
 class CoachDeleteView(LoginRequiredMixin, DeleteView):
@@ -111,7 +112,7 @@ class CoachDeleteView(LoginRequiredMixin, DeleteView):
     success_url = '/'
 
     def delete(self, request, *args, **kwargs):
-        messages.success(self.request,'Data Coach berhasil dihapus')
+        messages.success(self.request,'Coach data deleted successfully')
         return super().delete(self, request, *args, **kwargs)
 
 class SignUpView(CreateView):
