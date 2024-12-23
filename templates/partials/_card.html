@@ -4,7 +4,7 @@
 <!-- Card for details -->
 <div class="card my-2 mx-2 boy-card">
   <img
-    src="{% if Coach.Photo %}
+    src="{% if Coach.photo %}
         {{ Coach.photo.url }}
         {% else %}
         {% static 'images/c-man.png' %}
@@ -12,7 +12,7 @@
     class="img-fluid"
   />
   <div class="card-header">
-    <a href="{% url 'detail' Coach.id %}" class="text-white header-link"
+    <a href="{% url 'detail' Coach.id %}" class="text-dark header-link"
       ><i class="fas fa-mars mr-2"></i>{{Coach.full_name}}</a
     >
   </div>
@@ -40,7 +40,7 @@
     class="img-fluid"
   />
   <div class="card-header">
-    <a href="{% url 'detail' Coach.id %}" class="text-white header-link"
+    <a href="{% url 'detail' Coach.id %}" class="text-dark header-link"
       ><i class="fas fa-venus mr-2"></i>{{Coach.full_name}}</a
     >
   </div>

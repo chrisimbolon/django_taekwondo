@@ -21,7 +21,7 @@ class HomePageView(TemplateView):
         return context
 
 
-class CoachListView(LoginRequiredMixin, ListView):
+class CoachListView(ListView):
     template_name = 'coaches.html'
     model = Coach
     context_object_name = 'Coaches'
@@ -90,7 +90,7 @@ class CoachCreateView(LoginRequiredMixin, CreateView):
         instance = form.save(commit=False)
         instance.manager = self.request.user  # Assign the logged-in user as the manager
         instance.save()
-        messages.success(self.request, 'Coach data added successfully')
+        messages.success(self.request, 'Coach added successfully')
         return redirect('coaches-list')
 
 class CoachUpdateView(LoginRequiredMixin, UpdateView):
@@ -103,7 +103,7 @@ class CoachUpdateView(LoginRequiredMixin, UpdateView):
 
     def form_valid(self,form):
         instance = form.save()
-        messages.success(self.request,'Coach data updated successfully')
+        messages.success(self.request,'Coach updated successfully')
         return redirect('detail',instance.pk)
 
 class CoachDeleteView(LoginRequiredMixin, DeleteView):
@@ -112,7 +112,7 @@ class CoachDeleteView(LoginRequiredMixin, DeleteView):
     success_url = '/'
 
     def delete(self, request, *args, **kwargs):
-        messages.success(self.request,'Coach data deleted successfully')
+        messages.success(self.request,'Coach deleted successfully')
         return super().delete(self, request, *args, **kwargs)
 
 class SignUpView(CreateView):
