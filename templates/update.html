@@ -1,22 +1,20 @@
-{% extends 'base.html' %}
-{% load crispy_forms_tags %}
-{% block title %}
-Update{{ Pelatih }}
-{% endblock title %}
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% block title %}
+Update{{ Coach }} {% endblock title %} {% block content %}
 
-{% block content %}
-
-<div class = "container">
-	<h2 class="heading font-weight-light text-center">Update {{Pelatih}}</h2>
-    <hr>
+<div class="container">
+  <h2 class="heading font-weight-light text-center">Update {{Coach}}</h2>
+  <hr />
 </div>
 
-<div class = "container w-25 card p-4 mt-4" >
-    <form action="" method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{form|crispy}}
-    <input type="submit" value="Update" class="w-100 text-white text-center my-2 btn btn-info">
-    </form>
+<div class="container w-25 card p-4 mt-4">
+  <form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %} {{form|crispy}}
+    <input
+      type="submit"
+      value="Update"
+      class="w-100 text-white text-center my-2 btn btn-success"
+    />
+  </form>
 </div>
 
 {% endblock content %}

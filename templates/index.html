@@ -1,31 +1,38 @@
 {% extends 'base.html' %} {% load static %} {% block content %}
-<link rel="stylesheet" href="{% static './css/index.css' %}" />
-<section class="main-container d-flex flex-column align-content-center">
+<link rel="stylesheet" href="{% static '/css/index.css' %}" />
+
+<section
+  class="main-container d-flex flex-column flex-md-row align-items-stretch"
+>
   <!-- Logo -->
-  <img src="{% static 'images/Logo.png' %}" alt="App Logo" class="app-logo" />
+  <img
+    src="{% static 'images/Logo.png' %}"
+    alt="App Logo"
+    class="app-logo mb-4"
+  />
 
-  <div class="left-content">
+  <!-- Left Content -->
+  <div class="left-content col-md-6 d-flex flex-column">
     <!-- Hero Section -->
-
     <div class="hero">
       <div class="hero-overlay">
-        <h1 class="display-4 font-weight-bold gradient-text">
+        <h1 class="display-2 gradient-text">
           Effortlessly Manage Your Taekwondo Coaches
         </h1>
         <p class="lead mt-3">
           Streamline your management process with a modern tool designed for
           Taekwondo dojos. Keep track of your team with ease.
         </p>
-        <a href="{% url 'coaches-list' %}" class="btn-cta mt-5"
-          >Explore Coaches</a
-        >
+        <a href="{% url 'coaches-list' %}" class="btn-cta mt-4">
+          Explore Coaches
+        </a>
       </div>
     </div>
 
     <!-- Features Section -->
-    <div class="feature">
-      <h3 class="text-center">Why Choose Our App?</h3>
-      <div class="row mt-4">
+    <div class="features mt-5 mb-0">
+      <h3 class="text-center mb-4">Why Choose Our App?</h3>
+      <div class="row">
         <div class="col-md-4 text-center mb-3">
           <i class="fas fa-user-shield fa-2x custom-icon"></i>
           <h6 class="mt-2">Secure & Reliable</h6>
@@ -47,5 +54,8 @@
       </div>
     </div>
   </div>
+
+  <!-- Right Side -->
+  <div class="right-side col-md-6 d-none d-md-block"></div>
 </section>
 {% endblock content %}

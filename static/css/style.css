@@ -125,6 +125,32 @@ nav .btn-link {
 
 /* Main Section ends */
 
+/* Override Bootstrap btn-success */
+.btn-success {
+  background-color: #28a745; /* Vibrant green */
+  color: #ffffff; /* White text */
+  border: none; /* Optional: Remove border */
+}
+
+.btn-success:hover {
+  background-color: #218838; /* Darker green for hover */
+  color: #ffffff;
+  transition: background-color 0.3s ease;
+}
+
+/* Override Bootstrap btn-danger */
+.btn-danger {
+  background-color: #e63939; /* Strong red */
+  color: #ffffff; /* White text */
+  border: none;
+}
+
+.btn-danger:hover {
+  background-color: #cc0000; /* Darker red for hover */
+  color: #ffffff;
+  transition: background-color 0.3s ease;
+}
+
 /* footer style */
 footer {
   background-color: var(--back);
