@@ -1,16 +1,16 @@
-{% extends 'base.html' %} {% load static %} {% block title %} Halaman Taekwondo
+{% extends 'base.html' %} {% load static %} {% block title %} List of Coaches -
 {% endblock title %} {% block content %}
-<div class="container">
-  <h3 class="heading font-weight-light">List of Coaches</h3>
+<div class="container py-4">
+  <h3 class="text-center mt-4">List of Coaches</h3>
   <hr />
-</div>
 
-<div class="container main-part">
-  {% if Coaches %} {% for Coach in Coaches %}
-  <!-- Debugging: Display the Pelatih object -->
-
-  {% include 'partials/_card.html' %} {% endfor %} {% else %}
-  <p>Coach data empty</p>
-  {% endif %}
+  <!-- Card grid container -->
+  <div class="row row-cols-1 row-cols-sm-3 row-cols-md-4 g-4">
+    {% if Coaches %} {% for Coach in Coaches %}
+    <!-- Debugging: Display the Coach object -->
+    {% include 'partials/_card.html' %} {% endfor %} {% else %}
+    <p class="text-center">Coach data is empty.</p>
+    {% endif %}
+  </div>
 </div>
 {% endblock content %}

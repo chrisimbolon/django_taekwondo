@@ -1,59 +1,50 @@
-<!-- Card style -->
+{% load static %}
+<div class="col">
+  <div
+    class="card h-100 {% if Coach.sex == 'male' %}boy-card{% else %}girl-card{% endif %}"
+  >
+    <!-- Card Image -->
+    <img
+      src="{% if Coach.photo %}
+          {{ Coach.photo.url }}
+          {% else %}
+          {% static 'images/c-man.png' if Coach.sex == 'male' else 'images/c-woman.png' %}
+          {% endif %}"
+      class="card-img-top img-thumbnail"
+      alt="{{ Coach.full_name }}"
+    />
 
-{% load static %} {% if Coach.sex == "male" %}
-<!-- Card for details -->
-<div class="card my-2 mx-2 boy-card">
-  <img
-    src="{% if Coach.photo %}
-        {{ Coach.photo.url }}
-        {% else %}
-        {% static 'images/c-man.png' %}
-        {% endif %}"
-    class="img-fluid"
-  />
-  <div class="card-header">
-    <a href="{% url 'detail' Coach.id %}" class="text-dark header-link"
-      ><i class="fas fa-mars mr-2"></i>{{Coach.full_name}}</a
-    >
-  </div>
-  <div class="card-body pb-0">
-    <p>
-      <i class="fas fa-at mr-2"></i>
-      <a href="mailto:{{Coach.email}}">{{Coach.email}}</a>
-    </p>
-    <p>
-      <i class="fas fa-phone mr-2"></i>
-      <a href="tel:{{Coach.phone_number}}">{{Coach.phone_number}}</a>
-    </p>
-    <p><i class="fas fa-info-circle mr-2"></i> {{Coach.status}}</p>
-  </div>
-</div>
-<!-- Card for details ends -->
-{% else %}
-<div class="card my-2 mx-2 girl-card">
-  <img
-    src="{% if Coach.photo %}
-        {{ Coach.photo.url }}
-        {% else %}
-        {% static 'images/c-woman.png' %}
-        {% endif %}"
-    class="img-fluid"
-  />
-  <div class="card-header">
-    <a href="{% url 'detail' Coach.id %}" class="text-dark header-link"
-      ><i class="fas fa-venus mr-2"></i>{{Coach.full_name}}</a
-    >
-  </div>
-  <div class="card-body pb-0">
-    <p>
-      <i class="fas fa-at mr-2"></i>
-      <a href="mailto:{{Coach.email}}">{{Coach.email}}</a>
-    </p>
-    <p>
-      <i class="fas fa-phone mr-2"></i>
-      <a href="tel:{{Coach.phone_number}}">{{Coach.phone_number}}</a>
-    </p>
-    <p><i class="fas fa-info-circle mr-2"></i>{{Coach.status}}</p>
+    <!-- Card Header -->
+    <div class="card-header text-center">
+      <a
+        href="{% url 'detail' Coach.id %}"
+        class="text-dark text-decoration-none"
+      >
+        <i
+          class="fas {% if Coach.sex == 'male' %}fa-mars{% else %}fa-venus{% endif %} me-2"
+        ></i>
+        {{ Coach.full_name }}
+      </a>
+    </div>
+
+    <!-- Card Body -->
+    <div class="card-body">
+      <p>
+        <i class="fas fa-at me-2"></i>
+        <a href="mailto:{{Coach.email}}" class="text-decoration-none"
+          >{{Coach.email}}</a
+        >
+      </p>
+      <p>
+        <i class="fas fa-phone me-2"></i>
+        <a href="tel:{{Coach.phone_number}}" class="text-decoration-none"
+          >{{Coach.phone_number}}</a
+        >
+      </p>
+      <p>
+        <i class="fas fa-info-circle me-2"></i>
+        {{ Coach.status }}
+      </p>
+    </div>
   </div>
 </div>
-{% endif %}
