@@ -10,8 +10,7 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from django.views.generic import TemplateView  
 from datetime import datetime
-from django.http import JsonResponse
-from django.http import HttpResponseRedirect, HttpResponseForbidden
+from django.http import JsonResponse, HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.contrib.auth import authenticate, login
 
 
@@ -171,6 +170,7 @@ class LoggedOutView(TemplateView):
 
 def login_view(request):
     next_url = request.GET.get('next', '')  # Get the next parameter
+    # next_url = request.GET.get('next')  
     if request.method == 'POST':
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
@@ -181,7 +181,9 @@ def login_view(request):
             )
             if user is not None:
                 login(request, user)
-                return HttpResponseRedirect(next_url if next_url else '/')  # Redirect to next or home
+                # return HttpResponseRedirect(next_url if next_url else '/')  # Redirect to next or home
+                return redirect('/coaches/')
+
         else:
             # Form is invalid, return errors
             return render(request, 'index.html', {
@@ -190,4 +192,4 @@ def login_view(request):
             })
     else:
         form = AuthenticationForm()
-    return render(request, 'index.html', {'form': form})
+        return render(request, 'index.html', {'form': form})
