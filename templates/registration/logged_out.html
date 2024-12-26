@@ -1,4 +1,5 @@
-{% extends 'base.html' %} {% block title %} Keluar {% endblock title %}
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% block title %} Logout
+{% endblock title %}
 <!---->
 {% block content %}
 <div class="container">
@@ -11,7 +12,7 @@
     You are logged out.<br />
     You can log back in using
     <a
-      href="#"
+      href="javascript:void(0);"
       class="text-info"
       data-bs-toggle="modal"
       data-bs-target="#loginModal"
@@ -20,5 +21,4 @@
     </a>
   </p>
 </div>
-
 {% endblock content %}

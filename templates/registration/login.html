@@ -22,11 +22,13 @@
       </div>
       <div class="modal-body">
         <form
-          action="{% url 'login' %}?next={{ request.GET.next }}"
+          action="{% url 'login' %}?next={{ request.GET.next|default:'' }}"
           method="POST"
           enctype="multipart/form-data"
         >
-          {% csrf_token %} {{ form|crispy }}
+          {% csrf_token %} {% if form %} {{ form|crispy }} {% else %}
+          <p>Error: Form not found.</p>
+          {% endif %}
           <input
             type="submit"
             value="Login"

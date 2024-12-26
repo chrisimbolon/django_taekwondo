@@ -153,3 +153,16 @@ def create_coach(request):
     else:
         form = CoachForm()
     return render(request, 'create.html', {'form': form, 'provinces': provinces})
+
+from django.contrib.auth.forms import AuthenticationForm
+
+from django.contrib.auth.forms import AuthenticationForm
+from django.views.generic import TemplateView
+
+class LoggedOutView(TemplateView):
+    template_name = 'logged_out.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = AuthenticationForm()
+        return context
