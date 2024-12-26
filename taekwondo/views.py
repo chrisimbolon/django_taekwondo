@@ -11,7 +11,8 @@ from django.contrib import messages
 from django.views.generic import TemplateView  
 from datetime import datetime
 from django.http import JsonResponse
-from django.http import HttpResponseForbidden
+from django.http import HttpResponseRedirect, HttpResponseForbidden
+from django.contrib.auth import authenticate, login
 
 
 class HomePageView(TemplateView):
@@ -166,3 +167,27 @@ class LoggedOutView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['form'] = AuthenticationForm()
         return context
+    
+
+def login_view(request):
+    next_url = request.GET.get('next', '')  # Get the next parameter
+    if request.method == 'POST':
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            # Authenticate and log in the user
+            user = authenticate(
+                username=form.cleaned_data['username'],
+                password=form.cleaned_data['password']
+            )
+            if user is not None:
+                login(request, user)
+                return HttpResponseRedirect(next_url if next_url else '/')  # Redirect to next or home
+        else:
+            # Form is invalid, return errors
+            return render(request, 'index.html', {
+                'form': form,  # Pass the form with errors
+                'login_failed': True,  # Optional: Add a flag for login failure
+            })
+    else:
+        form = AuthenticationForm()
+    return render(request, 'index.html', {'form': form})

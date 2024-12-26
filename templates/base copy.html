@@ -28,14 +28,15 @@
     <title>{% block title %} {% endblock title %}</title>
   </head>
   <body>
-
     <!-- MODAL -->
-    <div class="modal fade {% if form.errors %}show{% endif %}" 
-     id="loginModal"
-     tabindex="-1" 
-     aria-labelledby="loginModalLabel" 
-     aria-hidden="{% if not form.errors %}true{% else %}false{% endif %}" 
-     style="{% if form.errors %}display: block;{% endif %}">
+
+    <div
+  class="modal fade"
+  id="loginModal"
+  tabindex="-1"
+  aria-labelledby="loginModalLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-header justify-content-center">
@@ -56,22 +57,13 @@
         >
           {% csrf_token %}
           {{ login_form|crispy }}
-          {% if login_form.errors %}
-          <div class="alert alert-danger mt-2">
-            Please correct the errors below.
-          </div>
-
-            <!-- <div class="text-danger">
-              {{ login_form.non_field_errors }}
-            </div> -->
-          {% endif %}
           <button type="submit" class="btn btn-info w-100 mt-2">Login</button>
         </form>
       </div>
+      
     </div>
   </div>
 </div>
-
     <!-- Navbar -->
     <nav>
       <a class="logo" href="{% url 'home' %}">
@@ -119,17 +111,6 @@
       <p class="text-center p-1 m-0">&copy; Powered By Django</p>
     </footer>
  
-
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        if (document.querySelector("#loginModal.show")) {
-          const loginModal = new bootstrap.Modal(document.getElementById("loginModal"));
-          loginModal.show();
-        }
-      });
-    </script>
-    
-
     <!-- Bootstrap 5 JavaScript Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
