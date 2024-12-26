@@ -11,8 +11,6 @@ from django.contrib import messages
 from django.views.generic import TemplateView  
 from datetime import datetime
 from django.http import JsonResponse
-from django.http import HttpResponseForbidden
-
 
 class HomePageView(TemplateView):
     template_name = 'index.html'
@@ -29,33 +27,14 @@ class CoachListView(ListView):
     context_object_name = 'Coaches'
 
     def get_queryset(self):
-        return super().get_queryset()
+        Coaches = super().get_queryset()
+        return Coaches
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['form'] = AuthenticationForm()  # Add the login form to the context
-        return context
    
 class CoachDetailView(LoginRequiredMixin, DetailView):
     template_name = 'detail.html'
     model = Coach
     context_object_name = 'Coach'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        coach = self.get_object()  # Get the Coach object
-        # Check if the logged-in user is not the manager
-        if self.request.user != coach.manager:
-            context['access_denied'] = True
-        else:
-            context['access_denied'] = False
-        return context
-
-    def render_to_response(self, context, **response_kwargs):
-        # Render access denied message if user is not the manager
-        if context.get('access_denied'):
-            return render(self.request, 'detail.html', context)
-        return super().render_to_response(context, **response_kwargs)
 
 @login_required
 def search(request):

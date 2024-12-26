@@ -1,19 +1,39 @@
-{% extends 'base.html' %} {% load crispy_forms_tags %} {% block title %} Login
-{% endblock title %} {% block content %}
-<div class="container">
-  <h2 class="heading font-weight-light text-center">Login as user</h2>
-  <hr />
-</div>
+{% load crispy_forms_tags %}
 
-<div class="container w-25 card p-4 mt-4">
-  <form action="" method="POST" enctype="multipart/form-data">
-    {% csrf_token %} {{form|crispy}}
-    <input
-      type="submit"
-      value="Login"
-      class="w-100 text-white text-center my-2 btn btn-secondary"
-    />
-  </form>
+<div
+  class="modal fade"
+  id="loginModal"
+  tabindex="-1"
+  aria-labelledby="loginModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header justify-content-center">
+        <h5 class="modal-title text-center w-100" id="loginModalLabel">
+          Login as user
+        </h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form
+          action="{% url 'login' %}?next={{ request.GET.next }}"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          {% csrf_token %} {{ form|crispy }}
+          <input
+            type="submit"
+            value="Login"
+            class="w-100 text-white text-center my-2 btn btn-info"
+          />
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
-
-{% endblock content %} ~

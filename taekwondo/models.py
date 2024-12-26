@@ -2,8 +2,9 @@ from django.db import models
 from django.utils.timezone import datetime
 from django.contrib.auth.models import User
 from django_countries.fields import CountryField
+from PIL import Image
 
-
+ 
 
 class Province(models.Model):  # Province/State
     province_name = models.CharField(max_length=150)
@@ -52,8 +53,25 @@ class Coach(models.Model):
     belt = models.ForeignKey('Belt', on_delete=models.SET_NULL, null=True)
     phone_number = models.CharField(max_length=15)
     email = models.EmailField(max_length=50)
-    photo = models.ImageField(upload_to='images/',blank=True)
+    photo = models.ImageField(upload_to='images/',blank=True, null=True)
     input_date = models.DateField(default=datetime.now)
+
+    def save(self, *args, **kwargs):
+        # Save the instance first to ensure we have a file to process
+        super().save(*args, **kwargs)
+
+        if self.photo:
+            # Open the uploaded image
+            img = Image.open(self.photo.path)
+
+            # Define the desired size
+            target_size = (300, 300)  # For example, 300x300 pixels
+
+            # Resize the image (while maintaining aspect ratio)
+            img = img.resize(target_size, Image.Resampling.LANCZOS)
+
+            # Save the resized image back to the file system
+            img.save(self.photo.path)
 
     def __str__(self):
         return self.full_name

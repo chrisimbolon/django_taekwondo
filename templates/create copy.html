@@ -17,6 +17,23 @@ new coach {% endblock title %} {% block content %}
       <div class="form-container p-4 mt-4">
         <form action="" method="POST" enctype="multipart/form-data">
           {% csrf_token %} {{ form|crispy }}
+          <select
+            id="id_province"
+            name="province"
+            class="form-control"
+            required
+          >
+            <option value="" disabled selected>-- Select Province --</option>
+            {% for province in provinces %}
+            <option value="{{ province.id }}">
+              {{ province.province_name }}
+            </option>
+            {% endfor %}
+          </select>
+
+          <select id="id_city" name="city" class="form-control" required>
+            <option value="" disabled selected>-- Select City --</option>
+          </select>
 
           <input
             type="submit"

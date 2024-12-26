@@ -5,15 +5,20 @@ Register for free {% endblock title %} {% block content %}
   <hr />
 </div>
 
-<div class="container w-25 card p-4 mt-4">
-  <form action="" method="POST" enctype="multipart/form-data">
-    {% csrf_token %} {{form|crispy}}
-    <input
-      type="submit"
-      value="Create account"
-      class="w-100 text-white text-center my-2 btn btn-secondary"
-    />
-  </form>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-4">
+      <div class="form-container p-4 mt-4">
+        <form action="" method="POST" enctype="multipart/form-data">
+          {% csrf_token %} {{form|crispy}}
+          <input
+            type="submit"
+            value="Create account"
+            class="w-100 text-white text-center my-2 btn btn-info"
+          />
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
-
 {% endblock content %} ~

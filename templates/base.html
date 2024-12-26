@@ -1,4 +1,5 @@
-{% load static %}
+{% load static %} 
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -58,12 +59,14 @@
         </form>
         {% else %}
         <a href="{% url 'signup' %}" class="mr-4 text-dark">Signup</a>
-        <a href="{% url 'login' %}" class="mr-4 text-dark">Login</a>
+        <a href="#" type="button" class="mr-4 text-dark" data-bs-toggle="modal"
+        data-bs-target="#loginModal" >Login</a>
       </p>
       {% endif %}
     </nav>
     <!-- Navbar ends -->
 
+    {% include "registration/login.html" %}
     {% include "partials/_message.html" %}
     {% block content %}
     {% endblock content %}
@@ -72,9 +75,22 @@
     <footer class="mt-4 p-2">
       <p class="text-center p-1 m-0">&copy; Powered By Django</p>
     </footer>
-
+    
+    <script>
+      // Check if the 'next' query parameter exists in the URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const nextParam = urlParams.get('next');
+    
+      // If 'next' is present, show the login modal
+      if (nextParam) {
+        const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
+        loginModal.show();
+      }
+    </script>
+    
     <!-- Bootstrap 5 JavaScript Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    
   </body>
 </html>
 

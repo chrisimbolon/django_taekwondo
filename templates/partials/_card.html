@@ -8,7 +8,7 @@
       src="{% if Coach.photo %}
           {{ Coach.photo.url }}
           {% else %}
-          {% static 'images/c-man.png' if Coach.sex == 'male' else 'images/c-woman.png' %}
+          {% static if Coach.sex == 'male' 'images/c-man.png'  else 'images/c-woman.png' %}
           {% endif %}"
       class="card-img-top img-thumbnail"
       alt="{{ Coach.full_name }}"
@@ -16,6 +16,7 @@
 
     <!-- Card Header -->
     <div class="card-header text-center">
+      {% if user.is_authenticated %}
       <a
         href="{% url 'detail' Coach.id %}"
         class="text-dark text-decoration-none"
@@ -25,6 +26,19 @@
         ></i>
         {{ Coach.full_name }}
       </a>
+      {% else %}
+      <a
+        href="#"
+        class="text-dark text-decoration-none"
+        data-bs-toggle="modal"
+        data-bs-target="#loginModal"
+      >
+        <i
+          class="fas {% if Coach.sex == 'male' %}fa-mars{% else %}fa-venus{% endif %} me-2"
+        ></i>
+        {{ Coach.full_name }}
+      </a>
+      {% endif %}
     </div>
 
     <!-- Card Body -->
