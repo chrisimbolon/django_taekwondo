@@ -1,11 +1,14 @@
 {% load crispy_forms_tags %}
+<!---->
 
+<!-- Login Modal -->
 <div
-  class="modal fade"
+  class="modal fade {% if login_form.errors %}show{% endif %}"
   id="loginModal"
   tabindex="-1"
   aria-labelledby="loginModalLabel"
-  aria-hidden="true"
+  aria-hidden="{% if not login_form.errors %}true{% else %}false{% endif %}"
+  style="{% if login_form.errors %}display: block;{% else %}display: none;{% endif %}"
 >
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
@@ -21,19 +24,37 @@
         ></button>
       </div>
       <div class="modal-body">
-        <form
-          action="{% url 'login' %}?next={{ request.GET.next|default:'' }}"
-          method="POST"
-          enctype="multipart/form-data"
-        >
-          {% csrf_token %} {% if form %} {{ form|crispy }} {% else %}
-          <p>Error: Form not found.</p>
-          {% endif %}
-          <input
-            type="submit"
-            value="Login"
-            class="w-100 text-white text-center my-2 btn btn-info"
-          />
+        <form id="loginModalForm" method="post" action="{% url 'login_view' %}">
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="modal_username">Username:</label>
+            <input
+              type="text"
+              name="username"
+              <!--
+              Correct
+              name
+              for
+              Django
+              --
+            />
+            id="modal_username" class="form-control" required />
+          </div>
+          <div class="form-group">
+            <label for="modal_password">Password:</label>
+            <input
+              type="password"
+              name="password"
+              <!--
+              Correct
+              name
+              for
+              Django
+              --
+            />
+            id="modal_password" class="form-control" required />
+          </div>
+          <button type="submit" class="btn btn-primary">Login</button>
         </form>
       </div>
     </div>

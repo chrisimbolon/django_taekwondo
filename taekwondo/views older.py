@@ -160,32 +160,24 @@ class LoggedOutView(TemplateView):
     
 
 def login_view(request):
-    next_url = request.GET.get('next', reverse_lazy('coaches-list'))
+    next_url = request.GET.get('next') or reverse_lazy('coaches-list')
 
     if request.method == 'POST':
-        print(request.POST)  # Debugging: Check the POST data
-        login_form = AuthenticationForm(data=request.POST)
-
+        login_form = AuthenticationForm(data=request.POST, auto_id="modal_%s")
         if login_form.is_valid():
             user = authenticate(
                 username=login_form.cleaned_data['username'],
                 password=login_form.cleaned_data['password']
             )
-            # Authenticate and log in the user
-            # user = login_form.get_user()
-            print("User authenticated:", user)  # Debug the user object
             if user is not None:
                 login(request, user)
-                messages.success(request, "You have successfully logged in.")
-                return redirect(next_url)  # Successful login
+                return redirect(next_url)  # Redirect to original page
 
-        # Debugging: Log form errors if the form is invalid
-        print("Form errors:", login_form.errors)
-
-        # Redirect to the same page with login_error
+        
         return redirect(f"{next_url}?login_error=true")
 
     return redirect(next_url)
+
 
 
         # If login fails, determine the template to render based on the referer
