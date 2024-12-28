@@ -122,6 +122,18 @@ nav .btn-link {
 
 /* Card Styles end */
 
+.modal-body .form-label {
+  display: block;
+  margin-bottom: 0.5rem; /* Add space between the label and input field */
+}
+
+.modal-body .form-control {
+  display: block;
+  width: 100% !important; /* Ensure full width regardless of Bootstrap constraints */
+  max-width: 100%; /* Prevent overflow */
+  box-sizing: border-box; /* Include padding and border in the width */
+}
+
 /* form */
 .form-container {
   background-color: #f8f9fa; /* Subtle background color */
