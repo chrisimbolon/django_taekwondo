@@ -1,4 +1,4 @@
-{% load static %}
+{% load static %} {% load custom_filters %}
 <div class="col">
   <div
     class="card h-100 {% if Coach.sex == 'male' %}boy-card{% else %}girl-card{% endif %}"
@@ -24,7 +24,7 @@
         <i
           class="fas {% if Coach.sex == 'male' %}fa-mars{% else %}fa-venus{% endif %} me-2"
         ></i>
-        {{ Coach.full_name }}
+        {{ Coach.full_name|truncate_chars:15 }}
       </a>
       {% else %}
       <a
@@ -36,7 +36,7 @@
         <i
           class="fas {% if Coach.sex == 'male' %}fa-mars{% else %}fa-venus{% endif %} me-2"
         ></i>
-        {{ Coach.full_name }}
+        {{ Coach.full_name|truncate_chars:15 }}
       </a>
       {% endif %}
     </div>
