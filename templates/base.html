@@ -29,19 +29,29 @@
   </head>
   <body>
 
-    <!-- MODAL -->
-<!-- Login Modal -->
+  <!-- MODAL -->
 <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <form method="POST" action="{% url 'login' %}">
-        {% csrf_token %}
+      <form method="POST" id="loginModalForm" action="{% url 'login' %}">
+        {% csrf_token %} 
+
         <div class="modal-header">
           <h5 class="modal-title" id="loginModalLabel">Login</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          {{ login_form|crispy }}
+          <!-- General Error Alert -->
+          <div id="loginErrorAlert" class="alert alert-danger d-none" role="alert"></div>
+
+          <!-- Dynamic Form Fields -->
+          {% for field in login_form %}
+          <div class="mb-3">
+            <label for="id_{{ field.name }}" class="form-label">{{ field.label }}</label>
+            {{ field }}
+            <div class="invalid-feedback"></div>
+          </div>
+          {% endfor %}
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary">Login</button>
@@ -51,6 +61,7 @@
     </div>
   </div>
 </div>
+
 
 
     <!-- Navbar -->
@@ -102,23 +113,78 @@
  
 
     <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get("login_error")) {
-          const loginModal = new bootstrap.Modal(document.getElementById("loginModal"));
-          loginModal.show();
-        }
+      document.addEventListener("DOMContentLoaded", function () {
+        const loginForm = document.querySelector("#loginModalForm");
+        if (!loginForm) return; // Guard clause if modal doesn't exist.
+    
+        loginForm.addEventListener("submit", function (e) {
+          e.preventDefault(); // Prevent default form submission
+          console.log("Login form submission intercepted");
+    
+          const formData = new FormData(this);
+          const url = this.action;
+    
+          fetch(url, {
+            method: "POST",
+            body: formData,
+            headers: {
+              "X-Requested-With": "XMLHttpRequest",
+            },
+          })
+            .then((response) => {
+              if (!response.ok) {
+                return response.json().then((data) => {
+                  throw data; // Pass errors to the catch block
+                });
+              }
+              return response.json();
+            })
+            .then((data) => {
+              if (data.success) {
+                window.location.reload(); // Reload the page on success
+              }
+            })
+            .catch((error) => {
+              if (error.errors) {
+                handleErrors(error.errors);
+              } else {
+                console.error("Unexpected error:", error);
+              }
+            });
+    
+            function handleErrors(errors) {
+  const errorAlert = document.querySelector("#loginErrorAlert");
+
+  // Display general error message (if any)
+  if (errors.__all__) {
+    errorAlert.textContent = errors.__all__[0].message;
+    errorAlert.classList.remove("d-none");
+  } else {
+    errorAlert.classList.add("d-none");
+  }
+
+  // Display field-specific errors
+  Object.keys(errors).forEach((field) => {
+    const input = document.querySelector(`#id_${field}`);
+    const feedback = input ? input.nextElementSibling : null;
+
+    if (input && errors[field]) {
+      input.classList.add("is-invalid");
+      if (feedback) feedback.textContent = errors[field][0].message;
+    } else if (input) {
+      input.classList.remove("is-invalid");
+      if (feedback) feedback.textContent = "";
+    }
+  });
+}
+
+        });
       });
     </script>
     
-    
-
     <!-- Bootstrap 5 JavaScript Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> -->
-    <!-- At the end of <body> in base.html -->
-
 
   </body>
 </html>

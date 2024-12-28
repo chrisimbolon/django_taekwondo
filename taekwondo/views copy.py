@@ -12,6 +12,7 @@ from django.views.generic import TemplateView
 from datetime import datetime
 from django.http import JsonResponse, HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.contrib.auth import authenticate, login
+from urllib.parse import urlparse
 
 
 class HomePageView(TemplateView):
@@ -161,9 +162,10 @@ class LoggedOutView(TemplateView):
 
 def login_view(request):
     next_url = request.GET.get('next') or reverse_lazy('coaches-list')
-
+    
     if request.method == 'POST':
-        login_form = AuthenticationForm(data=request.POST, auto_id="modal_%s")
+        print(request.POST) 
+        login_form = AuthenticationForm(data=request.POST)
         if login_form.is_valid():
             user = authenticate(
                 username=login_form.cleaned_data['username'],
@@ -171,29 +173,16 @@ def login_view(request):
             )
             if user is not None:
                 login(request, user)
-                return redirect(next_url)  # Redirect to original page
+                return redirect(next_url)
 
-        
-        return redirect(f"{next_url}?login_error=true")
+        # Handle form errors (optional)
+        print("Form errors:", login_form.errors)
+        context = {
+            "login_form": login_form.errors,
+            "login_failed": True,  # This flag triggers the error display in the modal
+        }
+        print("Look at this",context)
+        # Redirect to the same page with login_error
+        return redirect(f"{next_url}?login_error=true", {"login_form":login_form})
 
     return redirect(next_url)
-
-
-
-        # If login fails, determine the template to render based on the referer
-    #     referer_url = request.META.get('HTTP_REFERER', '/')
-    #     if 'coaches' in referer_url:
-    #         current_page_template = 'coaches.html'
-    #     elif 'detail' in referer_url:
-    #         current_page_template = 'detail.html'
-    #     else:
-    #         current_page_template = 'coaches.html' 
-
-    #     return render(
-    #         request,
-    #         current_page_template,
-    #         {'login_form': login_form, 'form_errors': True, 'next': next_url},
-    #     )
-    
-    # login_form = AuthenticationForm(auto_id="modal_%s")
-    # return render(request, 'index.html', {'login_form': login_form, 'next': next_url})

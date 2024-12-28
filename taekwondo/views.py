@@ -12,6 +12,7 @@ from django.views.generic import TemplateView
 from datetime import datetime
 from django.http import JsonResponse, HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.contrib.auth import authenticate, login
+from urllib.parse import urlparse
 
 
 class HomePageView(TemplateView):
@@ -157,51 +158,37 @@ class LoggedOutView(TemplateView):
         context = super().get_context_data(**kwargs)
         context['form'] = AuthenticationForm()
         return context
-    
+
+from django.http import JsonResponse
+from django.shortcuts import redirect
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import authenticate, login
 
 def login_view(request):
-    next_url = request.GET.get('next', reverse_lazy('coaches-list'))
+    if request.method == "POST":
+        form = AuthenticationForm(data=request.POST)
 
-    if request.method == 'POST':
-        print(request.POST)  # Debugging: Check the POST data
-        login_form = AuthenticationForm(data=request.POST)
-
-        if login_form.is_valid():
+        if form.is_valid():
             user = authenticate(
-                username=login_form.cleaned_data['username'],
-                password=login_form.cleaned_data['password']
+                username=form.cleaned_data["username"],
+                password=form.cleaned_data["password"]
             )
-            # Authenticate and log in the user
-            # user = login_form.get_user()
-            print("User authenticated:", user)  # Debug the user object
             if user is not None:
                 login(request, user)
-                messages.success(request, "You have successfully logged in.")
-                return redirect(next_url)  # Successful login
+                if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+                    return JsonResponse({"success": True})
+                return redirect("coaches-list")  # Fallback for non-AJAX requests
 
-        # Debugging: Log form errors if the form is invalid
-        print("Form errors:", login_form.errors)
+        # Handle login failure
+        errors = form.errors.get_json_data()
 
-        # Redirect to the same page with login_error
-        return redirect(f"{next_url}?login_error=true")
+        if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+            return JsonResponse({"success": False, "errors": errors}, status=400)
 
-    return redirect(next_url)
+        # Fallback: Redirect to the page with a query parameter
+        return redirect(f"{request.path}?login_failed=1")
 
-
-        # If login fails, determine the template to render based on the referer
-    #     referer_url = request.META.get('HTTP_REFERER', '/')
-    #     if 'coaches' in referer_url:
-    #         current_page_template = 'coaches.html'
-    #     elif 'detail' in referer_url:
-    #         current_page_template = 'detail.html'
-    #     else:
-    #         current_page_template = 'coaches.html' 
-
-    #     return render(
-    #         request,
-    #         current_page_template,
-    #         {'login_form': login_form, 'form_errors': True, 'next': next_url},
-    #     )
-    
-    # login_form = AuthenticationForm(auto_id="modal_%s")
-    # return render(request, 'index.html', {'login_form': login_form, 'next': next_url})
+    # Invalid request handling (GET or invalid POST)
+    if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+        return JsonResponse({"success": False, "error": "Invalid request method."}, status=400)
+    return redirect("coaches-list")

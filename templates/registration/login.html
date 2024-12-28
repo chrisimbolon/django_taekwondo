@@ -1,62 +1,8 @@
-{% load crispy_forms_tags %}
+{% extends 'base.html' %}
+<!---->
+{% block title %}Login{% endblock title %}
 <!---->
 
-<!-- Login Modal -->
-<div
-  class="modal fade {% if login_form.errors %}show{% endif %}"
-  id="loginModal"
-  tabindex="-1"
-  aria-labelledby="loginModalLabel"
-  aria-hidden="{% if not login_form.errors %}true{% else %}false{% endif %}"
-  style="{% if login_form.errors %}display: block;{% else %}display: none;{% endif %}"
->
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header justify-content-center">
-        <h5 class="modal-title text-center w-100" id="loginModalLabel">
-          Login as user
-        </h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">
-        <form id="loginModalForm" method="post" action="{% url 'login_view' %}">
-          {% csrf_token %}
-          <div class="form-group">
-            <label for="modal_username">Username:</label>
-            <input
-              type="text"
-              name="username"
-              <!--
-              Correct
-              name
-              for
-              Django
-              --
-            />
-            id="modal_username" class="form-control" required />
-          </div>
-          <div class="form-group">
-            <label for="modal_password">Password:</label>
-            <input
-              type="password"
-              name="password"
-              <!--
-              Correct
-              name
-              for
-              Django
-              --
-            />
-            id="modal_password" class="form-control" required />
-          </div>
-          <button type="submit" class="btn btn-primary">Login</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
+{% block content %}
+<!-- No need to include the modal here, as it's already in base.html -->
+{% endblock content %}
