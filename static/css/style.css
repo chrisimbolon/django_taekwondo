@@ -50,7 +50,7 @@ nav .btn-link {
   background: none; /* Removes default button background */
   border: none; /* Removes button border */
   font-weight: bold; /* Makes it bold */
-  font-size: 20px; /* Matches font size with nav links */
+  font-size: 20px;
   cursor: pointer; /* Makes it clickable */
 }
 
@@ -67,6 +67,31 @@ nav .btn-link {
   background-color: #f2f3f5;
   box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2);
 }
+
+.user-actions {
+  display: flex;
+  /* align-items: baseline; */
+  align-items: center;
+  gap: 10px; /* Adds some spacing between the greeting and logout button */
+}
+
+.greet-user {
+  font-weight: 300;
+  font-size: 20px; /* Adjust size to match the navbar style */
+  margin: 0; /* Removes extra margin */
+  /* line-height: 1; */
+  padding: 0;
+}
+
+/* .btn-logout {
+  font-size: 20px; 
+  font-weight: bold; 
+  line-height: 1;
+  color: #333; 
+  padding: 0;
+  text-decoration: none; 
+} */
+
 /* Navbar Styles end */
 
 /* Card Styles */

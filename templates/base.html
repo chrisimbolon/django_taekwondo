@@ -89,12 +89,15 @@
 
         <a href="{% url 'create' %}" class="mr-4 text-dark">Add coach</a>
 
+        <span class="user-actions">
+        <p class="greet-user"> welcome, {{ user.username }}</p>
         <form action="{% url 'logout' %}" method="post" class="d-inline">
           {% csrf_token %}
-          <button type="submit" class="btn btn-link text-dark p-0 btn-logout">
+          <button type="submit" class="btn btn-link text-dark p-0">
             Logout
           </button>
         </form>
+      </span>
         {% else %}
         <a href="{% url 'signup' %}" class="mr-4 text-dark">Signup</a>
         <a href="#" type="button" class="mr-4 text-dark" data-bs-toggle="modal"
