@@ -1,6 +1,9 @@
 {% load static %} {% load custom_filters %}
 <div class="col">
-  <div class="card h-100 {{ Coach|gender_card_class }}">
+  <div
+    class="card coach-card h-100 {{ Coach|gender_card_class }}"
+    data-coach-id="{{ Coach.id }}"
+  >
     <!-- Card Image -->
     <img
       src="{{ Coach|profile_picture }}"
@@ -56,4 +59,3 @@
     </div>
   </div>
 </div>
-<script src="{% static 'js/favorite_button.js' %}"></script>
