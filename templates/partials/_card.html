@@ -38,10 +38,22 @@
           {{ Coach.phone_number }}
         </a>
       </p>
-      <p>
-        <i class="fas fa-info-circle me-2"></i>
-        {{ Coach.status }}
-      </p>
+
+      <!-- Bottom Row -->
+      <div class="d-flex justify-content-between align-items-center mt-auto">
+        <p class="m-0">
+          <i class="fas fa-info-circle me-2"></i>
+          {{ Coach.status }}
+        </p>
+        <button
+          class="favorite-btn"
+          data-coach-id="{{ Coach.id }}"
+          title="Add to Favorites"
+        >
+          <i class="far fa-heart"></i>
+        </button>
+      </div>
     </div>
   </div>
 </div>
+<script src="{% static 'js/favorite_button.js' %}"></script>

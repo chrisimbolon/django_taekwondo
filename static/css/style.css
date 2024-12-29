@@ -1,5 +1,5 @@
 :root {
-  --back: #596068;
+  --back: #adadad;
 
   --girl: #2b323b;
   --boy: #2b323b;
@@ -24,7 +24,7 @@ nav {
 nav > p.feature-link {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 30px;
   margin: 0;
 }
 
@@ -44,7 +44,6 @@ nav > form .form-control.search-box:focus {
 }
 /* Ensure logout button looks like a link */
 nav .btn-link {
-  text-decoration: none; /* Removes underline */
   color: inherit; /* Matches the color of other navbar links */
   padding: 0; /* Removes default button padding */
   background: none; /* Removes default button background */
@@ -52,6 +51,29 @@ nav .btn-link {
   font-weight: bold; /* Makes it bold */
   font-size: 20px;
   cursor: pointer; /* Makes it clickable */
+  text-decoration: none;
+}
+
+nav > p > a:link {
+  text-decoration: none;
+}
+
+nav > p > a:link:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+  opacity: 0.9;
+  box-shadow: inset 200px 0 0 0 var(--back);
+}
+
+nav .add-coach {
+  text-decoration: none;
+}
+
+nav .nav-link:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+  opacity: 0.9;
+  box-shadow: inset 200px 0 0 0 var(--back);
 }
 
 .logo:hover {
@@ -70,7 +92,6 @@ nav .btn-link {
 
 .user-actions {
   display: flex;
-  /* align-items: baseline; */
   align-items: center;
   gap: 10px; /* Adds some spacing between the greeting and logout button */
 }
@@ -78,20 +99,9 @@ nav .btn-link {
 .greet-user {
   font-weight: 300;
   font-size: 20px; /* Adjust size to match the navbar style */
-  margin: 0; /* Removes extra margin */
-  /* line-height: 1; */
+  margin: 0;
   padding: 0;
 }
-
-/* .btn-logout {
-  font-size: 20px; 
-  font-weight: bold; 
-  line-height: 1;
-  color: #333; 
-  padding: 0;
-  text-decoration: none; 
-} */
-
 /* Navbar Styles end */
 
 /* Card Styles */
@@ -143,6 +153,20 @@ nav .btn-link {
 .girl-card .card-body,
 .girl-card .card-body p a {
   color: var(--girl);
+}
+
+.favorite-btn {
+  background: none;
+  border: none;
+  color: #ff6666; /* Heart color */
+  font-size: 20px;
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.favorite-btn:hover {
+  color: #ff3333; /* Slightly darker heart on hover */
+  transform: scale(1.1); /* Add a hover effect for feedback */
 }
 
 /* Card Styles end */
