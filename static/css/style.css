@@ -8,6 +8,26 @@ body {
   font-family: Roboto, sans-serif;
 }
 
+.coach-card {
+  box-sizing: border-box;
+  transition: opacity 0.3s ease;
+}
+
+.coach-card.hidden {
+  display: none !important;
+  opacity: 0; /* Optional: Fade out effect */
+  transition: opacity 0.3s ease;
+}
+
+/* .coaches-page .coach-card {
+  box-sizing: border-box;
+  transition: opacity 0.3s ease;
+}
+
+.coaches-page .coach-card.hidden {
+  display: none !important;
+} */
+
 /* Navbar Styles */
 
 nav {
@@ -191,17 +211,6 @@ nav .nav-link:hover {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Main Section */
-/* .main-part {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-} */
-
-/* Main Section ends */
-
-/* Override Bootstrap btn-success */
-
 /* Override Bootstrap btn-danger */
 .btn-danger {
   background-color: #ed553b;
@@ -228,8 +237,6 @@ nav .nav-link:hover {
   transition: background-color 0.3s ease;
   box-shadow: inset 0 0 0 2px #31669b;
 }
-
-/* 548FC9 */
 
 /* footer style */
 footer {
@@ -262,28 +269,3 @@ footer {
     width: 100%;
   }
 }
-
-/* Media Queries  DI BAWAH HANYA DUMMY BOZZ, JANGAN
-SERIOUS KALI */
-/* @media only screen and (max-width: 768px) {
-  nav {
-    flex-direction: column;
-  }
-
-  .card-header {
-    font-size: 90% !important;
-  }
-  .card-body p {
-    font-size: 13px;
-    margin-bottom: 6px;
-  }
-  .card-body {
-    padding: 8px 8px 0 8px;
-  }
-
-  footer {
-    font-size: 98% !important;
-    font-weight: light;
-    letter-spacing: 1px;
-  }
-} */

@@ -1,33 +1,71 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+  // Initialize favorites from localStorage
+  let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
   const viewFavoritesBtn = document.querySelector("#viewFavoritesBtn");
   const coachCards = document.querySelectorAll(".coach-card");
 
-  // Add click event to the "View Favorites" button
-  viewFavoritesBtn.addEventListener("click", () => {
-    if (favorites.length === 0) {
-      alert("No favorites selected!"); // Inform the user if no favorites exist
-      return;
-    }
+  // Helper: Save favorites to localStorage
+  const saveFavorites = () => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  };
 
+  // Helper: Update the UI dynamically
+  const updateFavoritesUI = () => {
     coachCards.forEach((card) => {
       const coachId = card.dataset.coachId;
-      if (!favorites.includes(coachId)) {
-        card.style.display = "none"; // Hide non-favorited cards
-      } else {
-        card.style.display = "block"; // Show favorited cards
+      const isFavorited = favorites.includes(coachId);
+      const favoriteBtn = card.querySelector(".favorite-btn");
+
+      // Update heart icon state
+      if (favoriteBtn) {
+        favoriteBtn.classList.toggle("favorited", isFavorited);
       }
     });
+  };
 
-    // Change button text to toggle behavior
-    viewFavoritesBtn.textContent =
-      viewFavoritesBtn.textContent === "View Favorites"
-        ? "Show All"
-        : "View Favorites";
+  // Handle click on favorite buttons
+  document.addEventListener("click", (e) => {
+    if (e.target.closest(".favorite-btn")) {
+      const card = e.target.closest(".coach-card");
+      const coachId = card.dataset.coachId;
 
-    // Toggle display behavior
-    if (viewFavoritesBtn.textContent === "View Favorites") {
-      coachCards.forEach((card) => (card.style.display = "block")); // Show all cards again
+      if (favorites.includes(coachId)) {
+        // Remove from favorites
+        favorites = favorites.filter((id) => id !== coachId);
+      } else {
+        // Add to favorites
+        favorites.push(coachId);
+      }
+
+      saveFavorites(); // Save updated favorites to localStorage
+      updateFavoritesUI(); // Update UI immediately
     }
   });
+
+  // Handle "View Favorites" button click
+  viewFavoritesBtn.addEventListener("click", () => {
+    if (viewFavoritesBtn.textContent === "View Favorites") {
+      if (favorites.length === 0) {
+        alert("No favorites selected!");
+        return;
+      }
+
+      coachCards.forEach((card) => {
+        const coachId = card.dataset.coachId;
+        if (!favorites.includes(coachId)) {
+          card.classList.add("hidden"); // Add hidden class
+        } else {
+          card.classList.remove("hidden"); // Remove hidden class
+        }
+      });
+
+      viewFavoritesBtn.textContent = "Show All";
+    } else {
+      coachCards.forEach((card) => card.classList.remove("hidden")); // Show all cards
+      viewFavoritesBtn.textContent = "View Favorites";
+    }
+  });
+
+  // Initial UI update on page load
+  updateFavoritesUI();
 });
