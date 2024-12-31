@@ -13,10 +13,37 @@ body {
   transition: opacity 0.3s ease;
 }
 
-.coach-card.hidden {
+/* .coach-card.hidden {
   display: none !important;
-  opacity: 0; /* Optional: Fade out effect */
+  opacity: 0; 
   transition: opacity 0.3s ease;
+} */
+
+/* Hide the entire column instead of just the card */
+.coaches-page .col.hidden {
+  display: none !important;
+}
+
+.coaches-page .row {
+  display: flex;
+  flex-wrap: wrap; /* Ensures proper wrapping of visible cards */
+  gap: 1.5rem; /* Adds consistent spacing between cards */
+}
+
+.coaches-page .row > .col {
+  flex: 0 0 calc(25% - 1.5rem); /* Adjust card size dynamically */
+  max-width: calc(
+    25% - 1.5rem
+  ); /* Ensures consistent width for visible cards */
+}
+
+.coaches-page .col {
+  flex: 1 1 calc(25% - 1rem); /* Dynamically calculate column size */
+  max-width: calc(25% - 1rem);
+}
+
+.coaches-page .row {
+  margin-top: 1rem; /* Ensures some space between button and cards */
 }
 
 /* .coaches-page .coach-card {
@@ -267,5 +294,19 @@ footer {
 
   nav > form .form-control.search-box {
     width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .coaches-page .row > .col {
+    flex: 0 0 calc(50% - 1.5rem);
+    max-width: calc(50% - 1.5rem);
+  }
+}
+
+@media (max-width: 576px) {
+  .coaches-page .row > .col {
+    flex: 0 0 calc(100% - 1.5rem);
+    max-width: calc(100% - 1.5rem);
   }
 }
