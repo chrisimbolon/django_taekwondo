@@ -12,7 +12,7 @@ class CoachForm(forms.ModelForm):
         model= Coach
         fields=["registration_number","full_name","place_of_birth","date_of_birth",
                "dojang_name","sex","province","city","status","belt",
-               "phone_number","email","photo","input_date"]
+               "phone_number","email","photo"]
         widgets = {
             "date_of_birth": forms.DateInput(attrs={"class": "form-control flatpickr"}),
             "sex": forms.Select(attrs={"class": "form-control"}), 
