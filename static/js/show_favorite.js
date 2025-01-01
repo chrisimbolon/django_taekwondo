@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initialize favorites from localStorage
   let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
   const viewFavoritesBtn = document.querySelector("#viewFavoritesBtn");
-  const coachCards = document.querySelectorAll(".coach-card");
+  const coachCards = Array.from(document.querySelectorAll(".coach-card"));
   const coachContainer = document.querySelector(".coaches-page .row"); // Parent container for cards
 
   // Helper: Save favorites to localStorage
@@ -10,19 +10,17 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("favorites", JSON.stringify(favorites));
   };
 
-  // Helper: Clear and rebuild the card list
-  const rebuildCards = (showFavoritesOnly) => {
-    // Clear current cards
-    coachContainer.innerHTML = "";
+  // Update UI based on favorites and view mode
+  const updateFavoritesUI = () => {
+    const isViewingFavorites =
+      viewFavoritesBtn.textContent === "View Favorites";
 
-    // Filter and re-add cards
-    coachCards.forEach((card) => {
-      const coachId = card.dataset.coachId;
+    const visibleCards = isViewingFavorites
+      ? coachCards.filter((card) => favorites.includes(card.dataset.coachId)) // Show only favorites
+      : coachCards; // Show all
 
-      if (!showFavoritesOnly || favorites.includes(coachId)) {
-        coachContainer.appendChild(card); // Add back to the DOM
-      }
-    });
+    coachContainer.innerHTML = ""; // Clear current cards
+    visibleCards.forEach((card) => coachContainer.appendChild(card)); // Add visible cards
   };
 
   // Handle click on favorite buttons
@@ -32,31 +30,25 @@ document.addEventListener("DOMContentLoaded", () => {
       const coachId = card.dataset.coachId;
 
       if (favorites.includes(coachId)) {
-        // Remove from favorites
-        favorites = favorites.filter((id) => id !== coachId);
+        favorites = favorites.filter((id) => id !== coachId); // Remove from favorites
       } else {
-        // Add to favorites
-        favorites.push(coachId);
+        favorites.push(coachId); // Add to favorites
       }
 
-      saveFavorites(); // Save updated favorites to localStorage
+      saveFavorites(); // Save updated favorites
+      updateFavoritesUI(); // Update UI
     }
   });
 
   // Handle "View Favorites" button click
   viewFavoritesBtn.addEventListener("click", () => {
-    const isViewingFavorites =
-      viewFavoritesBtn.textContent === "View Favorites";
-
-    // Rebuild cards based on the view mode
-    rebuildCards(isViewingFavorites);
-
-    // Update button text
-    viewFavoritesBtn.textContent = isViewingFavorites
-      ? "Show All"
-      : "View Favorites";
+    viewFavoritesBtn.textContent =
+      viewFavoritesBtn.textContent === "View Favorites"
+        ? "Show All"
+        : "View Favorites";
+    updateFavoritesUI(); // Update UI
   });
 
-  // Initial UI setup: Show all cards on page load
-  rebuildCards(false);
+  // Initial UI setup
+  updateFavoritesUI();
 });

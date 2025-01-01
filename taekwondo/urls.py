@@ -17,6 +17,7 @@ urlpatterns=[
         path('login/', login_view, name='login'), 
         # path('login/', auth_views.LoginView.as_view(), name='login'),
         path('logout/', LogoutView.as_view(), name='logout'),
+        path("filter-provinces/", views.filter_provinces, name="filter_provinces"),
         path('filter-cities/', views.filter_cities, name='filter_cities'),
 ]
   

@@ -37,32 +37,5 @@ new coach {% endblock title %} {% block content %}
   });
 </script>
 
-<script>
-  document
-    .getElementById("id_province")
-    .addEventListener("change", function () {
-      const provinceId = this.value;
-      const cityDropdown = document.getElementById("id_city");
-
-      // Clear existing options
-      cityDropdown.innerHTML =
-        '<option value="" disabled selected>-- Select City --</option>';
-
-      if (provinceId) {
-        fetch(`/filter-cities/?province_id=${provinceId}`)
-          .then((response) => response.json())
-          .then((data) => {
-            data.forEach((city) => {
-              const option = document.createElement("option");
-              option.value = city.id;
-              option.textContent = city.city_name;
-              cityDropdown.appendChild(option);
-            });
-          })
-          .catch((error) => console.error("Error fetching cities:", error));
-      }
-    });
-</script>
-
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 {% endblock content %}

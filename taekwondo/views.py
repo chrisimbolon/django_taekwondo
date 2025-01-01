@@ -13,6 +13,7 @@ from datetime import datetime
 from django.http import JsonResponse, HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.contrib.auth import authenticate, login
 from urllib.parse import urlparse
+from .forms import CoachForm
 
 
 class HomePageView(TemplateView):
@@ -73,11 +74,9 @@ def search(request):
 
 class CoachCreateView(LoginRequiredMixin, CreateView):
     model = Coach
+    form_class = CoachForm
     template_name = 'create.html'
-    fields = [
-        'registration_number', 'full_name', 'place_of_birth', 'date_of_birth', 'dojang_name',
-        'sex', 'province', 'city', 'status', 'belt', 'phone_number', 'email', 'photo',
-    ]
+  
 
     def post(self, request, *args, **kwargs):
         # Intercept POST data to handle the date format
@@ -132,6 +131,11 @@ class SignUpView(CreateView):
     success_url = reverse_lazy('home')
 
 
+def filter_provinces(request):
+    country_code = request.GET.get("country_code")
+    provinces = Province.objects.filter(country=country_code).values("id", "province_name")
+    return JsonResponse(list(provinces), safe=False)
+
 def filter_cities(request):
     province_id = request.GET.get('province_id')
     if province_id:
@@ -159,10 +163,6 @@ class LoggedOutView(TemplateView):
         context['form'] = AuthenticationForm()
         return context
 
-from django.http import JsonResponse
-from django.shortcuts import redirect
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import authenticate, login
 
 def login_view(request):
     if request.method == "POST":
