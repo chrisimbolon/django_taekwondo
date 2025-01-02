@@ -12,17 +12,12 @@ new coach {% endblock title %} {% block content %}
 
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-12 col-md-8 col-lg-4">
+    <div class="col-12 col-md-9 col-lg-7 col-xl-5">
       <div class="form-container p-4 mt-4">
         <form action="" method="POST" enctype="multipart/form-data">
           {% csrf_token %}
 
-          <!-- {% for field in form %}
-          
-          {% if field.name not in "sex belt country province city" %}
-          <div class="mb-3">{{ field|as_crispy_field }}</div>
-          {% endif %} {% endfor %} -->
-
+          <!-- Personal Info -->
           <div class="mb-3">{{ form.registration_number|as_crispy_field }}</div>
           <div class="mb-3">{{ form.full_name|as_crispy_field }}</div>
           <div class="mb-3">{{ form.place_of_birth|as_crispy_field }}</div>
@@ -30,16 +25,22 @@ new coach {% endblock title %} {% block content %}
             <div class="col-md-6">{{ form.date_of_birth|as_crispy_field }}</div>
             <div class="col-md-6">{{ form.sex|as_crispy_field }}</div>
           </div>
+
+          <!-- Location -->
           <div class="mb-3">{{ form.country|as_crispy_field }}</div>
           <div class="row mb-3">
             <div class="col-md-6">{{ form.province|as_crispy_field }}</div>
             <div class="col-md-6">{{ form.city|as_crispy_field }}</div>
           </div>
+
+          <!-- Professional Info -->
           <div class="row mb-3">
             <div class="col-md-4">{{ form.dojang_name|as_crispy_field }}</div>
             <div class="col-md-4">{{ form.belt|as_crispy_field }}</div>
             <div class="col-md-4">{{ form.status|as_crispy_field }}</div>
           </div>
+
+          <!-- Contact Info -->
           <div class="mb-3">{{ form.phone_number|as_crispy_field }}</div>
           <div class="mb-3">{{ form.email|as_crispy_field }}</div>
           <div class="mb-3">{{ form.photo|as_crispy_field }}</div>
