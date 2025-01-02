@@ -11,7 +11,7 @@ def add_class(field, css_class):
 
 
 @register.filter
-def smart_truncate(value, max_length=20):
+def smart_truncate(value, max_length=18):
     """
     Truncate a string at the nearest word boundary without exceeding max_length.
     Adds an ellipsis ("...") if truncated.

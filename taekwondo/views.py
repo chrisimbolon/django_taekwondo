@@ -119,7 +119,7 @@ class CoachUpdateView(LoginRequiredMixin, UpdateView):
 class CoachDeleteView(LoginRequiredMixin, DeleteView):
     model = Coach
     template_name = 'delete.html'
-    success_url = '/'
+    success_url = '/coaches'
 
     def delete(self, request, *args, **kwargs):
         messages.success(self.request,'Coach deleted successfully')
