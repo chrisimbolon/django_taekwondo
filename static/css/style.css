@@ -13,47 +13,14 @@ body {
   transition: opacity 0.3s ease;
 }
 
-/* .coach-card.hidden {
-  display: none !important;
-  opacity: 0; 
-  transition: opacity 0.3s ease;
-} */
-
 /* Hide the entire column instead of just the card */
 .coaches-page .col.hidden {
-  display: none !important;
+  display: none;
 }
 
 .coaches-page .row {
-  display: flex;
-  flex-wrap: wrap; /* Ensures proper wrapping of visible cards */
-  gap: 1.5rem; /* Adds consistent spacing between cards */
+  gap: 1.5rem;
 }
-
-.coaches-page .row > .col {
-  flex: 0 0 calc(25% - 1.5rem); /* Adjust card size dynamically */
-  max-width: calc(
-    25% - 1.5rem
-  ); /* Ensures consistent width for visible cards */
-}
-
-.coaches-page .col {
-  flex: 1 1 calc(25% - 1rem); /* Dynamically calculate column size */
-  max-width: calc(25% - 1rem);
-}
-
-.coaches-page .row {
-  margin-top: 1rem; /* Ensures some space between button and cards */
-}
-
-/* .coaches-page .coach-card {
-  box-sizing: border-box;
-  transition: opacity 0.3s ease;
-}
-
-.coaches-page .coach-card.hidden {
-  display: none !important;
-} */
 
 /* Navbar Styles */
 
@@ -156,10 +123,11 @@ nav .nav-link:hover {
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-  max-width: 18rem;
+  max-width: 19rem;
   max-height: 31rem;
   box-sizing: border-box;
   border-radius: 8px;
+  padding: 0;
 }
 
 .card img {
@@ -170,6 +138,7 @@ nav .nav-link:hover {
   object-fit: cover;
   /* object-fit: contain; */
   border-radius: 8px 8px 0 0;
+  padding: 0;
 }
 
 .card:hover {
