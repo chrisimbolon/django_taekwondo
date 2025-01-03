@@ -4,6 +4,11 @@
     class="card coach-card h-100 {{ Coach|gender_card_class }}"
     data-coach-id="{{ Coach.id }}"
   >
+    <!-- Block for Close Button -->
+    {% block close_button %}
+    <!---->
+    {% endblock %}
+
     <!-- Card Image -->
     <img
       src="{{ Coach|profile_picture }}"

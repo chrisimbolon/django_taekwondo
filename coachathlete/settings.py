@@ -128,6 +128,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
         os.path.join(BASE_DIR,'static'),
 )
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 
 # Setting media files
 MEDIA_URL = '/media/'
@@ -149,3 +151,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # Default session backend
 SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_SECURE = False  # Set to True in production with HTTPS
+

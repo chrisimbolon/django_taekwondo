@@ -6,7 +6,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm  
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.contrib import messages
 from django.views.generic import TemplateView  
 from datetime import datetime
@@ -42,10 +42,12 @@ class CoachDetailView(LoginRequiredMixin, DetailView):
         context = super().get_context_data(**kwargs)
         coach = self.get_object()  
         # Check if the logged-in user is not the manager
-        if self.request.user != coach.manager:
-            context['access_denied'] = True
-        else:
-            context['access_denied'] = False
+        context['access_denied'] = self.request.user != coach.manager
+
+        # Add the show_close_button and redirect_url to the context
+        if not context['access_denied']:
+            context['show_close_button'] = True
+            context['redirect_url'] = reverse('coaches-list')
         return context
 
     def render_to_response(self, context, **response_kwargs):

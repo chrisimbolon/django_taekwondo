@@ -151,6 +151,13 @@ nav .nav-link:hover {
   text-transform: uppercase;
 }
 
+.card-header a {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+
 .header-link,
 .header-link:hover {
   text-decoration: none;
@@ -232,6 +239,32 @@ nav .nav-link:hover {
   color: #ffffff;
   transition: background-color 0.3s ease;
   box-shadow: inset 0 0 0 2px #31669b;
+}
+
+/* Styles for the close button */
+.close-button {
+  position: absolute;
+  top: 10px; /* Adjust spacing from the top */
+  right: 10px; /* Adjust spacing from the right */
+  z-index: 10; /* Ensure it stays above card content */
+  border-radius: 30%;
+  padding: 7px;
+  width: 2rem; /* Set equal width */
+  height: 2rem; /* Set equal height */
+  background-color: #c2c2c2;
+}
+
+.close-button:hover {
+  background-color: #adadad;
+  box-shadow: inset 0 0 0 2px #31669b;
+}
+
+.close-button i {
+  font-size: 20px; /* Adjust icon size */
+}
+
+.close-button i:hover {
+  font-size: 21px; /* Adjust icon size */
 }
 
 /* footer style */
