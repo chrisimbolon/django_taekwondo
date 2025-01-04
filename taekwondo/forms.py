@@ -11,8 +11,9 @@ class CoachForm(forms.ModelForm):
     class Meta:
         model= Coach
         fields=["registration_number","full_name","place_of_birth","date_of_birth",
-               "dojang_name","sex","province","city","status","belt",
+               "dojang_name","sex","country","province","city","status","belt",
                "phone_number","email","photo"]
+        
         widgets = {
             "date_of_birth": forms.DateInput(attrs={"class": "form-control flatpickr"}),
             "sex": forms.Select(attrs={"class": "form-control"}), 
@@ -21,4 +22,7 @@ class CoachForm(forms.ModelForm):
             "city": forms.Select(attrs={"class": "form-control"}), 
             "belt": forms.Select(attrs={"class": "form-control"}),
             "status": forms.Select(attrs={"class": "form-control"}),  
+        }
+        labels = {
+            "province": "State/Province",  # Update label here
         }

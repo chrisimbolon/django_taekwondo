@@ -1,27 +1,80 @@
-{% extends 'base.html' %} {% load crispy_forms_tags %} {% block title %}
-Update{{ Coach }} {% endblock title %} {% block content %}
+{% extends 'base.html' %} {% load static %} {% load crispy_forms_tags %}
+<!---->
+{% block title %} Updating {% endblock title %} {% block content %}
+
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+/>
 
 <div class="container mt-2">
-  <h2 class="heading font-weight-light text-center">Update {{Coach}}</h2>
+  <h2 class="heading font-weight-light text-center">
+    Updating {{coach.full_name}}
+  </h2>
   <hr />
 </div>
 
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-12 col-md-8 col-lg-4">
+    <div class="col-12 col-md-9 col-lg-7 col-xl-5">
       <div class="form-container p-4 mt-4">
         <form action="" method="POST" enctype="multipart/form-data">
-          {% csrf_token %} {{ form|crispy }}
+          {% csrf_token %}
 
-          <input
-            type="submit"
-            value="Update"
-            class="btn btn-info w-100 btn-flex text-white"
-          />
+          <!-- Personal Info -->
+          <div class="mb-3">{{ form.registration_number|as_crispy_field }}</div>
+          <div class="mb-3">{{ form.full_name|as_crispy_field }}</div>
+          <div class="mb-3">{{ form.place_of_birth|as_crispy_field }}</div>
+          <div class="row mb-3">
+            <div class="col-md-6">{{ form.date_of_birth|as_crispy_field }}</div>
+            <div class="col-md-6">{{ form.sex|as_crispy_field }}</div>
+          </div>
+
+          <!-- Location -->
+          <div class="mb-3">{{ form.country|as_crispy_field }}</div>
+          <div class="row mb-3">
+            <div class="col-md-6">{{ form.province|as_crispy_field }}</div>
+            <div class="col-md-6">{{ form.city|as_crispy_field }}</div>
+          </div>
+
+          <!-- Professional Info -->
+          <div class="row mb-3">
+            <div class="col-md-4">{{ form.dojang_name|as_crispy_field }}</div>
+            <div class="col-md-4">{{ form.belt|as_crispy_field }}</div>
+            <div class="col-md-4">{{ form.status|as_crispy_field }}</div>
+          </div>
+
+          <!-- Contact Info -->
+          <div class="mb-3">{{ form.phone_number|as_crispy_field }}</div>
+          <div class="mb-3">{{ form.email|as_crispy_field }}</div>
+          <div class="mb-3">{{ form.photo|as_crispy_field }}</div>
+
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <input
+              type="submit"
+              value="Update"
+              class="btn btn-info text-white"
+              style="flex: 0 0 70%"
+            />
+            <div style="flex: 0 0 20%">
+              {% include 'partials/_cancel_button.html' %}
+            </div>
+          </div>
         </form>
       </div>
     </div>
   </div>
 </div>
+
+<!-- Initialize Flatpickr -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    flatpickr("[name='date_of_birth']", {
+      dateFormat: "d-m-Y",
+    });
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
 {% endblock content %}

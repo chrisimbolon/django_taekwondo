@@ -44,6 +44,7 @@ class Coach(models.Model):
         ('male','Male'),
         ('female','Female')
     ))
+    country = CountryField(blank_label="(Select Country)", default="US")
     province = models.ForeignKey('Province', on_delete=models.SET_NULL, null=True)
     city = models.ForeignKey('City', on_delete=models.SET_NULL, null=True)
     status =models.CharField(max_length=15,choices=(

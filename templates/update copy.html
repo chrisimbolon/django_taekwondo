@@ -1,0 +1,27 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% block title %}
+Update{{ Coach }} {% endblock title %} {% block content %}
+
+<div class="container mt-2">
+  <h2 class="heading font-weight-light text-center">Update {{Coach}}</h2>
+  <hr />
+</div>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-4">
+      <div class="form-container p-4 mt-4">
+        <form action="" method="POST" enctype="multipart/form-data">
+          {% csrf_token %} {{ form|crispy }}
+
+          <input
+            type="submit"
+            value="Update"
+            class="btn btn-info w-100 btn-flex text-white"
+          />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
