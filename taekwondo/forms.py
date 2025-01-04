@@ -7,7 +7,7 @@ class CoachForm(forms.ModelForm):
     country = CountryField().formfield(  # Add country as a custom field
         widget=CountrySelectWidget(attrs={"class": "form-control"})
     )
-     
+      
     class Meta:
         model= Coach
         fields=["registration_number","full_name","place_of_birth","date_of_birth",
@@ -24,5 +24,5 @@ class CoachForm(forms.ModelForm):
             "status": forms.Select(attrs={"class": "form-control"}),  
         }
         labels = {
-            "province": "State/Province",  # Update label here
+            "province": "State/Province",  
         }

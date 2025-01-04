@@ -10,7 +10,7 @@
   <h2 class="heading font-weight-light text-center">Adding new coach</h2>
   <hr />
 </div>
- 
+
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-12 col-md-9 col-lg-7 col-xl-5">
@@ -46,11 +46,17 @@
           <div class="mb-3">{{ form.email|as_crispy_field }}</div>
           <div class="mb-3">{{ form.photo|as_crispy_field }}</div>
 
-          <input
-            type="submit"
-            value="Add"
-            class="btn btn-info w-100 text-white"
-          />
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <input
+              type="submit"
+              value="Add"
+              class="btn btn-info w-100 text-white"
+              style="flex: 0 0 70%"
+            />
+            <div style="flex: 0 0 20%">
+              {% include 'partials/_cancel_button.html' %}
+            </div>
+          </div>
         </form>
       </div>
     </div>

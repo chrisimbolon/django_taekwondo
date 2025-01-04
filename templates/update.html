@@ -31,10 +31,52 @@
           </div>
 
           <!-- Location -->
-          <div class="mb-3">{{ form.country|as_crispy_field }}</div>
+          <div class="mb-3">
+            <label for="id_country">Country</label>
+            <select
+              id="id_country"
+              name="country"
+              class="form-control"
+              data-selected="{{ form.country.value }}"
+            >
+              {% for country in form.country.field.choices %}
+              <option
+                value="{{ country.0 }}"
+                {% if country.0 == form.country.value %}selected{% endif %}
+              >
+                {{ country.1 }}
+              </option>
+              {% endfor %}
+            </select>
+          </div>
+
           <div class="row mb-3">
-            <div class="col-md-6">{{ form.province|as_crispy_field }}</div>
-            <div class="col-md-6">{{ form.city|as_crispy_field }}</div>
+            <div class="col-md-6">
+              <label for="id_province">Province</label>
+              <select
+                id="id_province"
+                name="province"
+                class="form-control"
+                data-selected="{{ form.province.value }}"
+              >
+                <option value="{{ form.province.value }}">
+                  {{ coach.province.province_name }}
+                </option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label for="id_city">City</label>
+              <select
+                id="id_city"
+                name="city"
+                class="form-control"
+                data-selected="{{ form.city.value }}"
+              >
+                <option value="{{ form.city.value }}">
+                  {{ coach.city.city_name }}
+                </option>
+              </select>
+            </div>
           </div>
 
           <!-- Professional Info -->

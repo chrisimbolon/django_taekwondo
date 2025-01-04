@@ -249,9 +249,9 @@ nav .nav-link:hover {
   z-index: 10; /* Ensure it stays above card content */
   border-radius: 30%;
   padding: 7px;
-  width: 2rem; /* Set equal width */
-  height: 2rem; /* Set equal height */
-  background-color: #c2c2c2;
+  width: 1.8rem; /* Set equal width */
+  height: 1.8rem; /* Set equal height */
+  background-color: #eff5fa;
 }
 
 .close-button:hover {
@@ -260,11 +260,17 @@ nav .nav-link:hover {
 }
 
 .close-button i {
-  font-size: 20px; /* Adjust icon size */
+  font-size: 17px; /* Adjust icon size */
+  color: #ed553b;
 }
 
 .close-button i:hover {
-  font-size: 21px; /* Adjust icon size */
+  font-size: 18px; /* Adjust icon size */
+}
+
+.btn-outline-secondary:hover {
+  background-color: #c2c2c2;
+  box-shadow: inset 0 0 0 2px #31669b;
 }
 
 /* footer style */
