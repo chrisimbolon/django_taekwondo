@@ -11,8 +11,9 @@ from django.contrib import messages
 from django.views.generic import TemplateView  
 from datetime import datetime
 from django.http import JsonResponse, HttpResponse, HttpResponseRedirect, HttpResponseForbidden
-from django.contrib.auth import authenticate, login
-from urllib.parse import urlparse
+from django.middleware.csrf import get_token
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import authenticate, login, logout
 from .forms import CoachForm
 
 
@@ -190,12 +191,12 @@ def create_coach(request):
 
 
 class LoggedOutView(TemplateView):
-    template_name = 'logged_out.html'
+    template_name = 'registration/logged_out.html'
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['form'] = AuthenticationForm()
-        return context
+    def get(self, request, *args, **kwargs):
+        # Perform the logout operation
+        logout(request)
+        return super().get(request, *args, **kwargs)
 
 
 def login_view(request):
@@ -226,3 +227,7 @@ def login_view(request):
     if request.headers.get("X-Requested-With") == "XMLHttpRequest":
         return JsonResponse({"success": False, "error": "Invalid request method."}, status=400)
     return redirect("coaches-list")
+
+@csrf_exempt
+def get_csrf_token(request):
+    return JsonResponse({"csrf_token": get_token(request)})

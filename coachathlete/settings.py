@@ -152,3 +152,4 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # Default session backen
 SESSION_COOKIE_HTTPONLY = True
 SESSION_COOKIE_SECURE = False  # Set to True in production with HTTPS
 
+CSRF_COOKIE_SECURE = False  # Set to True if you're using HTTPS

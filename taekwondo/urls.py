@@ -1,8 +1,8 @@
 from django.urls import path
 from . import views
 from django.contrib.auth.views import LogoutView
-# from django.contrib.auth import views as auth_views
-from .views import login_view  # Import your custom login_view
+from .views import login_view,LoggedOutView
+from .views import get_csrf_token
 
 urlpatterns=[
 #        path('',views.home, name='home'),
@@ -16,8 +16,10 @@ urlpatterns=[
         path('signup/',views.SignUpView.as_view(),name='signup'),
         path('login/', login_view, name='login'), 
         # path('login/', auth_views.LoginView.as_view(), name='login'),
-        path('logout/', LogoutView.as_view(), name='logout'),
+        path('logout/', LogoutView.as_view(next_page='logged_out'), name='logout'),
+        path('logged_out/', LoggedOutView.as_view(), name='logged_out'),
         path("filter-provinces/", views.filter_provinces, name="filter_provinces"),
         path('filter-cities/', views.filter_cities, name='filter_cities'),
+        path("get-csrf-token/", get_csrf_token, name="get_csrf_token"),
 ]
   

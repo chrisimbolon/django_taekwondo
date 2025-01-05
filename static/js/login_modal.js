@@ -1,7 +1,31 @@
 document.addEventListener("DOMContentLoaded", function () {
   const loginForm = document.querySelector("#loginModalForm");
-  if (!loginForm) return; // Guard clause if modal doesn't exist.
+  const loginModal = document.getElementById("loginModal");
 
+  if (!loginModal) return; // Guard clause if modal doesn't exist.
+
+  // Refresh CSRF token when the modal is shown
+  loginModal.addEventListener("show.bs.modal", function () {
+    fetch("/get-csrf-token/") // Django view to fetch the CSRF token
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch CSRF token");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        // Update the CSRF token in the form
+        const csrfInput = loginForm.querySelector(
+          'input[name="csrfmiddlewaretoken"]'
+        );
+        if (csrfInput) {
+          csrfInput.value = data.csrf_token;
+        }
+      })
+      .catch((error) => console.error("Error refreshing CSRF token:", error));
+  });
+
+  // Handle form submission
   loginForm.addEventListener("submit", function (e) {
     e.preventDefault(); // Prevent default form submission
     console.log("Login form submission intercepted");
@@ -14,6 +38,7 @@ document.addEventListener("DOMContentLoaded", function () {
       body: formData,
       headers: {
         "X-Requested-With": "XMLHttpRequest",
+        "X-CSRFToken": formData.get("csrfmiddlewaretoken"),
       },
     })
       .then((response) => {

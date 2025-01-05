@@ -4,6 +4,10 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="Expires" content="0" />
+
         <!-- Required meta tags -->
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -73,11 +77,16 @@
             <p class="feature-link m-0 p-0">
                 {% if user.is_authenticated %}
                     <form class="d-inline" action="{% url 'search' %}" method="GET">
-                        <input class="form-control search-box"
-                               type="search"
-                               placeholder="Search coach..."
-                               name="search_term"
-                               value="{{ search_term }}" />
+                        <div class="position-relative">
+                            <input class="form-control search-box pe-4" 
+                                   type="search" 
+                                   placeholder="Search coach..." 
+                                   name="search_term" 
+                                   value="{{ search_term }}" />
+                            <button type="submit" class="btn btn-link position-absolute top-50 end-0 translate-middle-y p-0">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
                     </form>
                     <a href="{% url 'create' %}" class="mr-4 text-dark add-coach nav-link">Add coach</a>
                     <span class="user-actions">
@@ -106,6 +115,7 @@
             <p class="text-center p-1 m-0">&copy; Powered By Django</p>
         </footer>
 
+        <script>window.csrfTokenUrl = "{% url 'get_csrf_token' %}";</script>
         <script src="{% static 'js/login_modal.js' %}"></script> 
         <script src="{% static 'js/favorite_button.js' %}"></script>
         <script src="{% static 'js/show_favorite.js' %}"></script> 
