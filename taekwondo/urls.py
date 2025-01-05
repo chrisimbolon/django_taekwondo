@@ -15,7 +15,6 @@ urlpatterns=[
         path('Coach/delete/<int:pk>',views.CoachDeleteView.as_view(),name='delete'),
         path('signup/',views.SignUpView.as_view(),name='signup'),
         path('login/', login_view, name='login'), 
-        # path('login/', auth_views.LoginView.as_view(), name='login'),
         path('logout/', LogoutView.as_view(next_page='logged_out'), name='logout'),
         path('logged_out/', LoggedOutView.as_view(), name='logged_out'),
         path("filter-provinces/", views.filter_provinces, name="filter_provinces"),

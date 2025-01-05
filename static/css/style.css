@@ -4,6 +4,20 @@
   --girl: #2b323b;
   --boy: #2b323b;
 }
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Main wrapper for content between navbar and footer */
+.main-content {
+  flex: 1; /* This will make the content area take up the remaining space */
+}
+
 body {
   font-family: Roboto, sans-serif;
 }

@@ -204,17 +204,25 @@ def login_view(request):
         form = AuthenticationForm(data=request.POST)
 
         if form.is_valid():
+            # Authenticate the user
             user = authenticate(
                 username=form.cleaned_data["username"],
                 password=form.cleaned_data["password"]
             )
             if user is not None:
+                # Log in the user
                 login(request, user)
+                print(f"User logged in successfully: {user.username}")  # Debug log
+                
                 if request.headers.get("X-Requested-With") == "XMLHttpRequest":
                     return JsonResponse({"success": True})
+                
                 return redirect("coaches-list")  # Fallback for non-AJAX requests
+            else:
+                print("Authentication failed despite valid form.")  # Debug log
 
         # Handle login failure
+        print("Login failed. Form errors:", form.errors)  # Debug log
         errors = form.errors.get_json_data()
 
         if request.headers.get("X-Requested-With") == "XMLHttpRequest":
@@ -225,8 +233,12 @@ def login_view(request):
 
     # Invalid request handling (GET or invalid POST)
     if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+        print("Invalid request method (non-POST) received via AJAX.")  # Debug log
         return JsonResponse({"success": False, "error": "Invalid request method."}, status=400)
+    
+    print("Invalid request method (non-POST) received via standard request.")  # Debug log
     return redirect("coaches-list")
+
 
 @csrf_exempt
 def get_csrf_token(request):

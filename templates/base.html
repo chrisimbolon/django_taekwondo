@@ -88,7 +88,13 @@
                             </button>
                         </div>
                     </form>
-                    <a href="{% url 'create' %}" class="mr-4 text-dark add-coach nav-link">Add coach</a>
+
+                    {% if request.resolver_match.url_name == "create" %}
+                        <a href="{% url 'coaches-list' %}" class="mr-4 text-dark nav-link">Coaches</a>
+                    {% else %}
+                        <a href="{% url 'create' %}" class="mr-4 text-dark add-coach nav-link">Add Coach</a>
+                    {% endif %}
+                    
                     <span class="user-actions">
                         <p class="greet-user">welcome, {{ user.username }}</p>
                         <form action="{% url 'logout' %}" method="post" class="d-inline">
@@ -107,9 +113,13 @@
             {% endif %}
         </nav>
         <!-- Navbar ends -->
+         
+         <div  class="main-content">
         {% include "partials/_message.html" %}
         {% block content %}
         {% endblock content %}
+        </div>
+
         <!-- footer -->
         <footer class="mt-4 p-2">
             <p class="text-center p-1 m-0">&copy; Powered By Django</p>
