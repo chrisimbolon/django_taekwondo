@@ -86,8 +86,17 @@
 </div>
 <!-- Main Section ends -->
 {% else %}
-<div class="container">
-  <h2 class="heading font-weight-light text-center">Access Denied</h2>
+<div class="container col-sm-8 text-center">
+  <div class="warning p-4 my-4">
+    <p class="text-danger fw-bold">Oops! You don’t have access.</p>
+    <p>
+      It looks like this coach wasn’t added by you, so you can’t view or update
+      the details..
+    </p>
+    <a href="{% url 'coaches-list' %}" class="mr-4 text-dark nav-link">
+      Back to coaches
+    </a>
+  </div>
 </div>
 {% endif %} {% endblock content %}
 
