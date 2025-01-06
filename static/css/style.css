@@ -22,6 +22,100 @@ body {
   font-family: Roboto, sans-serif;
 }
 
+/* Navbar Styles */
+nav {
+  font-weight: bold;
+  font-size: 1.125rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #c2c2c2;
+  padding: 10px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Softer shadow */
+}
+
+nav .feature-link {
+  display: flex;
+  align-items: center;
+  gap: 30px; /* Spacing between child elements */
+  margin: 5px; /* Resets top/bottom margin */
+  margin-right: 30px; /* Adds spacing from the right */
+  flex-shrink: 0; /* Prevents shrinking in flex layout */
+}
+
+nav .form-control.search-box {
+  padding: 5px 10px; /* Add padding for a better feel */
+  border-radius: 5px; /* Rounded corners */
+  border: 1px solid #ccc;
+  font-size: 16px;
+  width: 300px; /* Adjust width for better proportions */
+  flex-shrink: 0;
+}
+
+nav .form-control.search-box:focus {
+  outline: none;
+  border-color: #007bff; /* Highlight border on focus */
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}
+
+/* Ensure logout button looks like a link */
+nav .btn-link {
+  color: inherit; /* Matches the color of other navbar links */
+  padding: 0; /* Removes default button padding */
+  background: none; /* Removes default button background */
+  border: none; /* Removes button border */
+  font-weight: bold; /* Makes it bold */
+  font-size: 1.125rem;
+  cursor: pointer; /* Makes it clickable */
+  text-decoration: none;
+}
+
+/* Navbar links */
+nav .feature-link > a {
+  text-decoration: none;
+  color: inherit; /* Use inherited text color */
+  font-weight: bold;
+}
+
+nav .feature-link > a:hover {
+  transform: scale(1.1); /* Subtle zoom effect */
+  transition: transform 0.3s ease;
+  opacity: 0.9; /* Slight transparency */
+  box-shadow: inset 200px 0 0 0 var(--back); /* Cool hover effect */
+}
+
+/* Nav ends here */
+
+/* Add Coach link */
+nav .add-coach {
+  text-decoration: none;
+}
+
+/* General hover effect for nav links */
+nav .nav-link:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+  opacity: 0.9;
+  box-shadow: inset 200px 0 0 0 var(--back);
+}
+
+.app-logo {
+  position: absolute; /* Position relative to the viewport */
+  max-width: 250px;
+  max-height: 100%;
+  z-index: 10;
+  top: 0;
+  margin: 0;
+  align-self: flex-start; /* Align to the top-left corner */
+  cursor: pointer; /* Makes it look clickable */
+}
+
+.app-logo:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease;
+  opacity: 0.9;
+}
+
 .coach-card {
   box-sizing: border-box;
   transition: opacity 0.3s ease;
@@ -34,80 +128,6 @@ body {
 
 .coaches-page .row {
   gap: 1.5rem;
-}
-
-/* Navbar Styles */
-
-nav {
-  font-weight: bold;
-  font-size: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #c2c2c2;
-  padding: 10px 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Softer shadow */
-}
-
-nav > p.feature-link {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-  margin: 0;
-}
-
-nav > form .form-control.search-box {
-  padding: 5px 10px; /* Add padding for a better feel */
-  border-radius: 5px; /* Rounded corners */
-  border: 1px solid #ccc;
-  font-size: 16px;
-  width: 300px; /* Adjust width for better proportions */
-  flex-shrink: 0;
-}
-
-nav > form .form-control.search-box:focus {
-  outline: none;
-  border-color: #007bff; /* Highlight border on focus */
-  box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
-}
-/* Ensure logout button looks like a link */
-nav .btn-link {
-  color: inherit; /* Matches the color of other navbar links */
-  padding: 0; /* Removes default button padding */
-  background: none; /* Removes default button background */
-  border: none; /* Removes button border */
-  font-weight: bold; /* Makes it bold */
-  font-size: 20px;
-  cursor: pointer; /* Makes it clickable */
-  text-decoration: none;
-}
-
-nav > p > a:link {
-  text-decoration: none;
-}
-
-nav > p > a:link:hover {
-  transform: scale(1.1);
-  transition: transform 0.3s ease;
-  opacity: 0.9;
-  box-shadow: inset 200px 0 0 0 var(--back);
-}
-
-nav .add-coach {
-  text-decoration: none;
-}
-
-nav .nav-link:hover {
-  transform: scale(1.1);
-  transition: transform 0.3s ease;
-  opacity: 0.9;
-  box-shadow: inset 200px 0 0 0 var(--back);
-}
-
-.logo:hover {
-  transform: scale(1.1);
-  transition: transform 0.3s ease;
-  opacity: 0.9;
 }
 
 .search-box {
@@ -131,7 +151,7 @@ nav .nav-link:hover {
 
 .greet-user {
   font-weight: 300;
-  font-size: 20px; /* Adjust size to match the navbar style */
+  font-size: 1rem; /* Adjust size to match the navbar style */
   margin: 0;
   padding: 0;
 }
@@ -389,12 +409,18 @@ footer {
 }
 
 .warning a {
+  font-size: 1rem;
+  font-weight: 500;
   text-decoration: none; /* Remove underline */
   color: white; /* Text color for button */
 }
 
 .warning a:hover {
-  background-color: #0056b3; /* Darker blue on hover */
+  transform: scale(1.05);
+  transition-duration: 2s;
+  animation: gradient 3s ease infinite;
+  background-position: right;
+  text-decoration: none;
 }
 
 /* footer style ends*/

@@ -1,4 +1,4 @@
 {
   "htmlWhitespaceSensitivity": "ignore",
-  "django": true
+  "plugins": ["prettier-plugin-django"]
 }

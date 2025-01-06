@@ -2,10 +2,12 @@
   background-image: url("../images/Taekwondo_landing.jpg");
   background-size: cover;
   background-position: center;
+  background-attachment: ß;
   display: flex; /* Flex container for layout */
   flex-direction: column;
   align-items: center;
-  height: 100vh; /* Full viewport height */
+  height: 100%;
+  min-height: -webkit-fill-available;
   width: 100vw; /* Full viewport width */
   margin: 0;
   padding: 0;
@@ -14,6 +16,14 @@
 nav,
 footer {
   display: none;
+}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Left Content */
@@ -28,6 +38,7 @@ footer {
   height: 75%; /* Full height */
   box-sizing: border-box;
   position: absolute;
+  top: auto;
   transform: translateY(33%); /* Move upward by 25% of parent's height */
   margin-bottom: 0;
 }
@@ -50,7 +61,7 @@ footer {
 }
 
 .hero h1 {
-  font-size: 3.5rem;
+  font-size: 2.5rem;
   font-weight: bold;
 }
 
@@ -69,17 +80,22 @@ footer {
 }
 
 .hero p {
-  font-size: 1.2rem;
+  font-size: 1rem;
 }
 
 /* Features Section */
 .features h3 {
-  font-size: 1.5rem;
+  font-size: 0.8125rem;
   font-weight: bold;
+}
+
+.features p {
+  font-size: 0.75rem;
 }
 
 .features .custom-icon {
   color: #ffbb33; /* Customize icon color */
+  font-size: 1.125rem;
 }
 
 /* Right Side - Empty */
@@ -90,8 +106,8 @@ footer {
 
 /* CTA Button */
 .btn-cta {
-  width: 180px;
-  height: 50px;
+  width: 160px;
+  height: 40px;
   border: none;
   border-radius: 40px;
   background: linear-gradient(
@@ -106,7 +122,7 @@ footer {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  font-size: 20px;
+  font-size: 1.1rem;
   color: rgb(121, 103, 3);
   font-weight: 900;
   position: relative;
@@ -119,7 +135,9 @@ footer {
 }
 
 .btn-cta:hover {
+  -webkit-transform: scale(0.95);
   transform: scale(0.95);
+  -webkit-transition-duration: 2s;
   transition-duration: 2s;
   animation: gradient 3s ease infinite;
   background-position: right;
@@ -129,7 +147,8 @@ footer {
 
 .app-logo {
   position: absolute; /* Position relative to the viewport */
-
+  max-width: 250px;
+  max-height: 100%;
   z-index: 10;
   top: 0;
   margin: 0;
