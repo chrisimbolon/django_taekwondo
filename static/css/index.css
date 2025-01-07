@@ -162,6 +162,10 @@ body {
   opacity: 0.9;
 }
 
+.navbar {
+  display: none;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
   .main-container {

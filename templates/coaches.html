@@ -2,6 +2,7 @@
 {% endblock title %} {% block content %}
 
 <div class="container py-4 coaches-page">
+  <!-- Coach Headline Section -->
   <div class="coach-headline text-center">
     <h1>Join our community!</h1>
     <h2>Sign up or log in to add your own Taekwondo coach</h2>
@@ -11,15 +12,16 @@
     </p>
   </div>
 
-  <div class="d-flex justify-content-between align-items-baseline mt-3">
-    <h4 class="text-list-coach mt-4">List of coaches</h4>
-    <button id="viewFavoritesBtn" class="btn-fav">View Favorites</button>
+  <div class="col-md-10 offset-md-1">
+    <div class="d-flex justify-content-between align-items-baseline">
+      <h4 class="text-list-coach mt-4">List of coaches</h4>
+      <button id="viewFavoritesBtn" class="btn-fav">View Favorites</button>
+    </div>
   </div>
 
-  <hr />
+  <hr class="mx-auto" style="max-width: 1080px" />
 
   <!-- Card grid container -->
-
   <div
     class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 justify-content-center"
   >

@@ -90,72 +90,99 @@
     </div>
 
     <!-- Navbar -->
-    <nav>
-      <a class="logo" href="{% url 'home' %}">
-        <img
-          src="{% static 'images/Logo.png' %}"
-          alt="App Logo"
-          class="app-logo"
-        />
-      </a>
 
-      {% if user.is_authenticated %}
-      <div class="feature-link d-flex align-items-center">
-        <!-- Search Form -->
-        <form class="d-inline" action="{% url 'search' %}" method="GET">
-          <div class="position-relative">
-            <input
-              class="form-control search-box pe-4"
-              type="search"
-              placeholder="Search coach..."
-              name="search_term"
-              value="{{ search_term }}"
-            />
-            <button
-              type="submit"
-              class="btn btn-link position-absolute top-50 end-0 translate-middle-y p-0"
-            >
-              <i class="fa fa-search"></i>
-            </button>
-          </div>
-        </form>
-
-        <!-- Conditional Links -->
-        {% if request.resolver_match.url_name == "create" %}
-        <a href="{% url 'coaches-list' %}" class="text-dark nav-link">
-          Coaches
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <!-- Logo -->
+        <a class="navbar-brand" href="{% url 'home' %}">
+          <img
+            src="{% static 'images/Logo.png' %}"
+            alt="App Logo"
+            class="app-logo"
+          />
         </a>
-        {% else %}
-        <a href="{% url 'create' %}" class="text-dark add-coach nav-link">
-          Add Coach
-        </a>
-        {% endif %}
-      </div>
 
-      <!-- User Actions -->
-      <span class="user-actions">
-        <p class="greet-user">Welcome, {{ user.username }}</p>
-        <form action="{% url 'logout' %}" method="post" class="d-inline">
-          {% csrf_token %}
-          <button type="submit" class="btn btn-link nav-link text-dark p-0">
-            Logout
-          </button>
-        </form>
-      </span>
-      {% else %}
-      <div class="feature-link d-flex align-items-center">
-        <a href="{% url 'signup' %}" class="text-dark">Signup</a>
-        <a
-          href="#"
+        <!-- Toggler for mobile view -->
+        <button
+          class="navbar-toggler"
           type="button"
-          class="text-dark"
-          data-bs-toggle="modal"
-          data-bs-target="#loginModal"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarContent"
+          aria-controls="navbarContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
         >
-          Login
-        </a>
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar Content -->
+        <div class="collapse navbar-collapse" id="navbarContent">
+          <!-- Centered Content Wrapper -->
+          <div class="d-flex justify-content-center w-100">
+            <div class="d-flex align-items-center justify-content-center">
+              {% if user.is_authenticated %}
+              <!-- Search Form -->
+              <form
+                class="d-inline me-3"
+                action="{% url 'search' %}"
+                method="GET"
+              >
+                <div class="position-relative">
+                  <input
+                    class="form-control search-box pe-4"
+                    type="search"
+                    placeholder="Search coach..."
+                    name="search_term"
+                    value="{{ search_term }}"
+                  />
+                  <button
+                    type="submit"
+                    class="btn btn-link position-absolute top-50 end-0 translate-middle-y p-0"
+                  >
+                    <i class="fa fa-search"></i>
+                  </button>
+                </div>
+              </form>
+
+              <!-- Conditional Links -->
+              {% if request.resolver_match.url_name == "create" %}
+              <a href="{% url 'coaches-list' %}" class="text-dark nav-link">
+                Coaches
+              </a>
+              {% else %}
+              <a href="{% url 'create' %}" class="text-dark add-coach nav-link">
+                Add Coach
+              </a>
+              {% endif %} {% endif %}
+            </div>
+          </div>
+
+          <!-- Right-aligned User Actions -->
+          <div class="ms-auto d-flex align-items-center">
+            {% if user.is_authenticated %}
+            <p class="greet-user mb-0 me-3">Welcome, {{ user.username }}</p>
+            <form action="{% url 'logout' %}" method="post" class="d-inline">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-link nav-link text-dark p-0">
+                Logout
+              </button>
+            </form>
+            {% else %}
+            <a href="{% url 'signup' %}" class="nav-link text-dark me-3">
+              Signup
+            </a>
+            <a
+              href="#"
+              class="nav-link text-dark"
+              data-bs-toggle="modal"
+              data-bs-target="#loginModal"
+            >
+              Login
+            </a>
+            {% endif %}
+          </div>
+        </div>
       </div>
-      {% endif %}
     </nav>
 
     <!-- Navbar ends -->
