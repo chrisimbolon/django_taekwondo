@@ -197,6 +197,14 @@ nav .nav-link:hover {
   display: block;
 }
 
+/* end of card */
+
+/* card detail */
+.card-detail-container {
+  width: 740px;
+}
+/* end of card detail */
+
 .header-link,
 .header-link:hover {
   text-decoration: none;

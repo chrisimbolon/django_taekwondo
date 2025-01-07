@@ -34,25 +34,24 @@
 
     <!-- Card Body -->
     <div class="card-body">
-      <p>
-        <i class="fas fa-at me-2"></i>
-        <a href="mailto:{{ Coach.email }}" class="text-decoration-none">
-          {{ Coach.email }}
-        </a>
-      </p>
-      <p>
-        <i class="fas fa-phone me-2"></i>
-        <a href="tel:{{ Coach.phone_number }}" class="text-decoration-none">
-          {{ Coach.phone_number }}
-        </a>
-      </p>
+      <!-- Nationality -->
+      <div class="d-flex align-items-center mb-2">
+        <i class="fas fa-flag text-primary me-2"></i>
+        <span class="fw-light">{{ Coach.country.name }}</span>
+      </div>
+
+      <!-- Belt Holder -->
+      <div class="d-flex align-items-center mb-2">
+        <i class="fas fa-ribbon text-warning me-2"></i>
+        <span class="fw-light">{{ Coach.belt }} Belt Holder</span>
+      </div>
 
       <!-- Bottom Row -->
       <div class="d-flex justify-content-between align-items-center mt-auto">
-        <p class="m-0">
-          <i class="fas fa-info-circle me-2"></i>
-          {{ Coach.status }}
-        </p>
+        <div>
+          <i class="fas fa-info-circle text-secondary me-2"></i>
+          <span class="text-muted">{{ Coach.status }}</span>
+        </div>
         <button
           class="favorite-btn"
           data-coach-id="{{ Coach.id }}"

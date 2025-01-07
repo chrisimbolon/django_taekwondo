@@ -7,8 +7,10 @@
 {% block content %} {% if not access_denied %}
 <!-- Main Section -->
 <div class="container">
-  <h2 class="heading font-weight-light text-center">{{ Coach.full_name }}</h2>
-  <hr />
+  <h5 class="heading font-weight-light text-center mt-3">
+    {{ Coach.full_name }}
+  </h5>
+  <hr class="mt-0" />
 </div>
 
 <div class="container d-flex flex-column">
@@ -24,7 +26,7 @@
     </a>
     {% endblock %}
     <!---->
-    {% include 'partials/_card.html' %}
+    {% include 'partials/_card_detail.html' %}
   </div>
   <div class="mt-0 text-center">
     <p class="my-1">Input date: &nbsp; {{ Coach.input_date }}</p>

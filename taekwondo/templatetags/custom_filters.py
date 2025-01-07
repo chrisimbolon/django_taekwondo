@@ -40,3 +40,4 @@ def profile_picture(coach):
     if coach.sex == "male":
         return static("images/c-man.png")
     return static("images/c-woman.png")
+
