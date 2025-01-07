@@ -201,7 +201,7 @@ nav .nav-link:hover {
 
 /* card detail */
 .card-detail-container {
-  width: 640px;
+  width: 670px;
 }
 /* end of card detail */
 
@@ -306,8 +306,8 @@ nav .nav-link:hover {
   border: none;
 }
 
-.btn-danger:hover {
-  background-color: #ea3d1f;
+.btn-outline-danger:hover {
+  background-color: #c2776a;
   color: #ffffff;
   transition: background-color 0.3s ease;
   box-shadow: inset 0 0 0 2px #cd2f13;
@@ -329,8 +329,8 @@ nav .nav-link:hover {
 /* Styles for the close button */
 .close-button {
   position: absolute;
-  top: 10px; /* Adjust spacing from the top */
-  right: 10px; /* Adjust spacing from the right */
+  top: 5px; /* Adjust spacing from the top */
+  right: 5px; /* Adjust spacing from the right */
   z-index: 10; /* Ensure it stays above card content */
   border-radius: 30%;
   padding: 7px;
