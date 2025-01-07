@@ -38,66 +38,70 @@
         </a>
       </div>
 
-      <!-- Card Body (with flex setup) -->
+      <!-- Card Body -->
       <div class="card-body d-flex flex-column">
         <div class="row g-2">
           <div class="col-6">
             <!-- Registration -->
-            <div class="d-flex align-items-center mb-2">
-              <i class="fas fa-id-card text-danger me-2"></i>
-              <span class="fw-light">{{ Coach.registration_no }}</span>
+            <div class="d-flex align-items-center mb-3">
+              <i class="fas fa-id-card text-primary me-2"></i>
+              <span class="fw-light">{{ Coach.registration_number }}</span>
             </div>
-
             <!-- Nationality -->
-            <div class="d-flex align-items-center mb-2">
+            <div class="d-flex align-items-center mb-3">
               <i class="fas fa-flag text-primary me-2"></i>
               <span class="fw-light">{{ Coach.country.name }}</span>
             </div>
 
             <!-- Age -->
-            <div class="d-flex align-items-center mb-2">
+            <div class="d-flex align-items-center mb-3">
               <i class="fas fa-user-clock text-info me-2"></i>
-              <span class="fw-light">{{ Coach.age }} years old</span>
+              <span class="fw-light">
+                {% if Coach.date_of_birth|calculate_age %}
+                <!---->
+                {{ Coach.date_of_birth|calculate_age }} years old {% else %} Age
+                not available {% endif %}
+              </span>
             </div>
           </div>
 
           <div class="col-6">
             <!-- Belt Holder -->
-            <div class="d-flex align-items-center mb-2">
+            <div class="d-flex align-items-center mb-3">
               <i class="fas fa-ribbon text-warning me-2"></i>
               <span class="fw-light">{{ Coach.belt }} Belt Holder</span>
             </div>
-
             <!-- Dojang Name -->
-            <div class="d-flex align-items-center mb-2">
+            <div class="d-flex align-items-center mb-3">
               <i class="fas fa-building text-secondary me-2"></i>
               <span class="fw-light">{{ Coach.dojang_name }}</span>
             </div>
 
             <!-- Phone Number -->
-            <div class="d-flex align-items-center mb-2">
-              <i class="fas fa-phone-alt text-success me-2"></i>
+            <div class="d-flex align-items-center mb-3">
+              <i class="fas fa-phone text-success me-2"></i>
               <span class="fw-light">{{ Coach.phone_number }}</span>
             </div>
           </div>
-        </div>
 
-        <!-- Bottom Row (pushed to bottom) -->
-        <div class="d-flex justify-content-between align-items-center mt-auto">
-          <div>
-            <i class="fas fa-info-circle text-secondary me-2"></i>
-            <span class="text-muted">{{ Coach.status }}</span>
-          </div>
-          <button
-            class="favorite-btn"
-            data-coach-id="{{ Coach.id }}"
-            title="Add to Favorites"
+          <!-- Bottom Row -->
+          <div
+            class="d-flex justify-content-between align-items-center mt-auto"
           >
-            <i class="far fa-heart"></i>
-          </button>
+            <div>
+              <i class="fas fa-info-circle text-secondary me-2"></i>
+              <span class="text-muted">{{ Coach.status }}</span>
+            </div>
+            <button
+              class="favorite-btn"
+              data-coach-id="{{ Coach.id }}"
+              title="Add to Favorites"
+            >
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
         </div>
       </div>
-
       <!-- card header ends-->
     </div>
   </div>

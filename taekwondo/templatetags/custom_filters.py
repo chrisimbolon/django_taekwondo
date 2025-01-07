@@ -1,6 +1,6 @@
 from django import template
 from django.templatetags.static import static
-
+from datetime import date
 
 register = template.Library()
 
@@ -41,3 +41,12 @@ def profile_picture(coach):
         return static("images/c-man.png")
     return static("images/c-woman.png")
 
+@register.filter
+def calculate_age(date_of_birth):
+    if not date_of_birth:
+        return None  # Handle cases where the date of birth is not provided
+    today = date.today()
+    age = today.year - date_of_birth.year - (
+        (today.month, today.day) < (date_of_birth.month, date_of_birth.day)
+    )
+    return age
