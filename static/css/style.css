@@ -441,12 +441,77 @@ nav .nav-link:hover {
   border: solid;
   /* box-shadow: inset 0 0 0 2px #ed553b; */
 }
-/* 
+
+/* Filter Bar Container */
 .filter-bar {
-  height: 2rem;
-  width: 100%;
-  z-index: 10;
-} */
+  background: #ffffff; /* Clean white background */
+  border-radius: 8px; /* Rounded corners */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  padding: 1rem; /* Inner padding */
+  margin-top: 10px; /* Space below navbar */
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Even spacing between elements */
+}
+
+/* Dropdowns and Inputs */
+.filter-bar select {
+  border: 1px solid #ddd; /* Subtle border */
+  border-radius: 6px; /* Slightly rounded */
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  color: #333; /* Neutral text color */
+  background-color: #f9f9f9; /* Light background */
+  transition: all 0.2s ease;
+}
+
+.filter-bar select:hover,
+.filter-bar select:focus {
+  border-color: #ffd700; /* Gold accent on hover */
+  box-shadow: 0 0 4px rgba(255, 215, 0, 0.5); /* Glow effect */
+}
+
+/* Buttons */
+.filter-bar button {
+  font-size: 0.9rem;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.filter-bar .btn-primary {
+  background-color: #ffd700; /* Gold */
+  color: #fff;
+  border: none;
+}
+
+.filter-bar .btn-primary:hover {
+  background-color: #e6c200; /* Darker gold on hover */
+  box-shadow: 0 0 6px rgba(255, 215, 0, 0.5); /* Glow effect */
+}
+
+.filter-bar .btn-secondary {
+  background-color: #6c757d; /* Neutral gray */
+  color: #fff;
+  border: none;
+}
+
+.filter-bar .btn-secondary:hover {
+  background-color: #5a6268; /* Slightly darker on hover */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .filter-bar {
+    flex-direction: column; /* Stack vertically on smaller screens */
+    gap: 0.5rem; /* Reduce spacing */
+  }
+
+  .filter-bar button {
+    width: 100%; /* Full-width buttons */
+  }
+}
 
 /* footer style */
 footer {
