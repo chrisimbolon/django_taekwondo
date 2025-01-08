@@ -27,14 +27,11 @@ class HomePageView(TemplateView):
         context['custom_message'] = "Welcome to the Taekwondo App!"
         return context
 
-
-class CoachListView(ListView):
-    template_name = 'coaches.html'
+class CoachListView(FilterView):
     model = Coach
-    context_object_name = 'Coaches'
-
-    def get_queryset(self):
-        return super().get_queryset()
+    template_name = "coaches.html"
+    filterset_class = CoachFilter
+    context_object_name = "Coaches"
 
 class CoachDetailView(LoginRequiredMixin, DetailView):
     template_name = 'detail.html'
@@ -246,8 +243,3 @@ def login_view(request):
 def get_csrf_token(request):
     return JsonResponse({"csrf_token": get_token(request)})
 
-class CoachListView(FilterView):
-    model = Coach
-    template_name = "coaches.html"
-    filterset_class = CoachFilter
-    context_object_name = "Coaches"
