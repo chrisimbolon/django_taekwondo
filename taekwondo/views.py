@@ -16,7 +16,6 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login, logout
 from .forms import CoachForm
 from django_filters.views import FilterView
-from django_tables2 import SingleTableMixin
 from .filters import CoachFilter
 
 class HomePageView(TemplateView):

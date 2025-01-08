@@ -260,8 +260,8 @@ nav .nav-link:hover {
   font-size: 1.125rem;
   color: rgb(121, 103, 3);
   font-weight: 400;
-  position: relative;
-  z-index: 2;
+  /* position: relative; */
+  /* z-index: 2; */
   transition-duration: 3s;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.144);
   background-size: 200% 200%;
@@ -441,6 +441,12 @@ nav .nav-link:hover {
   border: solid;
   /* box-shadow: inset 0 0 0 2px #ed553b; */
 }
+/* 
+.filter-bar {
+  height: 2rem;
+  width: 100%;
+  z-index: 10;
+} */
 
 /* footer style */
 footer {
