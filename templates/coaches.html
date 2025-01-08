@@ -2,6 +2,13 @@
 {% endblock title %} {% block content %}
 
 <div class="container py-4 coaches-page">
+  <!-- Filter Form -->
+  <form method="get" class="mb-4">
+    {{ filter.form.as_p }}
+    <button type="submit" class="btn btn-primary">Filter</button>
+    <a href="{% url 'coaches-list' %}" class="btn btn-secondary">Reset</a>
+  </form>
+
   <!-- Coach Headline Section -->
   <div class="coach-headline text-center">
     <h1>Join our community!</h1>

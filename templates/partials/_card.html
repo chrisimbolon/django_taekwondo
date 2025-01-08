@@ -36,21 +36,28 @@
     <div class="card-body">
       <!-- Nationality -->
       <div class="d-flex align-items-center mb-2">
-        <i class="fas fa-flag text-primary me-2"></i>
+        <i class="far fa-flag custom-text me-2"></i>
         <span class="fw-light">{{ Coach.country.name }}</span>
       </div>
 
       <!-- Belt Holder -->
       <div class="d-flex align-items-center mb-2">
-        <i class="fas fa-ribbon text-warning me-2"></i>
+        <i class="fas fa-ribbon custom-text me-2"></i>
         <span class="fw-light">{{ Coach.belt }} Belt Holder</span>
       </div>
 
       <!-- Bottom Row -->
       <div class="d-flex justify-content-between align-items-center mt-auto">
-        <div>
-          <i class="fas fa-info-circle text-secondary me-2"></i>
-          <span class="text-muted">{{ Coach.status }}</span>
+        <div class="d-flex align-items-center">
+          {% if Coach.status == "active" %}
+          <i class="far fa-circle custom-text me-2"></i>
+          <!-- Green icon for active -->
+          <span class="badge badge-active">{{ Coach.status }}</span>
+          {% else %}
+          <i class="far fa-circle text-danger me-2"></i>
+          <!-- Red icon for inactive -->
+          <span class="badge bagde-inactive">{{ Coach.status }}</span>
+          {% endif %}
         </div>
         <button
           class="favorite-btn"

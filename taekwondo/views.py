@@ -10,12 +10,14 @@ from django.urls import reverse_lazy, reverse
 from django.contrib import messages
 from django.views.generic import TemplateView  
 from datetime import datetime
-from django.http import JsonResponse, HttpResponse, HttpResponseRedirect, HttpResponseForbidden
+from django.http import JsonResponse
 from django.middleware.csrf import get_token
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login, logout
 from .forms import CoachForm
-
+from django_filters.views import FilterView
+from django_tables2 import SingleTableMixin
+from .filters import CoachFilter
 
 class HomePageView(TemplateView):
     template_name = 'index.html'
@@ -243,3 +245,9 @@ def login_view(request):
 @csrf_exempt
 def get_csrf_token(request):
     return JsonResponse({"csrf_token": get_token(request)})
+
+class CoachListView(FilterView):
+    model = Coach
+    template_name = "coaches.html"
+    filterset_class = CoachFilter
+    context_object_name = "Coaches"
