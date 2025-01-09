@@ -52,6 +52,8 @@ class Coach(models.Model):
         ('inactive','Inactive')
     ))
     belt = models.ForeignKey('Belt', on_delete=models.SET_NULL, null=True)
+    bio = models.TextField(blank=True, null=True,max_length=2000)
+    achievements = models.TextField(blank=True, null=True)
     phone_number = models.CharField(max_length=15)
     email = models.EmailField(max_length=50)
     photo = models.ImageField(upload_to='images/',blank=True, null=True)

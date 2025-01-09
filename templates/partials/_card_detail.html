@@ -17,7 +17,7 @@
     {% endblock %}
 
     <!-- Card Image -->
-    <div class="col-md-6">
+    <div class="col-md-6 detail-left">
       <img
         src="{{ Coach|profile_picture }}"
         class="card-img-top img-fluid rounded-start"
@@ -89,6 +89,28 @@
               <i class="fas fa-phone custom-text me-2"></i>
               <span class="fw-normal">{{ Coach.phone_number }}</span>
             </div>
+          </div>
+
+          <!-- Achievement-->
+          <div class="col-12">
+            {% if Coach.achievements %}
+            <i class="fas fa-trophy custom-text me-2"></i>
+            <span class="fw-normal">{{ Coach.achievements }}</span>
+            {% else %}
+            <i class="fas fa-trophy custom-text me-2"></i>
+            <span>This coach has not provided achievements data yet.</span>
+            {% endif %}
+          </div>
+
+          <!-- bio -->
+          <div class="col-12">
+            {% if Coach.bio %}
+            <i class="fas fa-history custom-text me-2"></i>
+            <span class="fw-normal">{{ Coach.bio }}</span>
+            {% else %}
+            <i class="fas fa-history custom-text me-2"></i>
+            <span>This coach has not provided a biography yet.</span>
+            {% endif %}
           </div>
         </div>
 
