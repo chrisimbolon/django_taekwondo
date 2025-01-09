@@ -45,7 +45,7 @@
 
       <!-- Card Body -->
       <div
-        class="card-body flex-grow-1 d-flex flex-column justify-content-between mt-3"
+        class="card-body flex-grow-1 d-flex flex-column justify-content-between mt-1"
       >
         <div class="row g-2">
           <!-- Left Column -->
@@ -91,52 +91,66 @@
             </div>
           </div>
 
-          <!-- Achievement-->
-          <div class="col-12">
-            {% if Coach.achievements %}
-            <i class="fas fa-trophy custom-text me-2"></i>
-            <span class="fw-normal">{{ Coach.achievements }}</span>
-            {% else %}
-            <i class="fas fa-trophy custom-text me-2"></i>
-            <span>This coach has not provided achievements data yet.</span>
-            {% endif %}
+          <!-- Achievements Section -->
+          <div class="row g-1 px-1 mb-1">
+            <div class="col-12">
+              <div class="d-flex">
+                <i class="fas fa-trophy custom-text me-2 mt-1"></i>
+                <div class="fw-normal">
+                  {% if Coach.achievements %}
+                  <!---->
+                  {% for achievement in Coach.achievements.splitlines %}
+                  <div>{{ achievement }}</div>
+                  {% endfor %} {% else %}
+                  <div>This coach hasn't provided achievements yet.</div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
           </div>
 
-          <!-- bio -->
-          <div class="col-12">
-            {% if Coach.bio %}
-            <i class="fas fa-history custom-text me-2"></i>
-            <span class="fw-normal">{{ Coach.bio }}</span>
-            {% else %}
-            <i class="fas fa-history custom-text me-2"></i>
-            <span>This coach has not provided a biography yet.</span>
-            {% endif %}
-          </div>
-        </div>
-
-        <!-- Bottom Section -->
-        <div
-          class="d-flex justify-content-between align-items-center mt-2 border-top pt-2"
-        >
-          <div class="d-flex align-items-center">
-            {% if Coach.status == "active" %}
-            <i class="fas fa-circle text-success me-2"></i>
-            <!-- Green icon for active -->
-            <span class="badge bg-success text-light">{{ Coach.status }}</span>
-            {% else %}
-            <i class="fas fa-circle text-danger me-2"></i>
-            <!-- Red icon for inactive -->
-            <span class="badge bg-danger text-light">{{ Coach.status }}</span>
-            {% endif %}
+          <!-- Bio -->
+          <div class="row g-2 px-1 mb-1">
+            <div class="col-12">
+              <div class="d-flex">
+                <i class="fas fa-history custom-text me-2 mt-1"></i>
+                <span class="fw-normal">
+                  {% if Coach.bio %} {{ Coach.bio|smart_truncate:200 }}
+                  <!---->
+                  {% else %} This coach has not provided a biography yet.
+                  <!---->
+                  {% endif %}
+                </span>
+              </div>
+            </div>
           </div>
 
-          <button
-            class="favorite-btn btn btn-outline-danger btn-sm"
-            data-coach-id="{{ Coach.id }}"
-            title="Add to Favorites"
+          <!-- Bottom Section -->
+          <div
+            class="d-flex justify-content-between align-items-center mt-0 border-top pt-1"
           >
-            <i class="far fa-heart"></i>
-          </button>
+            <div class="d-flex align-items-center">
+              {% if Coach.status == "active" %}
+              <i class="fas fa-circle text-success me-2"></i>
+              <!-- Green icon for active -->
+              <span class="badge bg-success text-light">
+                {{ Coach.status }}
+              </span>
+              {% else %}
+              <i class="fas fa-circle text-danger me-2"></i>
+              <!-- Red icon for inactive -->
+              <span class="badge bg-danger text-light">{{ Coach.status }}</span>
+              {% endif %}
+            </div>
+
+            <button
+              class="favorite-btn btn btn-outline-danger btn-sm"
+              data-coach-id="{{ Coach.id }}"
+              title="Add to Favorites"
+            >
+              <i class="far fa-heart"></i>
+            </button>
+          </div>
         </div>
       </div>
     </div>
