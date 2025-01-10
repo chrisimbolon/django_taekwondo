@@ -451,8 +451,8 @@ nav .ms-auto.d-flex {
 .filter-bar select {
   border: 1px solid #ddd; /* Subtle border */
   border-radius: 6px; /* Slightly rounded */
-  padding: 0.5rem;
-  font-size: 0.9rem;
+  /* padding: 0.6rem; */
+  font-size: 0.875rem;
   color: #333; /* Neutral text color */
   background-color: #f9f9f9; /* Light background */
   transition: all 0.2s ease;
@@ -465,34 +465,52 @@ nav .ms-auto.d-flex {
 }
 
 /* Filter Feature */
-.filter-bar button {
-  font-size: 0.9rem;
-  font-weight: bold;
-  padding: 0.5rem 1rem;
-  border-radius: 6px;
-  transition: all 0.2s ease;
-}
 
 .filter-bar .btn-primary {
-  background-color: #ffd700; /* Gold */
-  color: #fff;
+  font-size: 0.875rem;
+  background-color: #e2ebf3; /* Gold */
+  color: #335a81;
+  border: none;
+}
+
+.filter-bar .btn-secondary {
+  font-size: 0.875rem;
+  background-color: #e5e4e2; /* Neutral gray */
+  color: #536878;
   border: none;
 }
 
 .filter-bar .btn-primary:hover {
-  background-color: #e6c200; /* Darker gold on hover */
+  background-color: #335a81;
+  color: #fff;
   box-shadow: 0 0 6px rgba(255, 215, 0, 0.5); /* Glow effect */
 }
 
-.filter-bar .btn-secondary {
-  background-color: #6c757d; /* Neutral gray */
-  color: #fff;
-  border: none;
+.filter-bar .btn-secondary:hover {
+  background-color: #91a3b0;
+  color: #fff; /* Slightly darker on hover */
 }
 
-.filter-bar .btn-secondary:hover {
-  background-color: #5a6268; /* Slightly darker on hover */
+/* Italicize placeholder text */
+.form-select.placeholder-active {
+  font-style: italic;
+  color: #6c757d; /* Placeholder color */
 }
+
+.form-select option {
+  font-style: normal;
+  color: #000;
+}
+
+.filter-select-wrapper {
+  margin-right: 10px; /* Adjust this value as needed */
+}
+
+.filter-select-wrapper:last-child {
+  margin-right: 0; /* Remove margin for the last select */
+}
+
+/* Filter bar ends */
 
 /* Quick Review */
 .quick-preview {

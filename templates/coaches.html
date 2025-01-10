@@ -1,35 +1,108 @@
 <!-- prettier-ignore -->
 {% extends 'base.html' %} {% load static %} {% load custom_filters %}
-{% block title %} List of Coaches
-{% endblock title %} 
+{% block title %} List of Coaches {% endblock title %}
 {% block content %}
 
 <!-- Filter Form -->
-<div class="col-md-10 offset-md-1">
-  <div class="filter-bar p-3 mb-4 shadow-sm bg-light rounded">
-    <form method="get" class="row g-3 align-items-center">
-      <div class="col-md-3">
-        {{ filter.form.country|add_class:"form-select" }}
-      </div>
+<div class="container">
+  <div class="col-md-10 offset-md-1">
+    <div class="filter-bar p-3 mb-4 shadow-sm bg-light rounded">
+      <form method="get" class="row g-3 align-items-center">
+        <!-- Flex container for the icon and selects -->
+        <div class="d-flex align-items-center g-1">
+          <i class="fas fa-filter custom-text me-2" style="font-size: 1rem"></i>
 
-      <div class="col-md-3">
-        {{ filter.form.belt_rank|add_class:"form-select" }}
-      </div>
+          <!-- Country Filter -->
+          <div class="col-md-3 filter-select-wrapper">
+            <select
+              class="form-select"
+              name="country"
+              data-placeholder="true"
+            >
+              <!-- Placeholder Option -->
+              <option value="" disabled {% if not request.GET.country %}selected{% endif %}>
+                Country
+              </option>
+          
+              <!-- Dynamic Options -->
+              {% for choice in filter.form.fields.country.choices %}
+                {% if choice.0 != "" %}
+                  <option 
+                    value="{{ choice.0 }}" 
+                    {% if request.GET.country == choice.0 %}selected{% endif %}
+                  >
+                    {{ choice.1 }}
+                  </option>
+                {% endif %}
+              {% endfor %}
+            </select>
+          </div>
+                
+          <!-- Belt Rank Filter -->
+          <div class="col-md-3 filter-select-wrapper">
+            <select
+              class="form-select"
+              name="belt_rank"
+              data-placeholder="true"
+            >
+              <option value="" disabled {% if not request.GET.belt_rank %}selected{% endif %}>
+                Belt Rank
+              </option>
+              {% for choice in filter.form.fields.belt_rank.choices %}
+                {% if choice.0 != "" %}
+                  <option 
+                    value="{{ choice.0 }}" 
+                    {% if request.GET.belt_rank == choice.0 %}selected{% endif %}
+                  >
+                    {{ choice.1 }}
+                  </option>
+                {% endif %}
+              {% endfor %}
+            </select>
+          </div>
 
-      <div class="col-md-3">
-        {{ filter.form.status|add_class:"form-select" }}
-      </div>
+          <!-- Status Filter -->
+          <div class="col-md-3 filter-select-wrapper">
+            <select
+              class="form-select"
+              name="status"
+              data-placeholder="true"
+            >
+              <option value="" disabled {% if not request.GET.status %}selected{% endif %}>
+                Status
+              </option>
+              {% for choice in filter.form.fields.status.choices %}
+                {% if choice.0 != "" %}
+                  <option 
+                    value="{{ choice.0 }}" 
+                    {% if request.GET.status == choice.0 %}selected{% endif %}
+                  >
+                    {{ choice.1 }}
+                  </option>
+                {% endif %}
+              {% endfor %}
+            </select>
+          </div>
 
-      <div class="col-md-3 d-flex justify-content-between">
-        <button type="submit" class="btn btn-primary w-100 me-2">Filter</button>
-        <a href="{% url 'coaches-list' %}" class="btn btn-secondary w-100">
-          Reset
-        </a>
-      </div>
-    </form>
+          <!-- Apply and Clear Buttons -->
+          <div class="col-md-3 d-flex mx-1">
+            <button type="submit" class="btn btn-primary w-50 me-1">
+              Apply
+            </button>
+            <a
+              href="{% url 'coaches-list' %}"
+              class="btn btn-secondary w-50 text-align-center"
+            >
+              Clear
+            </a>
+          </div>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
-<!-- end of filter-->
+
+<!-- end of filter -->
 
 <div class="container py-4 coaches-page">
   <!---->
@@ -44,7 +117,6 @@
       join the action
     </p>
   </div>
-
   {% endif %}
 
   <!-- List test and View Favorites -->
@@ -68,5 +140,25 @@
 </div>
 
 <!---->
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  // Select all <select> elements with a placeholder
+  const selects = document.querySelectorAll("select[data-placeholder='true']");
+
+  // Add placeholder-active class when value is empty
+  const togglePlaceholderClass = (select) => {
+    select.classList.toggle("placeholder-active", select.value === "");
+  };
+
+  // Initialize class on page load
+  selects.forEach((select) => {
+    togglePlaceholderClass(select);
+
+    // Add event listener for value change
+    select.addEventListener("change", () => togglePlaceholderClass(select));
+  });
+});
+</script>
 
 {% endblock content %}
