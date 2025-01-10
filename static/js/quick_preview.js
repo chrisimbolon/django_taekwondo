@@ -1,27 +1,27 @@
-document.querySelectorAll(".coach-card").forEach((card) => {
-  // Desktop hover
-  card.addEventListener("mouseenter", () => {
-    const preview = card.querySelector(".quick-preview");
-    preview.style.display = "flex";
-  });
+document.addEventListener("DOMContentLoaded", () => {
+  // Select all cards with quick preview sections
+  const cards = document.querySelectorAll(".coach-card");
 
-  card.addEventListener("mouseleave", () => {
-    const preview = card.querySelector(".quick-preview");
-    preview.style.display = "none";
-  });
+  cards.forEach((card) => {
+    const cardTop = card.querySelector(".card-top"); // Only the card-top section
+    const quickPreview = card.querySelector(".quick-preview");
 
-  // Mobile click/tap
-  card.addEventListener("click", (event) => {
-    const preview = card.querySelector(".quick-preview");
-    const isVisible = preview.style.display === "flex";
-    preview.style.display = isVisible ? "none" : "flex";
-    event.stopPropagation();
-  });
-});
+    if (cardTop && quickPreview) {
+      // Show Quick Preview on mouseover (true boundary crossing)
+      cardTop.addEventListener("mouseover", (event) => {
+        if (!cardTop.contains(event.relatedTarget)) {
+          console.log("Quick preview shown");
+          quickPreview.style.display = "flex";
+        }
+      });
 
-// Close all previews when clicking outside
-document.body.addEventListener("click", () => {
-  document.querySelectorAll(".quick-preview").forEach((preview) => {
-    preview.style.display = "none";
+      // Hide Quick Preview on mouseout (true boundary crossing)
+      cardTop.addEventListener("mouseout", (event) => {
+        if (!cardTop.contains(event.relatedTarget)) {
+          console.log("Quick preview hidden");
+          quickPreview.style.display = "none";
+        }
+      });
+    }
   });
 });

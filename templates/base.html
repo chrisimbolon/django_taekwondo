@@ -160,10 +160,14 @@
           <!-- Right-aligned User Actions -->
           <div class="ms-auto d-flex align-items-center">
             {% if user.is_authenticated %}
-            <p class="greet-user mb-0 me-3">Welcome, {{ user.username }}</p>
+            <span class="greet-user me-0">Welcome</span>
+            <span class="greet-user me-0">{{ user.username }},</span>
             <form action="{% url 'logout' %}" method="post" class="d-inline">
               {% csrf_token %}
-              <button type="submit" class="btn btn-link nav-link text-dark p-0">
+              <button
+                type="submit"
+                class="btn btn-link nav-link text-dark p-0 me-4"
+              >
                 Logout
               </button>
             </form>

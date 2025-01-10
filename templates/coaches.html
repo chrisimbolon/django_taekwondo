@@ -1,6 +1,6 @@
 <!-- prettier-ignore -->
 {% extends 'base.html' %} {% load static %} {% load custom_filters %}
-{% block title %} List of Coaches -
+{% block title %} List of Coaches
 {% endblock title %} 
 {% block content %}
 
@@ -29,10 +29,12 @@
     </form>
   </div>
 </div>
-
 <!-- end of filter-->
 
 <div class="container py-4 coaches-page">
+  <!---->
+
+  {% if not user.is_authenticated %}
   <!-- Coach Headline Section -->
   <div class="coach-headline text-center">
     <h1>Join our community!</h1>
@@ -43,7 +45,7 @@
     </p>
   </div>
 
-  <!-- This is the position I want to place Filter Form -->
+  {% endif %}
 
   <!-- List test and View Favorites -->
   <div class="col-md-10 offset-md-1">

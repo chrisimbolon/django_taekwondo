@@ -1,3 +1,4 @@
+<!-- prettier-ignore -->
 {% load static %} {% load custom_filters %}
 <div class="col">
   <div
@@ -9,27 +10,30 @@
     <!---->
     {% endblock %}
 
-    <!-- Card Image -->
-    <img
-      src="{{ Coach|profile_picture }}"
-      class="card-img-top img-thumbnail"
-      alt="{{ Coach.full_name }}"
-    />
+    <!-- Card Top: Image and Header -->
+    <div class="card-top">
+      <!-- Card Image -->
+      <img
+        src="{{ Coach|profile_picture }}"
+        class="card-img-top img-thumbnail"
+        alt="{{ Coach.full_name }}"
+      />
 
-    <!-- Card Header -->
-    <div class="card-header text-center">
-      <a
-        href="{% if user.is_authenticated %}{% url 'detail' Coach.id %}{% else %}#{% endif %}"
-        class="text-dark text-decoration-none"
-        data-bs-toggle="{% if not user.is_authenticated %}modal{% endif %}"
-        data-bs-target="{% if not user.is_authenticated %}#loginModal{% endif %}"
-        data-bs-toggle="tooltip"
-        data-bs-placement="top"
-        title="{{ Coach.full_name }}"
-      >
-        <i class="fas {{ Coach|gender_icon }} me-2"></i>
-        {{ Coach.full_name|smart_truncate:18 }}
-      </a>
+      <!-- Card Header -->
+      <div class="card-header text-center">
+        <a
+          href="{% if user.is_authenticated %}{% url 'detail' Coach.id %}{% else %}#{% endif %}"
+          class="text-dark text-decoration-none"
+          data-bs-toggle="{% if not user.is_authenticated %}modal{% endif %}"
+          data-bs-target="{% if not user.is_authenticated %}#loginModal{% endif %}"
+          data-bs-toggle="tooltip"
+          data-bs-placement="top"
+          title="{{ Coach.full_name }}"
+        >
+          <i class="fas {{ Coach|gender_icon }} me-2"></i>
+          {{ Coach.full_name|smart_truncate:18 }}
+        </a>
+      </div>
     </div>
 
     <!-- Card Body -->
@@ -51,12 +55,10 @@
         <div class="d-flex align-items-center">
           {% if Coach.status == "active" %}
           <i class="far fa-circle custom-text me-2"></i>
-          <!-- Green icon for active -->
           <span class="badge badge-active">{{ Coach.status }}</span>
           {% else %}
-          <i class="far fa-circle text-danger me-2"></i>
-          <!-- Red icon for inactive -->
-          <span class="badge bagde-inactive">{{ Coach.status }}</span>
+          <i class="far fa-circle me-2 text-danger"></i>
+          <span class="badge badge-inactive">{{ Coach.status }}</span>
           {% endif %}
         </div>
         <button
@@ -69,14 +71,12 @@
       </div>
     </div>
 
+    {% if not user.is_authenticated %}
     <!-- Quick Preview Section -->
     <div class="quick-preview">
       <p class="preview-bio">
-        {% if Coach.bio %} {{ Coach.bio|smart_truncate:100 }}
-        <!---->
-        {% else %} This coach has not provided a biography yet.
-        <!---->
-        {% endif %}
+        {% if Coach.bio %} {{ Coach.bio|smart_truncate:100 }} {% else %} This
+        coach has not provided a biography yet. {% endif %}
       </p>
       <div class="locked-details">
         <span class="lock-icon">🔒</span>
@@ -84,6 +84,7 @@
       </div>
       <a href="{% url 'signup' %}" class="signup-btn">Sign Up</a>
     </div>
-    <!-- end  of Quick Preview Section -->
+    <!-- end of Quick Preview Section -->
+    {% endif %}
   </div>
 </div>

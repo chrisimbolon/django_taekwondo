@@ -51,11 +51,9 @@
         <div class="d-flex align-items-center">
           {% if Coach.status == "active" %}
           <i class="far fa-circle custom-text me-2"></i>
-          <!-- Green icon for active -->
           <span class="badge badge-active">{{ Coach.status }}</span>
           {% else %}
           <i class="far fa-circle text-danger me-2"></i>
-          <!-- Red icon for inactive -->
           <span class="badge bagde-inactive">{{ Coach.status }}</span>
           {% endif %}
         </div>
