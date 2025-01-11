@@ -30,6 +30,8 @@
   </div>
   <div class="mt-0 text-center">
     <p class="my-1 fw-light">Input date: &nbsp; {{ Coach.input_date }}</p>
+
+    {% if is_manager %}
     <p class="text-light">
       <a class="btn btn-info px-5" href="{% url 'update' Coach.id %}">
         <i class="far fa-edit"></i>
@@ -45,6 +47,7 @@
         &nbsp;Delete
       </button>
     </p>
+    {% endif %}
   </div>
 
   <!-- Delete Confirmation Modal -->

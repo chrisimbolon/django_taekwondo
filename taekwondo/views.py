@@ -38,21 +38,23 @@ class CoachDetailView(LoginRequiredMixin, DetailView):
     context_object_name = 'Coach'
 
     def get_context_data(self, **kwargs):
+        # Get the base context
         context = super().get_context_data(**kwargs)
-        coach = self.get_object()  
-        # Check if the logged-in user is not the manager
-        context['access_denied'] = self.request.user != coach.manager
+        coach = self.get_object()
+        user = self.request.user
 
-        # Add the show_close_button and redirect_url to the context
-        if not context['access_denied']:
+        # Add logic to check if the user is the manager
+        context['is_manager'] = coach.manager == user
+
+        # Add special manager-specific context
+        if context['is_manager']:
             context['show_close_button'] = True
             context['redirect_url'] = reverse('coaches-list')
+
         return context
 
     def render_to_response(self, context, **response_kwargs):
-        # Render access denied message if user is not the manager
-        if context.get('access_denied'):
-            return render(self.request, 'detail.html', context)
+        # No access restriction for registered users
         return super().render_to_response(context, **response_kwargs)
 
 @login_required
