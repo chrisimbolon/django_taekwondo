@@ -23,36 +23,34 @@ body {
 }
 
 /* Navbar Styles */
-nav {
+
+.navbar {
+  background-color: #c2c2c2;
   font-weight: bold;
   font-size: 1.125rem;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #c2c2c2;
-  padding: 10px 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Softer shadow */
-  min-height: 60px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
-nav .form-control.search-box {
+.navbar .form-control.search-box {
   padding: 5px 10px; /* Add padding for a better feel */
   border-radius: 5px; /* Rounded corners */
   border: 1px solid #ccc;
   font-size: 16px;
   width: 300px; /* Adjust width for better proportions */
   flex-shrink: 0;
-  margin-left: 150px;
+  margin-left: 160px;
 }
 
-nav .form-control.search-box:focus {
+.navbar .form-control.search-box:focus {
   outline: none;
   border-color: #007bff; /* Highlight border on focus */
   box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
 }
 
 /* Ensure logout button looks like a link */
-nav .btn-link {
+.navbar .btn-link {
   color: inherit; /* Matches the color of other navbar links */
   padding: 0; /* Removes default button padding */
   background: none; /* Removes default button background */
@@ -64,18 +62,18 @@ nav .btn-link {
 }
 
 /* Add Coach link */
-nav .add-coach {
+.navbar .add-coach {
   text-decoration: none;
   margin-left: 25px;
   margin-right: 0;
 }
 
-nav .login {
+.navbar .login {
   margin-right: 50px;
 }
 
 /* General hover effect for nav links */
-nav .nav-link:hover {
+.navbar .nav-link:hover {
   transform: scale(1.05);
   transition: transform 0.3s ease;
   opacity: 0.9;
@@ -90,7 +88,7 @@ nav .nav-link:hover {
   line-height: 1.5; /* Align text with other elements */
 }
 
-nav .ms-auto.d-flex {
+.navbar .ms-auto.d-flex {
   align-items: center; /* Ensure vertical alignment for all items */
 }
 
@@ -102,6 +100,17 @@ nav .ms-auto.d-flex {
   display: flex; /* Enforce flex layout */
   align-items: center; /* Vertically align items */
   gap: 8px; /* Add consistent spacing between elements */
+}
+
+/* Remove old background images */
+.navbar-toggler .navbar-toggler-icon {
+  display: none; /* Hides the default toggler icon */
+}
+
+/* Font Awesome icon styles */
+.navbar-toggler i {
+  font-size: 1.25rem; /* Same size for hamburger and X icons */
+  color: #000; /* Match your navbar color */
 }
 
 /* Navbar Styles end */

@@ -1,10 +1,11 @@
 <!-- prettier-ignore -->
+{% extends 'base.html' %}
 
-{% extends 'base.html' %} {% block title %} 
-{% if not access_denied %}
+{% block title %}
+    {{ Coach.full_name }}
+{% endblock title %}
 
-{{ Coach.full_name }} {% else %} Access Denied {% endif %} {% endblock title %}
-{% block content %} {% if not access_denied %}
+{% block content %}
 <!-- Main Section -->
 <div class="container">
   <h5 class="heading font-weight-light text-center mt-3">
@@ -90,20 +91,7 @@
   </div>
 </div>
 <!-- Main Section ends -->
-{% else %}
-<div class="container col-sm-8 text-center">
-  <div class="warning p-4 my-4">
-    <p class="text-danger fw-bold">Oops! You don’t have access.</p>
-    <p>
-      It looks like this coach wasn’t added by you, so you can’t view or update
-      the details..
-    </p>
-    <a href="{% url 'coaches-list' %}" class="mr-4 text-dark nav-link">
-      Back to coaches
-    </a>
-  </div>
-</div>
-{% endif %} {% endblock content %}
+{% endblock content %}
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
