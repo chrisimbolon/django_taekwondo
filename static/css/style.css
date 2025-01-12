@@ -72,11 +72,47 @@ body {
 }
 
 .greet-user {
+  max-width: fit-content;
   display: inline;
   font-weight: 300;
   font-size: 1rem;
   padding: 0;
   line-height: 1.5;
+  margin: 0;
+  text-align: center;
+}
+
+.greet-user .dropdown-menu {
+  text-align: left; /* Align dropdown items to the left for usability */
+}
+
+.greet-user .dropdown-menu {
+  min-width: 10rem; /* Ensure dropdown has a reasonable width */
+  padding: 0.5rem; /* Add padding for dropdown content */
+  text-align: center; /* Center-align dropdown items */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+}
+
+.greet-user .dropdown-menu li {
+  margin: 0.25rem 0; /* Add spacing between list items */
+}
+
+/* Logout Button Styling */
+.greet-user .dropdown-menu button.nav-link {
+  display: block; /* Ensure block-level alignment */
+  width: 100%; /* Make button fill the dropdown width */
+  padding: 0.5rem; /* Add sufficient padding for touch targets */
+  background: transparent; /* Remove default button background */
+  border: none; /* Remove borders */
+  color: #000; /* Set text color to match dropdown */
+  text-align: center; /* Center-align the text */
+  font-size: 1rem; /* Ensure font size consistency */
+  cursor: pointer; /* Add pointer cursor for better UX */
+}
+
+.greet-user .dropdown-menu button.nav-link:hover {
+  background: #f8f9fa; /* Add a subtle hover effect */
+  color: #000; /* Ensure hover text color remains consistent */
 }
 
 .search-bar {
@@ -588,12 +624,12 @@ footer {
 
 @media (max-width: 991px) {
   .navbar-actions {
-    flex-direction: row; /* Align side by side */
-    flex-wrap: wrap; /* Allow wrapping if necessary */
-    justify-content: flex-start; /* Align everything to the left */
-    align-items: last baseline;
+    flex-direction: row; /* Align side by side on larger screens */
+    flex-wrap: wrap; /* Allow wrapping */
+    justify-content: center; /* Center the content (search bar, buttons) */
+    align-items: center;
     margin-bottom: 0.5rem;
-    gap: 0; /* Remove extra spacing */
+    gap: 0;
   }
 
   .search-bar {
@@ -601,12 +637,13 @@ footer {
   }
 
   .navbar-nav.ms-auto {
-    justify-content: flex-start; /* Align "Welcome, user" to the left */
+    justify-content: center;
+    align-items: center;
   }
 
   .greet-user {
-    margin-left: 0; /* Reset left margin */
-    text-align: left; /* Align dropdown text to the left */
+    margin-left: 0;
+    text-align: center;
   }
 }
 
@@ -614,11 +651,11 @@ footer {
 
 @media (max-width: 576px) {
   /* Adjust padding for better fit on smaller screens */
-  .navbar {
+  /* .navbar {
     padding: 10px 15px;
   }
 
-  /* Reduce font sizes for better readability */
+ 
   .navbar .nav-link,
   .greet-user {
     font-size: 0.9rem;
@@ -629,8 +666,8 @@ footer {
   }
 
   .form-control.search-box {
-    font-size: 0.875rem; /* Smaller font for compact design */
-  }
+    font-size: 0.875rem;
+  } */
 }
 
 @media (max-width: 768px) {
@@ -645,7 +682,7 @@ footer {
 }
 
 @media (max-width: 830px) {
-  nav {
+  /* nav {
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
@@ -655,15 +692,15 @@ footer {
     flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
-  }
+  } */
 
-  nav > form {
+  /* nav > form {
     margin-top: 10px;
   }
 
   nav > form .form-control.search-box {
     width: 100%;
-  }
+  } */
 }
 
 @media (max-width: 768px) {
