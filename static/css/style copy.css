@@ -586,14 +586,16 @@ footer {
 
 /* Responsive Adjustments */
 
+/* @media (min-width: 768px) and (max-width: 991px) */
+
 @media (max-width: 991px) {
   .navbar-actions {
-    flex-direction: row; /* Align side by side */
-    flex-wrap: wrap; /* Allow wrapping if necessary */
-    justify-content: flex-start; /* Align everything to the left */
-    align-items: last baseline;
+    flex-direction: row; /* Align side by side on larger screens */
+    flex-wrap: wrap; /* Allow wrapping */
+    justify-content: center; /* Center the content (search bar, buttons) */
+    align-items: center;
     margin-bottom: 0.5rem;
-    gap: 0; /* Remove extra spacing */
+    gap: 0;
   }
 
   .search-bar {
@@ -601,12 +603,12 @@ footer {
   }
 
   .navbar-nav.ms-auto {
-    justify-content: flex-start; /* Align "Welcome, user" to the left */
+    justify-content: center; /* Center "Welcome, user" dropdown */
   }
 
   .greet-user {
-    margin-left: 0; /* Reset left margin */
-    text-align: left; /* Align dropdown text to the left */
+    margin-left: 0; /* Reset any extra left margin */
+    text-align: center; /* Center-align text */
   }
 }
 
