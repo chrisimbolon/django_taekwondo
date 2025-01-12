@@ -89,7 +89,7 @@
       </div>
     </div>
 
-    <!-- Navbar-->
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
         <!-- LOGO -->
@@ -119,57 +119,46 @@
           class="collapse navbar-collapse justify-content-between"
           id="navbarContent"
         >
-          <!-- NAVBAR ACTIONS (Search Bar + Conditional Buttons) -->
-          <div
-            class="navbar-actions d-flex flex-column flex-lg-row align-items-center mx-auto"
+          <!-- SEARCH BAR -->
+          {% if user.is_authenticated %}
+          <form
+            class="search-bar mx-lg-auto d-flex my-2 my-lg-0"
+            style="max-width: 300px; width: 100%"
+            action="{% url 'search' %}"
+            method="GET"
           >
-            <!-- SEARCH BAR -->
-            {% if user.is_authenticated %}
-            <form
-              class="search-bar d-flex"
-              style="max-width: 23rem; width: 100%"
-              action="{% url 'search' %}"
-              method="GET"
-            >
-              <div class="input-group">
-                <input
-                  class="form-control"
-                  type="search"
-                  placeholder="Search coach..."
-                  name="search_term"
-                  value="{{ search_term }}"
-                  aria-label="Search"
-                />
-                <button class="btn btn-outline-success" type="submit">
-                  <i class="fas fa-search"></i>
-                </button>
-              </div>
-            </form>
-            {% endif %}
+            <div class="input-group">
+              <input
+                class="form-control"
+                type="search"
+                placeholder="Search coach..."
+                name="search_term"
+                value="{{ search_term }}"
+                aria-label="Search"
+              />
+              <button class="btn btn-outline-success" type="submit">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </form>
+          {% endif %}
 
-            <!-- Add Coach or Coaches Button -->
+          <!-- RIGHT ITEMS -->
+          <ul class="navbar-nav">
             {% if user.is_authenticated %}
-            <div class="conditional-button">
+            <!-- Add Coach or Coaches Link -->
+            <li class="nav-item">
               {% if request.resolver_match.url_name == "create" %}
-              <a href="{% url 'coaches-list' %}" class="btn btn-primary">
+              <a href="{% url 'coaches-list' %}" class="btn btn-primary me-2">
                 Coaches
               </a>
               {% else %}
-              <a
-                href="{% url 'create' %}"
-                class="btn btn-primary"
-                style="white-space: nowrap"
-              >
+              <a href="{% url 'create' %}" class="btn btn-primary me-2">
                 Add Coach
               </a>
               {% endif %}
-            </div>
-            {% endif %}
-          </div>
+            </li>
 
-          <!-- RIGHT ITEMS -->
-          <ul class="navbar-nav ms-auto">
-            {% if user.is_authenticated %}
             <!-- User Greeting and Logout -->
             <li class="nav-item dropdown">
               <a
@@ -214,7 +203,7 @@
       </div>
     </nav>
 
-    <!-- Navbar ends-->
+    <!-- Navbar ends -->
 
     <div class="main-content">
       {% include "partials/_message.html" %}

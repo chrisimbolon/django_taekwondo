@@ -24,53 +24,74 @@ body {
 
 /* Navbar Styles */
 
+/* 
+
+
 .navbar {
   background-color: #c2c2c2;
   font-weight: bold;
   font-size: 1.125rem;
   display: flex;
+
   padding-top: 1rem;
   padding-bottom: 1rem;
-}
+} */
 
-.navbar .form-control.search-box {
-  padding: 5px 10px; /* Add padding for a better feel */
-  border-radius: 5px; /* Rounded corners */
+/* .navbar-nav .form-control.search-box {
+  padding: 5px 10px;
+  border-radius: 5px;
   border: 1px solid #ccc;
   font-size: 16px;
-  width: 300px; /* Adjust width for better proportions */
+  width: 300px;
   flex-shrink: 0;
   margin-left: 160px;
-}
+} */
 
-.navbar .form-control.search-box:focus {
+/* .navbar .form-control.search-box:focus {
   outline: none;
-  border-color: #007bff; /* Highlight border on focus */
+  border-color: #007bff; 
   box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
-}
+} */
 
 /* Ensure logout button looks like a link */
-.navbar .btn-link {
-  color: inherit; /* Matches the color of other navbar links */
-  padding: 0; /* Removes default button padding */
-  background: none; /* Removes default button background */
-  border: none; /* Removes button border */
-  font-weight: bold; /* Makes it bold */
+/* .navbar .btn-link {
+  color: inherit;
+  padding: 0;
+  background: none;
+  border: none;
+  font-weight: bold;
   font-size: 1.125rem;
-  cursor: pointer; /* Makes it clickable */
+  cursor: pointer;
   text-decoration: none;
-}
+} */
 
 /* Add Coach link */
-.navbar .add-coach {
+/* .navbar .add-coach {
   text-decoration: none;
   margin-left: 25px;
   margin-right: 0;
+} */
+
+.navbar-actions {
+  display: flex;
+  flex-direction: column; /* Align vertically on small screens */
+  justify-content: right;
+  align-items: center; /* Center horizontally */
+  gap: 3rem; /* Maintain spacing between search bar and button */
+  width: 100%; /* Use the full width to center in navbar */
 }
 
-.navbar .login {
-  margin-right: 50px;
+.conditional-button .btn {
+  margin-right: 2rem; /* Add space between 'Add Coach' and 'Welcome' */
 }
+
+.navbar-nav {
+  margin-right: 0.875rem; /* Pull the entire navbar nav items slightly left */
+}
+
+/* .navbar .login {
+  margin-right: 50px;
+} */
 
 /* General hover effect for nav links */
 .navbar .nav-link:hover {
@@ -80,27 +101,27 @@ body {
   box-shadow: inset 200px 0 0 0 var(--back);
 }
 
-.greet-user {
-  display: inline; /* Make it inline */
+/* .greet-user {
+  display: inline;
   font-weight: 300;
   font-size: 1rem;
-  padding: 0; /* Remove unnecessary padding */
-  line-height: 1.5; /* Align text with other elements */
-}
+  padding: 0;
+  line-height: 1.5;
+} */
 
-.navbar .ms-auto.d-flex {
-  align-items: center; /* Ensure vertical alignment for all items */
-}
-
+/* .navbar .ms-auto.d-flex {
+  align-items: center; 
+} */
+/* 
 .ms-auto .greet-user {
-  margin-right: 10px; /* Space between greeting and logout */
-}
-
+  margin-right: 10px; 
+} */
+/* 
 .ms-auto {
-  display: flex; /* Enforce flex layout */
-  align-items: center; /* Vertically align items */
-  gap: 8px; /* Add consistent spacing between elements */
-}
+  display: flex; 
+  align-items: center; 
+  gap: 8px;
+} */
 
 /* Remove old background images */
 .navbar-toggler .navbar-toggler-icon {
@@ -117,7 +138,7 @@ body {
 
 .app-logo {
   position: absolute; /* Position relative to the viewport */
-  max-width: 250px;
+  max-width: 230px;
   max-height: 100%;
   z-index: 10;
   top: 0;
@@ -146,13 +167,13 @@ body {
   gap: 2rem;
 }
 
-.search-box {
+/* .search-box {
   border-radius: 10px;
   width: 250px;
   border: none;
   background-color: #f2f3f5;
   box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2);
-}
+} */
 
 .btn-link i {
   font-size: 1.2rem; /* Adjust icon size */
@@ -582,7 +603,48 @@ body {
 }
 /* end of Quick Review */
 
+/* footer style */
+footer {
+  background-color: var(--back);
+  color: white;
+  font-size: 18px;
+  border-bottom: 3px solid var(--back);
+}
+/* footer style ends*/
+
 /* Responsive Adjustments */
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .navbar-actions {
+    flex-direction: row; /* Align side by side on larger screens */
+  }
+}
+
+/* for distance purpose */
+
+@media (max-width: 576px) {
+  /* Adjust padding for better fit on smaller screens */
+  .navbar {
+    padding: 10px 15px;
+  }
+
+  /* Reduce font sizes for better readability */
+  .navbar .nav-link,
+  .greet-user {
+    font-size: 0.9rem;
+  }
+
+  /* Reduce logo size */
+  .navbar-brand .app-logo {
+    width: 80px; /* Scale down logo */
+  }
+
+  /* Search box adjustments */
+  .form-control.search-box {
+    font-size: 0.875rem; /* Smaller font for compact design */
+  }
+}
+
 @media (max-width: 768px) {
   .filter-bar {
     flex-direction: column; /* Stack vertically on smaller screens */
@@ -593,15 +655,6 @@ body {
     width: 100%; /* Full-width buttons */
   }
 }
-
-/* footer style */
-footer {
-  background-color: var(--back);
-  color: white;
-  font-size: 18px;
-  border-bottom: 3px solid var(--back);
-}
-/* footer style ends*/
 
 @media (max-width: 830px) {
   nav {
