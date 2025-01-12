@@ -24,53 +24,11 @@ body {
 
 /* Navbar Styles */
 
-/* 
-
-
 .navbar {
-  background-color: #c2c2c2;
+  background-color: #dadada;
   font-weight: bold;
   font-size: 1.125rem;
-  display: flex;
-
-  padding-top: 1rem;
-  padding-bottom: 1rem;
-} */
-
-/* .navbar-nav .form-control.search-box {
-  padding: 5px 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-  width: 300px;
-  flex-shrink: 0;
-  margin-left: 160px;
-} */
-
-/* .navbar .form-control.search-box:focus {
-  outline: none;
-  border-color: #007bff; 
-  box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
-} */
-
-/* Ensure logout button looks like a link */
-/* .navbar .btn-link {
-  color: inherit;
-  padding: 0;
-  background: none;
-  border: none;
-  font-weight: bold;
-  font-size: 1.125rem;
-  cursor: pointer;
-  text-decoration: none;
-} */
-
-/* Add Coach link */
-/* .navbar .add-coach {
-  text-decoration: none;
-  margin-left: 25px;
-  margin-right: 0;
-} */
+}
 
 .navbar-actions {
   display: flex;
@@ -82,15 +40,22 @@ body {
 }
 
 .conditional-button .btn {
-  margin-right: 2rem; /* Add space between 'Add Coach' and 'Welcome' */
+  color: #555;
+  font-weight: bold;
+  border: none;
+  margin-right: 2rem;
+  background: none;
 }
 
-.navbar-nav {
-  margin-right: 0.875rem; /* Pull the entire navbar nav items slightly left */
-}
-
-/* .navbar .login {
-  margin-right: 50px;
+/* .navbar .btn-link {
+  color: inherit;
+  padding: 0;
+  background: none;
+  border: none;
+  font-weight: bold;
+  font-size: 1.125rem;
+  cursor: pointer;
+  text-decoration: none;
 } */
 
 /* General hover effect for nav links */
@@ -101,26 +66,54 @@ body {
   box-shadow: inset 200px 0 0 0 var(--back);
 }
 
-/* .greet-user {
+.navbar-nav {
+  margin-right: 0.875rem; /* Pull the entire navbar nav items slightly left */
+}
+
+.greet-user {
   display: inline;
   font-weight: 300;
   font-size: 1rem;
   padding: 0;
   line-height: 1.5;
+}
+
+.search-bar {
+  border-radius: 10px;
+  border: none;
+  background-color: #f2f3f5;
+  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.search-bar .form-control {
+  height: 38px;
+  border: none;
+  border-radius: 10px 0 0 10px;
+  box-shadow: none;
+}
+
+.search-bar .form-control::placeholder {
+  font-size: 0.9rem; /* Adjust placeholder text size if needed */
+}
+
+/* .navbar-nav .form-control.search-box {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  width: 300px;
+  flex-shrink: 0;
+  margin-left: 160px;
 } */
 
-/* .navbar .ms-auto.d-flex {
-  align-items: center; 
-} */
-/* 
-.ms-auto .greet-user {
-  margin-right: 10px; 
-} */
-/* 
-.ms-auto {
-  display: flex; 
-  align-items: center; 
-  gap: 8px;
+.search-bar .form-control:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}
+
+/* .navbar .login {
+  margin-right: 50px;
 } */
 
 /* Remove old background images */
@@ -166,14 +159,6 @@ body {
 .coaches-page .row {
   gap: 2rem;
 }
-
-/* .search-box {
-  border-radius: 10px;
-  width: 250px;
-  border: none;
-  background-color: #f2f3f5;
-  box-shadow: 0 1px 8px 0 rgba(0, 0, 0, 0.2);
-} */
 
 .btn-link i {
   font-size: 1.2rem; /* Adjust icon size */
