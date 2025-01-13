@@ -352,28 +352,19 @@ body {
 /* Styles for the close button */
 .close-button {
   position: absolute;
-  top: 5px; /* Adjust spacing from the top */
-  right: 5px; /* Adjust spacing from the right */
+  top: 3px; /* Adjust spacing from the top */
+  right: 3px; /* Adjust spacing from the right */
   z-index: 10; /* Ensure it stays above card content */
   border-radius: 30%;
   padding: 7px;
-  width: 1.8rem; /* Set equal width */
-  height: 1.8rem; /* Set equal height */
+  width: 1.625; /* Set equal width */
+  height: 1.625; /* Set equal height */
   background-color: #eff5fa;
 }
 
 .close-button:hover {
   background-color: #adadad;
   box-shadow: inset 0 0 0 2px #31669b;
-}
-
-.close-button i {
-  font-size: 1rem; /* Adjust icon size */
-  color: #ed553b;
-}
-
-.close-button i:hover {
-  font-size: 18px; /* Adjust icon size */
 }
 
 .btn-outline-secondary:hover {
@@ -553,11 +544,6 @@ body {
   margin-right: 0.5rem;
 }
 
-/* 
-.filter-select-wrapper:last-child {
-  margin-right: 0; 
-} */
-
 /* Filter bar ends */
 
 /* Quick Review */
@@ -654,10 +640,6 @@ footer {
 
   /* FILTER SECTION */
 
-  /* .container .col-md-10 {
-   
-  } */
-
   .col-md-10.offset-md-1 {
     width: 100%;
   }
@@ -692,6 +674,14 @@ footer {
 
   .filter-bar .filter-select-wrapper select {
     font-size: 0.85rem; /* Reduce font size */
+  }
+
+  /* CARD DETAIL */
+
+  .card-detail-container {
+    transform: scale(0.85); /* Ensures card scaling */
+    position: relative; /* Reference for absolute positioning */
+    margin: 0 auto; /* Center card */
   }
 }
 
