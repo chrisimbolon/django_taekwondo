@@ -544,10 +544,10 @@ body {
 .filter-bar .filter-select-wrapper:nth-of-type(2) select {
   width: 120px; /* Fine-tune Belt Rank width */
 }
-/* 
+
 .filter-bar .filter-select-wrapper:nth-of-type(3) select {
-  width: 100px; 
-} */
+  width: 100px;
+}
 
 .filter-select-wrapper {
   margin-right: 0.5rem;
@@ -557,6 +557,14 @@ body {
 .filter-select-wrapper:last-child {
   margin-right: 0; 
 } */
+
+.container:after,
+.row:after,
+.filter-bar:after {
+  content: "";
+  display: table;
+  clear: both; /* Fix collapsing issues */
+}
 
 /* Filter bar ends */
 
@@ -651,63 +659,85 @@ footer {
     margin-left: 0;
     text-align: center;
   }
+
+  /* FILTER SECTION */
+  /* Shrink the entire filter bar */
+  .filter-bar {
+    padding: 0.5rem 1rem; /* Reduce padding */
+  }
+
+  /* Adjust font size of the icon */
+  .filter-bar i {
+    font-size: 0.85rem; /* Smaller icon */
+  }
+
+  /* Shrink select dropdowns */
+  .filter-bar .filter-select-wrapper select {
+    font-size: 0.9rem; /* Smaller text */
+    padding: 0.3rem; /* Reduce inner padding */
+  }
+
+  /* Adjust button sizes */
+  .filter-bar button,
+  .filter-bar a {
+    font-size: 0.9rem; /* Smaller text */
+    padding: 0.3rem 0.6rem; /* Less padding around buttons */
+  }
+
+  /* Adjust spacing between elements */
+  .filter-bar form {
+    gap: 0.5rem; /* Reduce spacing between form elements */
+  }
+
+  /* Make buttons share less space if needed */
+  .filter-bar .d-flex .btn {
+    width: auto; /* Prevents buttons from being too wide */
+  }
+
+  .filter-bar .filter-select-wrapper select {
+    font-size: 0.85rem; /* Reduce font size */
+  }
+}
+
+/* Adjust the form for smaller viewports */
+@media (max-width: 767px) {
+  .filter-bar {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10rem; /* Ensure clear space after filter bar */
+  }
+
+  .filter-bar .btn {
+    flex: none; /* Prevent stretching */
+    margin-bottom: 0; /* Remove gaps between buttons */
+  }
+
+  .filter-bar .d-flex {
+    flex-direction: column;
+  }
+
+  .filter-bar .filter-select-wrapper {
+    width: 100%; /* Ensure each select takes full width */
+    margin-bottom: 1rem; /* Add spacing between stacked elements */
+  }
+
+  .filter-bar .col-md-3 {
+    display: flex;
+    justify-content: space-between; /* Keep buttons side by side */
+    width: 100%;
+  }
+
+  .filter-bar .btn {
+    flex: 1; /* Make buttons equal width */
+    margin: 0 0.5rem; /* Add spacing between buttons */
+  }
+  .coach-headline {
+    display: none;
+  }
 }
 
 /* for distance purpose */
-
-@media (max-width: 576px) {
-  /* Adjust padding for better fit on smaller screens */
-  /* .navbar {
-    padding: 10px 15px;
-  }
-
- 
-  .navbar .nav-link,
-  .greet-user {
-    font-size: 0.9rem;
-  }
-
-  .navbar-brand .app-logo {
-    width: 80px;
-  }
-
-  .form-control.search-box {
-    font-size: 0.875rem;
-  } */
-}
-
-@media (max-width: 768px) {
-  .filter-bar {
-    flex-direction: column; /* Stack vertically on smaller screens */
-    gap: 0.5rem; /* Reduce spacing */
-  }
-
-  .filter-bar button {
-    width: 100%; /* Full-width buttons */
-  }
-}
-
-@media (max-width: 830px) {
-  /* nav {
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  nav > p.feature-link {
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-  } */
-
-  /* nav > form {
-    margin-top: 10px;
-  }
-
-  nav > form .form-control.search-box {
-    width: 100%;
-  } */
-}
 
 @media (max-width: 768px) {
   .coaches-page .row > .col {
