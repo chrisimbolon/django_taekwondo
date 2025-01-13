@@ -472,7 +472,7 @@ body {
   display: flex;
   align-items: stretch;
   gap: 1rem; /* Even spacing between elements */
-  height: 60px;
+  /* height: 60px; */
 }
 
 /* Dropdowns and Inputs */
@@ -557,14 +557,6 @@ body {
 .filter-select-wrapper:last-child {
   margin-right: 0; 
 } */
-
-.container:after,
-.row:after,
-.filter-bar:after {
-  content: "";
-  display: table;
-  clear: both; /* Fix collapsing issues */
-}
 
 /* Filter bar ends */
 
@@ -661,9 +653,13 @@ footer {
   }
 
   /* FILTER SECTION */
-  /* Shrink the entire filter bar */
-  .filter-bar {
-    padding: 0.5rem 1rem; /* Reduce padding */
+
+  /* .container .col-md-10 {
+   
+  } */
+
+  .col-md-10.offset-md-1 {
+    width: 100%;
   }
 
   /* Adjust font size of the icon */
@@ -704,34 +700,30 @@ footer {
   .filter-bar {
     position: relative;
     display: flex;
-    flex-direction: column;
-    margin-bottom: 10rem; /* Ensure clear space after filter bar */
-  }
-
-  .filter-bar .btn {
-    flex: none; /* Prevent stretching */
-    margin-bottom: 0; /* Remove gaps between buttons */
   }
 
   .filter-bar .d-flex {
     flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
   }
 
   .filter-bar .filter-select-wrapper {
     width: 100%; /* Ensure each select takes full width */
-    margin-bottom: 1rem; /* Add spacing between stacked elements */
+    margin-right: 0;
   }
 
   .filter-bar .col-md-3 {
     display: flex;
-    justify-content: space-between; /* Keep buttons side by side */
+    justify-content: space-between;
     width: 100%;
   }
 
-  .filter-bar .btn {
-    flex: 1; /* Make buttons equal width */
-    margin: 0 0.5rem; /* Add spacing between buttons */
+  .filter-bar i.fas.fa-filter {
+    align-self: flex-start; /* Align the icon with the left of the form */
+    margin-bottom: 0.5rem; /* Add spacing between the icon and selects */
   }
+
   .coach-headline {
     display: none;
   }
