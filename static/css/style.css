@@ -48,17 +48,6 @@ body {
   background: none;
 }
 
-/* .navbar .btn-link {
-  color: inherit;
-  padding: 0;
-  background: none;
-  border: none;
-  font-weight: bold;
-  font-size: 1.125rem;
-  cursor: pointer;
-  text-decoration: none;
-} */
-
 /* General hover effect for nav links */
 .navbar .nav-link:hover {
   transform: scale(1.05);
@@ -544,13 +533,30 @@ body {
   color: #000;
 }
 
-.filter-select-wrapper {
-  margin: 0 10px 0 0;
+.filter-bar .filter-select-wrapper select {
+  max-width: 100%; /* Ensure select elements stretch within their column */
 }
 
-.filter-select-wrapper:last-child {
-  margin-right: 0; /* Remove margin for the last select */
+.filter-bar .filter-select-wrapper:nth-of-type(1) select {
+  width: 250px; /* Fine-tune Country filter width */
 }
+
+.filter-bar .filter-select-wrapper:nth-of-type(2) select {
+  width: 120px; /* Fine-tune Belt Rank width */
+}
+/* 
+.filter-bar .filter-select-wrapper:nth-of-type(3) select {
+  width: 100px; 
+} */
+
+.filter-select-wrapper {
+  margin-right: 0.5rem;
+}
+
+/* 
+.filter-select-wrapper:last-child {
+  margin-right: 0; 
+} */
 
 /* Filter bar ends */
 

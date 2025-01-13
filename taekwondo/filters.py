@@ -1,16 +1,20 @@
 import django_filters
 from .models import Coach, Belt
+from django_countries.fields import Country
+
 
 class CoachFilter(django_filters.FilterSet):
     # Dropdown for country with "Country" placeholder
     country = django_filters.ChoiceFilter(
         field_name='country',
         choices=[('', 'Country')] + [
-            (c, c) for c in Coach.objects.values_list('country', flat=True).distinct() if c
+            (code, Country(code).name)  # Convert code to full name
+            for code in Coach.objects.values_list('country', flat=True).distinct() if code
         ],
         label='Country',
         empty_label=None,  # Ensures no additional placeholder from Django
     )
+        
 
     # Dropdown for belt rank with "Belt Rank" placeholder
     belt_rank = django_filters.ModelChoiceFilter(
