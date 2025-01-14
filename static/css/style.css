@@ -679,9 +679,9 @@ footer {
   /* CARD DETAIL */
 
   .card-detail-container {
-    transform: scale(0.85); /* Ensures card scaling */
-    position: relative; /* Reference for absolute positioning */
-    margin: 0 auto; /* Center card */
+    transform: scale(0.85);
+    position: relative;
+    margin: 0 auto;
   }
 }
 
@@ -715,6 +715,41 @@ footer {
   }
 
   .coach-headline {
+    display: none;
+  }
+
+  /* CARD DETAIL  767 PX*/
+
+  .d-flex.align-items-center.mb-3 {
+    margin-bottom: 0.625rem !important;
+  }
+
+  .container.d-flex.flex-column {
+    height: 100vh;
+  }
+
+  .card-detail-container {
+    display: flex;
+    position: relative;
+    flex-direction: column; /* Stack children vertically */
+    align-items: stretch; /* Ensure children take full width */
+    height: 100%; /* Ensure the container fills the available space */
+    width: 400px;
+  }
+
+  .card-detail-action {
+    transform: scale(0.75);
+    display: block;
+    position: relative;
+    text-align: center; /* Centers the buttons horizontally */
+    padding-top: 250px;
+    padding-bottom: 10px;
+  }
+
+  .card-detail-header {
+    display: none;
+  }
+  footer {
     display: none;
   }
 }

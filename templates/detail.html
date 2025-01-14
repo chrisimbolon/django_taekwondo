@@ -7,7 +7,7 @@
 
 {% block content %}
 <!-- Main Section -->
-<div class="container">
+<div class="container card-detail-header">
   <h5 class="heading font-weight-light text-center mt-3">
     {{ Coach.full_name }}
   </h5>
@@ -20,7 +20,7 @@
     <!---->
     {% include 'partials/_card_detail.html' %}
   </div>
-  <div class="mt-0 text-center">
+  <div class="mt-0 text-center card-detail-action">
     <p class="my-1 fw-light">Input date: &nbsp; {{ Coach.input_date }}</p>
 
     {% if is_manager %}
