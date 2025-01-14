@@ -225,7 +225,42 @@ body {
 /* card detail */
 .card-detail-container {
   width: 780px;
+  position: relative;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e3e3e3;
 }
+
+.card-detail-container .row {
+  overflow: visible;
+}
+
+.detail-right {
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.card-detail-action {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-top: 1px solid #ddd;
+  border-bottom-left-radius: 10px; /* Bottom-left rounded corner */
+  border-bottom-right-radius: 10px; /* Bottom-right rounded corner */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card-detail-container::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  z-index: 0;
+}
+
 /* end of card detail */
 
 .header-link,
@@ -735,16 +770,6 @@ footer {
     align-items: stretch;
     height: 100%;
     width: 400px;
-  }
-
-  .card-detail-action {
-    transform: scale(0.75);
-    display: block;
-    position: absolute;
-    bottom: -65px;
-    left: 0;
-    right: 0;
-    text-align: center;
   }
 
   .card-detail-header {

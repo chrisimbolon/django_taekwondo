@@ -32,9 +32,6 @@
           class="text-dark text-decoration-none"
           data-bs-toggle="{% if not user.is_authenticated %}modal{% endif %}"
           data-bs-target="{% if not user.is_authenticated %}#loginModal{% endif %}"
-          data-bs-toggle="tooltip"
-          data-bs-placement="top"
-          title="{{ Coach.full_name }}"
         >
           <i class="fas {{ Coach|gender_icon }} me-2"></i>
           {{ Coach.full_name|smart_truncate:20 }}
@@ -46,7 +43,6 @@
         class="card-body flex-grow-1 d-flex flex-column justify-content-between mt-1"
       >
         <div class="row g-2">
-          <!-- Left Column -->
           <div class="col-7 px-1">
             <!-- Registration -->
             <div class="d-flex align-items-center mb-3">
@@ -152,5 +148,25 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- Card Detail Actions -->
+  <div class="card-detail-action p-2 bg-light border-top text-center">
+    <p class="my-1 fw-light">Input date: &nbsp; {{ Coach.input_date }}</p>
+
+    {% if is_manager %}
+    <a class="btn btn-info px-5" href="{% url 'update' Coach.id %}">
+      <i class="far fa-edit"></i>
+      &nbsp;Update
+    </a>
+    <button
+      class="btn btn-outline-danger px-5"
+      data-bs-toggle="modal"
+      data-bs-target="#deleteModal"
+    >
+      <i class="fas fa-trash-alt"></i>
+      &nbsp;Delete
+    </button>
+    {% endif %}
   </div>
 </div>
