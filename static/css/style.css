@@ -681,7 +681,7 @@ footer {
   .card-detail-container {
     transform: scale(0.85);
     position: relative;
-    margin: 0 auto;
+    margin: 0;
   }
 }
 
@@ -735,14 +735,15 @@ footer {
     align-items: stretch; /* Ensure children take full width */
     height: 100%; /* Ensure the container fills the available space */
     width: 400px;
+    margin-bottom: 80px;
   }
 
   .card-detail-action {
     transform: scale(0.75);
     display: block;
-    position: relative;
-    text-align: center; /* Centers the buttons horizontally */
-    padding-top: 250px;
+    /* position: relative; */
+    text-align: center;
+    padding-top: 150px;
     padding-bottom: 10px;
   }
 
