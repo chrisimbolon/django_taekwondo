@@ -731,20 +731,20 @@ footer {
   .card-detail-container {
     display: flex;
     position: relative;
-    flex-direction: column; /* Stack children vertically */
-    align-items: stretch; /* Ensure children take full width */
-    height: 100%; /* Ensure the container fills the available space */
+    flex-direction: column;
+    align-items: stretch;
+    height: 100%;
     width: 400px;
-    margin-bottom: 80px;
   }
 
   .card-detail-action {
     transform: scale(0.75);
     display: block;
-    /* position: relative; */
+    position: absolute;
+    bottom: -65px;
+    left: 0;
+    right: 0;
     text-align: center;
-    padding-top: 150px;
-    padding-bottom: 10px;
   }
 
   .card-detail-header {
