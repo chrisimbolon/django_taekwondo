@@ -650,6 +650,12 @@ footer {
 /* Responsive Adjustments */
 
 @media (max-width: 991px) {
+  /* List text and View Favorites  */
+  .list-text-viewfav {
+    transform: scale(0.85);
+    margin: 0;
+  }
+
   .navbar-actions {
     flex-direction: row; /* Align side by side on larger screens */
     flex-wrap: wrap; /* Allow wrapping */
