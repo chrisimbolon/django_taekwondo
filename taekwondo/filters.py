@@ -1,6 +1,8 @@
 import django_filters
 from .models import Coach, Belt
 from django_countries.fields import Country
+from django.db.models.functions import Lower
+
 
 
 class CoachFilter(django_filters.FilterSet):
@@ -9,10 +11,12 @@ class CoachFilter(django_filters.FilterSet):
         field_name='country',
         choices=[('', 'Country')] + [
             (code, Country(code).name)  # Convert code to full name
-            for code in Coach.objects.values_list('country', flat=True).distinct() if code
+            # for code in Coach.objects.values_list('country', flat=True).distinct() if code
+            for code in Coach.objects.order_by(Lower('country')).values_list('country', flat=True).distinct() if code
+
         ],
         label='Country',
-        empty_label=None,  # Ensures no additional placeholder from Django
+        empty_label=None,  
     )
         
 
