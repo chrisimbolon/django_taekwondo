@@ -60,18 +60,18 @@ class CoachDetailView(LoginRequiredMixin, DetailView):
 @login_required
 def search(request):
     if request.GET:
-        search_term = request.GET['search_term']
+        search_term = request.GET.get('search_term', '')
         search_result = Coach.objects.filter(
-                Q(full_name__icontains=search_term)|
-                Q(dojang_name__icontains=search_term)|
-                Q(status__icontains=search_term)|
-                Q(phone_number__iexact=search_term)
+            Q(full_name__icontains=search_term) |
+            Q(registration_number__icontains=search_term) |
+            Q(country__icontains=search_term) |
+            Q(phone_number__iexact=search_term)
         )
-        context={
-            'search_term':search_term,
-            'Coaches':search_result.filter(manager=request.user)
+        context = {
+            'search_term': search_term,
+            'Coaches': search_result
         }
-        return render(request, 'search.html',context)
+        return render(request, 'search.html', context)
     else:
         return redirect('home')
 

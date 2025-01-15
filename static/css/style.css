@@ -35,9 +35,9 @@ body {
   flex-wrap: nowrap;
   flex-direction: column; /* Align vertically on small screens */
   justify-content: right;
-  align-items: center; /* Center horizontally */
-  gap: 3rem; /* Maintain spacing between search bar and button */
-  width: 100%; /* Use the full width to center in navbar */
+  align-items: center;
+  gap: 3rem;
+  width: 100%;
 }
 
 .conditional-button .btn {
@@ -723,6 +723,11 @@ footer {
     transform: scale(0.85);
     position: relative;
     margin: 0;
+  }
+
+  .search-results .row {
+    --bs-gutter-x: 1rem;
+    --bs-gutter-y: 1.25rem;
   }
 }
 
