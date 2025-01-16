@@ -573,11 +573,11 @@ body {
 }
 
 .filter-bar .filter-select-wrapper:nth-of-type(2) select {
-  width: 120px; /* Fine-tune Belt Rank width */
+  width: 125px; /* Fine-tune Belt Rank width */
 }
 
 .filter-bar .filter-select-wrapper:nth-of-type(3) select {
-  width: 100px;
+  width: 125px;
 }
 
 .filter-select-wrapper {
@@ -753,9 +753,15 @@ footer {
 
 /* Adjust the form for smaller viewports */
 @media (max-width: 767px) {
+  .list-text-viewfav {
+    transform: scale(0.65);
+    margin: 0;
+  }
+  /* fiter bar */
   .filter-bar {
     position: relative;
     display: flex;
+    transform: scale(0.95);
   }
 
   .filter-bar .d-flex {
