@@ -202,7 +202,7 @@ body {
 
 .detail-left img {
   max-width: 100%;
-  max-height: 100%;
+  max-height: 20rem;
 }
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
@@ -447,8 +447,8 @@ body {
 /* working so hard to style this warning but the template accidentally deleted */
 
 .warning {
-  background-color: #f8d7da; /* Light red for a subtle warning */
-  border: 1px solid #f5c2c7; /* Softer border for contrast */
+  background-color: #f8d7da;
+  border: 1px solid #f5c2c7;
   border-radius: 8px; /* Rounded corners for modern look */
   padding: 0;
 }
@@ -702,6 +702,28 @@ footer {
   color: #1b334b; /* Adjust hover text color if needed */
 }
 
+.alert-error {
+  background-color: #f8d7da;
+  color: #842029; /* Dark red text */
+  border-color: #f5c2c7;
+  max-width: 500px;
+  max-height: 32px; /* Restrict height */
+  overflow: hidden; /* Clip extra content */
+  text-overflow: ellipsis; /* Add ellipsis for overflow */
+  white-space: nowrap;
+  margin: 0 auto; /* Center horizontally */
+  padding: 0.25rem 1rem; /* Compact padding */
+  display: flex; /* Use flexbox for alignment */
+  align-items: center; /* Vertically align text and close icon */
+}
+
+.alert-error .btn-close {
+  position: relative; /* Ensures alignment with the flex container */
+  margin-left: auto; /* Push the close button to the right */
+  padding: 0; /* Remove extra padding */
+  line-height: 1; /* Compact the close button */
+}
+
 /* Responsive Adjustments */
 
 @media (max-width: 991px) {
@@ -861,6 +883,26 @@ footer {
   }
 
   /* Search result ends */
+
+  .alert-error {
+    transform: scale(0.85);
+    max-width: 90%; /* Fit alert to viewport width */
+    max-height: none; /* Allow the alert to grow vertically */
+    white-space: normal; /* Allow text to wrap */
+    flex-direction: column; /* Stack text and button vertically */
+    align-items: stretch; /* Stretch the container */
+    text-align: left; /* Align text to the left */
+    padding: 1rem; /* Comfortable padding */
+    position: relative; /* Enable positioning for child elements */
+  }
+
+  .alert-error .btn-close {
+    position: absolute; /* Take the button out of the flow */
+    top: 0.5rem; /* Position close button at the top */
+    right: 0.5rem; /* Align it to the right */
+    padding: 0; /* Remove extra padding */
+    line-height: 1; /* Keep it compact */
+  }
 }
 
 /* for distance purpose */
