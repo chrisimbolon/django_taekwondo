@@ -373,7 +373,8 @@ body {
 }
 
 .btn-info {
-  background-color: #548fc9;
+  background-color: #6499ce;
+  /* background-color: #548fc9; */
   color: #ffffff;
   border: none;
 }
