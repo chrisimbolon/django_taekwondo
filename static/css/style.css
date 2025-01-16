@@ -672,6 +672,36 @@ footer {
 }
 /* search result ends */
 
+/* Custom styling for success messages */
+
+.alert-success {
+  background-color: #d0e0f0;
+  color: #264f79;
+  border-color: #548fc9;
+  max-width: 300px;
+  max-height: 32px; /* Height restriction */
+  overflow: hidden; /* Clip any overflow */
+  text-overflow: ellipsis;
+  white-space: nowrap; /* Prevent text wrapping */
+  margin: 0 auto; /* Center horizontally */
+  padding: 0.25rem 1rem; /* Adjust padding to fit height and keep spacing */
+  display: flex; /* Use flexbox for alignment */
+  align-items: center; /* Vertically align text and icon */
+}
+
+.alert-success .btn-close {
+  position: relative; /* Ensure positioning aligns with flex container */
+  margin-left: auto; /* Push the button to the far right */
+  padding: 0; /* Remove extra padding */
+  line-height: 1; /* Keeps the button compact */
+}
+
+/* Optional: Add custom hover effect */
+.alert-success:hover {
+  background-color: #b1cce7; /* Slightly darker shade for hover */
+  color: #1b334b; /* Adjust hover text color if needed */
+}
+
 /* Responsive Adjustments */
 
 @media (max-width: 991px) {
