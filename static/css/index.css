@@ -49,13 +49,47 @@ body {
 }
 
 /* Hero Section */
-.hero {
+
+/* .hero {
   padding-top: 0;
   padding-bottom: 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+} */
+
+/* .hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem;
+  background: linear-gradient(
+      135deg,
+      rgba(0, 0, 0, 0.488),
+      rgba(33, 33, 33, 0.312)
+    ),
+    url("../images/Taekwondo_hero_bg.jpg");
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+} */
+
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.75rem;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(33, 33, 33, 0.4)),
+    /* url("https://www.transparenttextures.com/patterns/gray-floral.png");  */
+      url("../images/Taekwondo_hero_bg.jpg");
+  background-size: cover; /* Makes texture sharper */
+  border-radius: 12px; /* Adds a modern, rounded feel */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Enhances the premium vibe */
 }
 
 .hero-overlay {
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.3);
   padding: 20px;
   border-radius: 10px;
   text-align: left;
@@ -63,7 +97,7 @@ body {
 }
 
 .hero h1 {
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: clamp(2.75rem, 5vw, 3rem);
   font-weight: 700;
   line-height: 1.2;
   margin-bottom: 1rem;
@@ -81,6 +115,7 @@ body {
   margin-bottom: 1.5rem;
   line-height: 1.5;
   font-weight: 400;
+  color: #e5e4e2;
 }
 
 /* Features Section */
@@ -88,7 +123,8 @@ body {
 .features {
   padding: 0.625rem 1rem;
   border-radius: 10px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(to right, #c4c4c4, #e5e4e2);
 }
 
 .features h3 {
@@ -173,7 +209,7 @@ body {
 }
 
 .custom-icon {
-  background: linear-gradient(to right, #171716, #ffa500);
+  background: linear-gradient(to right, #ce8946, #ffa500);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -217,7 +253,12 @@ body {
   }
 
   .hero-overlay {
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.7);
+  }
+
+  .features {
+    background: rgba(0, 0, 0, 0.65);
+    color: #f2f3f4;
   }
 
   .features h3 {
@@ -291,6 +332,10 @@ body {
   .features {
     margin: 0;
     padding: 0 1rem; /* Reduce horizontal padding */
+  }
+
+  .features h3 {
+    padding-top: 1rem;
   }
 
   .features h6 {
