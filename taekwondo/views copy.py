@@ -79,6 +79,24 @@ class CoachCreateView(LoginRequiredMixin, CreateView):
     model = Coach
     form_class = CoachForm
     template_name = 'create.html'
+  
+    def post(self, request, *args, **kwargs):
+        # Intercept POST data to handle the date format
+        post_data = request.POST.copy()
+        raw_dob = post_data.get('date_of_birth')
+
+        if raw_dob:
+            try:
+                # Convert DD-MM-YYYY to YYYY-MM-DD
+                dob_converted = datetime.strptime(raw_dob, '%d-%m-%Y').strftime('%Y-%m-%d')
+                post_data['date_of_birth'] = dob_converted
+            except ValueError:
+                messages.error(request, "Invalid date format. Please use DD-MM-YYYY.")
+                return self.form_invalid(self.get_form())  # Return form with an error message
+
+        # Replace the request.POST with modified data
+        request.POST = post_data
+        return super().post(request, *args, **kwargs)
 
     def form_valid(self, form):
         instance = form.save(commit=False)
@@ -86,29 +104,52 @@ class CoachCreateView(LoginRequiredMixin, CreateView):
         instance.save()
         messages.success(self.request, 'Coach added successfully')
         return redirect('coaches-list')
-    
-    def form_invalid(self, form):
-        messages.error(self.request, "Failed to add coach. Please check the form and try again.")
-        return super().form_invalid(form)
 
 class CoachUpdateView(LoginRequiredMixin, UpdateView):
     model = Coach
     form_class = CoachForm
     template_name = 'update.html'
 
+    def get_form_kwargs(self):
+        """
+        Override this method to bind the form to the existing instance.
+        """
+        kwargs = super().get_form_kwargs()
+        kwargs['instance'] = self.get_object()  # Explicitly bind the form to the instance
+        return kwargs
+
+    def post(self, request, *args, **kwargs):
+        # Intercept POST data to handle the date format
+        post_data = request.POST.copy()
+        raw_dob = post_data.get('date_of_birth')
+
+        if raw_dob:
+            try:
+                # Convert DD-MM-YYYY to YYYY-MM-DD
+                dob_converted = datetime.strptime(raw_dob, '%d-%m-%Y').strftime('%Y-%m-%d')
+                post_data['date_of_birth'] = dob_converted
+            except ValueError:
+                messages.error(request, "Invalid date format. Please use DD-MM-YYYY.")
+                return self.form_invalid(self.get_form())  # Return form with an error message
+
+        # Replace the request.POST with modified data
+        request.POST = post_data
+        return super().post(request, *args, **kwargs)
+
     def form_valid(self, form):
-        # Success message
-        messages.success(self.request, "Coach updated successfully.")
-        return super().form_valid(form)
+        """
+        Save the instance and add a success message.
+        """
+        instance = form.save()
+        messages.success(self.request, 'Coach updated successfully')
+        return redirect('detail', instance.pk)
 
     def form_invalid(self, form):
-        # Error message
-        messages.error(self.request, "Failed to update coach. Please check the form.")
+        """
+        Handle invalid form submission with error feedback.
+        """
+        messages.error(self.request, "Failed to update coach. Please check the form and try again.")
         return super().form_invalid(form)
-
-    def get_success_url(self):
-        # Redirect after successful update
-        return reverse("detail", kwargs={"pk": self.object.pk})
 
 class CoachDeleteView(LoginRequiredMixin, DeleteView):
     model = Coach
@@ -202,4 +243,3 @@ def login_view(request):
 @csrf_exempt
 def get_csrf_token(request):
     return JsonResponse({"csrf_token": get_token(request)})
-

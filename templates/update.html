@@ -116,14 +116,18 @@
 </div>
 
 <!-- Initialize Flatpickr -->
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    flatpickr("[name='date_of_birth']", {
-      dateFormat: "d-m-Y",
-    });
-  });
-</script>
-
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+     document.addEventListener("DOMContentLoaded", function () {
+    flatpickr("[name='date_of_birth']", {
+        dateFormat: "d-m-Y",  // Display format
+        altInput: true,       // Add a hidden input for the backend
+        altFormat: "d-m-Y",   // Backend format
+        allowInput: true,     // Allow manual input for flexibility
+        defaultDate: "{{ form.date_of_birth.value|date:'d-m-Y' }}",
+    });
+});
+
+    </script>
 
 {% endblock content %}
