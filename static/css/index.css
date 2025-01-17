@@ -50,7 +50,8 @@ body {
 
 /* Hero Section */
 .hero {
-  padding: 2rem; /* Add padding for spacing */
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .hero-overlay {
@@ -58,34 +59,45 @@ body {
   padding: 20px;
   border-radius: 10px;
   text-align: left;
+  animation: fadeIn 1.2s ease;
 }
 
 .hero h1 {
-  font-size: 2.5rem;
-  font-weight: bold;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
 }
 
 .gradient-text {
-  background: linear-gradient(
-    to right,
-    #76520e,
-    #926c15,
-    #b69121,
-    #a47e1b,
-    #b69121
-  );
+  background: linear-gradient(to right, #d7af13, #ffd700, #f2cf08);
 
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .hero p {
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+  font-weight: 400;
 }
 
 /* Features Section */
+
+.features {
+  padding: 0.625rem 1rem;
+  border-radius: 10px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
 .features h3 {
-  font-size: 0.8125rem;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.features h6 {
+  font-size: 0.875rem;
   font-weight: bold;
 }
 
@@ -96,12 +108,6 @@ body {
 .features .custom-icon {
   color: #ffbb33; /* Customize icon color */
   font-size: 1.125rem;
-}
-
-/* Right Side - Empty */
-.right-side {
-  height: 100vh;
-  flex: 1; /* Fill the remaining space */
 }
 
 /* CTA Button */
@@ -166,21 +172,134 @@ body {
   display: none;
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .main-container {
-    flex-direction: column;
-  }
-  .left-content {
-    width: 100%;
-    text-align: center;
-  }
-  .right-side {
-    display: none;
-  }
-}
 .custom-icon {
   background: linear-gradient(to right, #171716, #ffa500);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+
+@media (max-width: 1125px) {
+  .main-container {
+    flex-direction: column;
+    align-items: center; /* Center align the left-content */
+  }
+
+  .left-content {
+    width: auto; /* Allow the content to fit within the viewport */
+    max-width: 700px; /* Set the max size to match the desktop size */
+    height: auto; /* Adjust height for flexibility */
+    transform: translateY(0); /* Remove vertical translation */
+    position: static; /* No need for absolute positioning */
+    margin: 0 auto; /* Center horizontally */
+    text-align: center; /* Optional: Center align text */
+  }
+
+  .hero h1 {
+    font-size: 2rem; /* Adjust font size for smaller viewports */
+  }
+
+  .hero p {
+    font-size: 0.9rem;
+    color: #f2f3f4;
+  }
+
+  .hero-overlay {
+    background: rgba(0, 0, 0, 0.6);
+  }
+
+  .features h3 {
+    font-size: 1rem; /* Make the "Why Choose Our App?" header more readable */
+  }
+
+  .features p {
+    font-size: 0.85rem; /* Adjust paragraph text for readability */
+  }
+
+  .btn-cta {
+    font-size: 1rem; /* Keep the CTA button size appropriate */
+  }
+
+  .right-side {
+    display: none; /* Hide the right-side background image */
+  }
+}
+
+@media (max-width: 770px) {
+  .main-container {
+    flex-direction: column; /* Stack everything */
+    padding: 1rem; /* Add some breathing room */
+  }
+  .left-content {
+    align-items: center; /* Center the text */
+    text-align: center; /* Center-align text */
+    width: 100%; /* Let it span the full width */
+  }
+
+  .hero {
+    margin-top: 3rem; /* Pull it down */
+  }
+
+  .hero h1 {
+    font-size: 1.8rem; /* Scale down the hero text */
+  }
+  .hero p {
+    font-size: 0.9rem; /* Adjust paragraph size */
+  }
+  .btn-cta {
+    width: 130px;
+    height: 38px;
+    font-size: 0.875rem;
+  }
+
+  .btn-cta:hover {
+    -webkit-transform: scale(0.95);
+    transform: scale(0.95);
+    -webkit-transition-duration: 2s;
+    transition-duration: 2s;
+    animation: gradient 3s ease infinite;
+    background-position: right;
+    text-decoration: none;
+    font-size: 1rem;
+  }
+
+  .app-logo {
+    max-width: 180px; /* Scale the logo */
+    margin-bottom: 1rem; /* Add space below */
+  }
+
+  .hero-overlay {
+    padding: 15px;
+  }
+
+  .features {
+    transform: scale(0.75);
+  }
+
+  .features {
+    margin: 0;
+    padding: 0 1rem; /* Reduce horizontal padding */
+  }
+
+  .features h6 {
+    margin: 0;
+    padding: 0;
+  }
+
+  .features p {
+    margin: 0;
+    padding: 0;
+  }
 }
