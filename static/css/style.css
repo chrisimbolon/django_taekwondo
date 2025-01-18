@@ -594,7 +594,7 @@ body {
 
 /* Filter bar ends */
 
-/* Quick Review */
+/* Quick Preview */
 .quick-preview {
   background: rgba(255, 255, 255, 0.95);
   position: absolute;
@@ -602,7 +602,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  display: none; /* Hidden by default */
+  display: none; /* Start hidden */
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -610,12 +610,18 @@ body {
   text-align: center;
   border: 1px solid #ccc;
   z-index: 10;
-  pointer-events: none;
+  pointer-events: none; /* Prevent accidental clicks */
 }
 
-/* Card-top hover rule */
+.card-top {
+  position: relative; /* Ensures .card-top is an independent hover target */
+  z-index: 5;
+}
+
+/* Hover-based trigger */
 .card-top:hover + .quick-preview {
-  display: flex; /* Show on hover */
+  display: flex; /* Ensure visibility */
+  pointer-events: auto; /* Enable interaction */
 }
 
 /* Additional styling for preview content */

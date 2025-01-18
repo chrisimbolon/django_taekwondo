@@ -1,26 +1,31 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Select all cards with quick preview sections
   const cards = document.querySelectorAll(".coach-card");
 
   cards.forEach((card) => {
-    const cardTop = card.querySelector(".card-top"); // Only the card-top section
+    const cardTop = card.querySelector(".card-top");
     const quickPreview = card.querySelector(".quick-preview");
 
     if (cardTop && quickPreview) {
-      // Show Quick Preview on mouseover (true boundary crossing)
-      cardTop.addEventListener("mouseover", (event) => {
-        if (!cardTop.contains(event.relatedTarget)) {
-          console.log("Quick preview shown");
-          quickPreview.style.display = "flex";
-        }
+      // Show quick preview on card-top hover
+      cardTop.addEventListener("mouseenter", () => {
+        quickPreview.style.display = "flex";
+        quickPreview.style.pointerEvents = "auto"; // Allow interaction
       });
 
-      // Hide Quick Preview on mouseout (true boundary crossing)
-      cardTop.addEventListener("mouseout", (event) => {
-        if (!cardTop.contains(event.relatedTarget)) {
-          console.log("Quick preview hidden");
-          quickPreview.style.display = "none";
-        }
+      // Hide quick preview on card-top mouseleave
+      cardTop.addEventListener("mouseleave", () => {
+        quickPreview.style.display = "none";
+        quickPreview.style.pointerEvents = "none"; // Disable interaction
+      });
+
+      // Ensure hovering over the preview doesn’t glitch (optional)
+      quickPreview.addEventListener("mouseenter", () => {
+        quickPreview.style.display = "flex";
+        quickPreview.style.pointerEvents = "auto";
+      });
+      quickPreview.addEventListener("mouseleave", () => {
+        quickPreview.style.display = "none";
+        quickPreview.style.pointerEvents = "none";
       });
     }
   });

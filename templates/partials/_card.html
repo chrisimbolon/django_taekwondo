@@ -6,33 +6,17 @@
     class="card coach-card h-100 {{ Coach|gender_card_class }}"
     data-coach-id="{{ Coach.id }}"
   >
-    <!-- Block for Close Button -->
-    {% block close_button %}
-    <!---->
-    {% endblock %}
-
-    <!-- Card Top: Image and Header -->
+    <!-- Card Top -->
     <div class="card-top">
-      <!-- Card Image -->
       <img
         src="{{ Coach|profile_picture }}"
         class="card-img-top img-thumbnail"
         alt="{{ Coach.full_name }}"
       />
-
-      <!-- Card Header -->
       <div class="card-header text-center">
         <a
           href="{% if user.is_authenticated %}{% url 'detail' Coach.id %}{% else %}#{% endif %}"
           class="text-dark text-decoration-none {% if not user.is_authenticated %}disabled-link{% endif %}"
-          {%
-          if
-          not
-          user.is_authenticated
-          %}aria-disabled="true"
-          {%
-          endif
-          %}
           data-bs-toggle="{% if not user.is_authenticated %}tooltip{% endif %}"
           data-bs-placement="top"
           title="{% if not user.is_authenticated %}Login to view details{% else %}{{ Coach.full_name }}{% endif %}"
@@ -45,19 +29,14 @@
 
     <!-- Card Body -->
     <div class="card-body">
-      <!-- Nationality -->
       <div class="d-flex align-items-center mb-2">
         <i class="far fa-flag custom-text me-2"></i>
         <span class="fw-light">{{ Coach.country.name }}</span>
       </div>
-
-      <!-- Belt Holder -->
       <div class="d-flex align-items-center mb-2">
         <i class="fas fa-ribbon custom-text me-2"></i>
         <span class="fw-light">{{ Coach.belt }} Belt Holder</span>
       </div>
-
-      <!-- Bottom Row -->
       <div class="d-flex justify-content-between align-items-center mt-auto">
         <div class="d-flex align-items-center">
           {% if Coach.status == "active" %}
@@ -79,20 +58,18 @@
     </div>
 
     {% if not user.is_authenticated %}
-    <!-- Quick Preview Section -->
+    <!-- Quick Preview -->
     <div class="quick-preview">
       <p class="preview-bio">
-        {% if Coach.bio %} {{ Coach.bio|smart_truncate:100 }} {% else %} This
-        coach has not provided a biography yet. {% endif %}
+        {% if Coach.bio %}{{ Coach.bio|smart_truncate:100 }}{% else %}This coach
+        has not provided a biography yet.{% endif %}
       </p>
       <div class="locked-details">
         <span class="lock-icon">🔒</span>
         <p>Sign up to view awards and specialties!</p>
       </div>
-
       <a href="{% url 'signup' %}" class="signup-btn">Sign Up</a>
     </div>
-    <!-- end of Quick Preview Section -->
     {% endif %}
   </div>
 </div>
