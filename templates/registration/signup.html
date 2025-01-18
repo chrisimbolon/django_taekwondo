@@ -11,11 +11,17 @@ Register for free {% endblock title %} {% block content %}
       <div class="form-container p-4 mt-4">
         <form action="" method="POST" enctype="multipart/form-data">
           {% csrf_token %} {{form|crispy}}
-          <input
-            type="submit"
-            value="Create account"
-            class="w-100 text-white text-center my-2 btn btn-info"
-          />
+          <div class="d-flex justify-content-between align-items-stretch mb-3">
+            <input
+              type="submit"
+              value="Create account"
+              class="w-100 text-white text-center btn btn-info"
+              style="flex: 0 0 70%"
+            />
+            <div style="flex: 0 0 25%">
+              {% include 'partials/_cancel_button.html' %}
+            </div>
+          </div>
         </form>
       </div>
     </div>
