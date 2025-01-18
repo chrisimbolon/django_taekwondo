@@ -1,4 +1,5 @@
 <!-- prettier-ignore -->
+
 {% load static %} {% load custom_filters %}
 <div class="col">
   <div
@@ -23,12 +24,18 @@
       <div class="card-header text-center">
         <a
           href="{% if user.is_authenticated %}{% url 'detail' Coach.id %}{% else %}#{% endif %}"
-          class="text-dark text-decoration-none"
-          data-bs-toggle="{% if not user.is_authenticated %}modal{% endif %}"
-          data-bs-target="{% if not user.is_authenticated %}#loginModal{% endif %}"
-          data-bs-toggle="tooltip"
+          class="text-dark text-decoration-none {% if not user.is_authenticated %}disabled-link{% endif %}"
+          {%
+          if
+          not
+          user.is_authenticated
+          %}aria-disabled="true"
+          {%
+          endif
+          %}
+          data-bs-toggle="{% if not user.is_authenticated %}tooltip{% endif %}"
           data-bs-placement="top"
-          title="{{ Coach.full_name }}"
+          title="{% if not user.is_authenticated %}Login to view details{% else %}{{ Coach.full_name }}{% endif %}"
         >
           <i class="fas {{ Coach|gender_icon }} me-2"></i>
           {{ Coach.full_name|smart_truncate:18 }}
@@ -82,6 +89,7 @@
         <span class="lock-icon">🔒</span>
         <p>Sign up to view awards and specialties!</p>
       </div>
+
       <a href="{% url 'signup' %}" class="signup-btn">Sign Up</a>
     </div>
     <!-- end of Quick Preview Section -->

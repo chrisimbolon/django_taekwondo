@@ -221,6 +221,13 @@ body {
   display: block;
 }
 
+.disabled-link {
+  pointer-events: none;
+  color: gray;
+  text-decoration: none;
+  cursor: not-allowed;
+}
+
 /* end of card */
 
 /* card detail */
@@ -603,7 +610,7 @@ body {
   text-align: center;
   border: 1px solid #ccc;
   z-index: 10;
-  pointer-events: none; /* Ensure it doesn't interfere with hover events */
+  pointer-events: none;
 }
 
 /* Card-top hover rule */
