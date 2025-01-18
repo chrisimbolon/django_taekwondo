@@ -7,7 +7,7 @@
 {% endblock title %}
 {% block content %}
     <!-- Filter Form -->
-    <div class="container pt-2">
+    <div class="container-fluid pt-2">
         <div class="col-md-10 offset-md-1">
             <div class="col-md-12">
                 <div class="filter-bar shadow-sm rounded">
@@ -32,22 +32,22 @@
                                 </select>
                             </div>
                             <!-- Belt Rank Filter -->
-                            
-<div class="col-md-2 filter-select-wrapper">
-    <select class="form-select" name="belt_rank" data-placeholder="true">
-        <option value="" disabled {% if not request.GET.belt_rank %}selected{% endif %}>Belt Rank</option>
-        {% for choice in filter.form.fields.belt_rank.choices %}
-            {% if choice.0 != "" %}
-                <!-- Ensure consistent matching of belt rank -->
-                <option value="{{ choice.0 }}"
-                        {% if request.GET.belt_rank|stringformat:"s" == choice.0|stringformat:"s" %}selected{% endif %}>
-                    {{ choice.1 }}
-                </option>
-            {% endif %}
-        {% endfor %}
-    </select>
-</div>
-
+                            <div class="col-md-2 filter-select-wrapper">
+                                <select class="form-select" name="belt_rank" data-placeholder="true">
+                                    <option value=""
+                                            disabled
+                                            {% if not request.GET.belt_rank %}selected{% endif %}>Belt Rank</option>
+                                    {% for choice in filter.form.fields.belt_rank.choices %}
+                                        {% if choice.0 != "" %}
+                                            <!-- Ensure consistent matching of belt rank -->
+                                            <option value="{{ choice.0 }}"
+                                                    {% if request.GET.belt_rank|stringformat:"s" == choice.0|stringformat:"s" %}selected{% endif %}>
+                                                {{ choice.1 }}
+                                            </option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </div>
                             <!-- Status Filter -->
                             <div class="col-md-2 filter-select-wrapper">
                                 <select class="form-select" name="status" data-placeholder="true">

@@ -491,8 +491,9 @@ body {
 }
 
 .badge-active {
-  background-color: #548fc9;
+  background-color: #4585c4;
   color: #ffffff;
+  font-size: 0.75rem;
   border: none;
 }
 .badge-inactive {
@@ -643,7 +644,7 @@ body {
 }
 
 .signup-btn {
-  background: #007bff;
+  background: #6499ce;
   color: white;
   padding: 8px 12px;
   border-radius: 4px;
@@ -652,7 +653,7 @@ body {
 }
 
 .signup-btn:hover {
-  background: #0056b3;
+  background: #31669b;
 }
 /* end of Quick Review */
 
@@ -819,7 +820,7 @@ footer {
 /* Adjust the form for smaller viewports */
 @media (max-width: 767px) {
   .list-text-viewfav {
-    transform: scale(0.65);
+    transform: scale(0.75);
     margin: 0;
   }
   /* fiter bar */
