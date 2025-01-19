@@ -601,7 +601,7 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: 152px;
   display: none; /* Start hidden */
   flex-direction: column;
   justify-content: center;
