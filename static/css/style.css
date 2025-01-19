@@ -248,6 +248,17 @@ body {
   border-bottom-right-radius: 10px;
 }
 
+.card-detail-container .detail-right .card-header {
+  border-top-left-radius: 0;
+  border-top-right-radius: 10px;
+}
+
+.rounded-start-0 {
+  border-top-left-radius: 10px !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-left-radius: 0;
+}
+
 .card-detail-action {
   background-color: #f8f9fa;
   padding: 15px;
@@ -878,6 +889,16 @@ footer {
   .card-detail-header {
     display: none;
   }
+
+  .rounded-start-0 {
+    border-top-right-radius: 10px !important;
+  }
+
+  .card-detail-container .detail-right .card-header {
+    border-top-right-radius: 0;
+  }
+
+  /* card detail ends */
 
   footer {
     display: none;

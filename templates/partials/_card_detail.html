@@ -18,7 +18,7 @@
     <div class="col-md-6 detail-left">
       <img
         src="{{ Coach|profile_picture }}"
-        class="card-img-top img-fluid rounded-start"
+        class="card-img-top img-fluid rounded-start-0"
         alt="{{ Coach.full_name }}"
       />
     </div>
@@ -26,7 +26,7 @@
     <!-- Card Details -->
     <div class="col-md-6 detail-right d-flex flex-column bg-light">
       <!-- Card Header -->
-      <div class="card-header text-center py-2 rounded-top">
+      <div class="card-header text-center py-2">
         <a
           href="{% if user.is_authenticated %}{% url 'detail' Coach.id %}{% else %}#{% endif %}"
           class="text-dark text-decoration-none"
