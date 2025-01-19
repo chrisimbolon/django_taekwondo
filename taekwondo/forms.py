@@ -35,9 +35,9 @@ class CoachForm(forms.ModelForm):
             ),
             "achievements": forms.Textarea(
                 attrs={
-                    "class": "form-control",
+                    "class": "form-control limit-lines",
                     "placeholder": "List achievements here...",
-                    "rows": 3,  # Sets height to 3 lines
+                    "rows": 2,  # Sets height to 2 lines
                 }
             ),
         }

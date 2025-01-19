@@ -90,7 +90,15 @@
             <div class="col-12">
               <div class="d-flex">
                 <i class="fas fa-trophy custom-text me-2 mt-1"></i>
-                <div class="fw-normal">
+                <div
+                  class="fw-normal limit-lines"
+                  style="
+                    line-height: 1.5;
+                    max-height: calc(1.5em * 2);
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                  "
+                >
                   {% if Coach.achievements %}
                   <!---->
                   {% for achievement in Coach.achievements.splitlines %}
@@ -109,7 +117,7 @@
               <div class="d-flex">
                 <i class="fas fa-history custom-text me-2 mt-1"></i>
                 <span class="fw-normal">
-                  {% if Coach.bio %} {{ Coach.bio|smart_truncate:200 }}
+                  {% if Coach.bio %} {{ Coach.bio|smart_truncate:180 }}
                   <!---->
                   {% else %} This coach has not provided a biography yet.
                   <!---->
