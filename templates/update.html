@@ -1,119 +1,155 @@
-{% extends 'base.html' %} {% load static %} {% load crispy_forms_tags %}
-<!---->
-{% block title %} Updating {% endblock title %} {% block content %}
+  {% extends 'base.html' %} {% load static %} {% load crispy_forms_tags %}
+  <!---->
+  {% block title %} Updating {% endblock title %} {% block content %}
 
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
-/>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+  />
 
-<div class="container mt-3">
-  <h3 class="heading font-weight-light text-center">
-    Updating {{coach.full_name}}
-  </h3>
-  <hr />
-</div>
+  <div class="container mt-3">
+    <h3 class="heading font-weight-light text-center">
+      Updating {{coach.full_name}}
+    </h3>
+    <hr />
+  </div>
 
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-12 col-md-9 col-lg-7 col-xl-5">
-      <div class="form-container p-4 mt-4">
-        <form action="" method="POST" enctype="multipart/form-data">
-          {% csrf_token %}
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-9 col-lg-7 col-xl-5">
+        <div class="form-container p-4 mt-4">
+          <form id="update-form" action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
 
-          <!-- Personal Info -->
-          <div class="mb-3">{{ form.registration_number|as_crispy_field }}</div>
-          <div class="mb-3">{{ form.full_name|as_crispy_field }}</div>
-          <div class="mb-3">{{ form.place_of_birth|as_crispy_field }}</div>
-          <div class="row mb-3">
-            <div class="col-md-6">{{ form.date_of_birth|as_crispy_field }}</div>
-            <div class="col-md-6">{{ form.sex|as_crispy_field }}</div>
-          </div>
+            <!-- Personal Info -->
+            <div class="mb-3">{{ form.registration_number|as_crispy_field }}</div>
+            <div class="mb-3">{{ form.full_name|as_crispy_field }}</div>
+            <div class="mb-3">{{ form.place_of_birth|as_crispy_field }}</div>
+            <div class="row mb-3">
+              <div class="col-md-6">{{ form.date_of_birth|as_crispy_field }}</div>
+              <div class="col-md-6">{{ form.sex|as_crispy_field }}</div>
+            </div>
 
-          <!-- Location -->
-          <div class="mb-3">
-            <label for="id_country">Country</label>
-            <select
-              id="id_country"
-              name="country"
-              class="form-control"
-              data-selected="{{ form.country.value }}"
-            >
-              {% for country in form.country.field.choices %}
-              <option
-                value="{{ country.0 }}"
-                {% if country.0 == form.country.value %}selected{% endif %}
-              >
-                {{ country.1 }}
-              </option>
-              {% endfor %}
-            </select>
-          </div>
-
-          <div class="row mb-3">
-            <div class="col-md-6">
-              <label for="id_province">Province</label>
+            <!-- Location -->
+            <div class="mb-3">
+              <label for="id_country">Country</label>
               <select
-                id="id_province"
-                name="province"
+                id="id_country"
+                name="country"
                 class="form-control"
-                data-selected="{{ form.province.value }}"
+                data-selected="{{ form.country.value }}"
               >
-                <option value="{{ form.province.value }}">
-                  {{ coach.province.province_name }}
+                {% for country in form.country.field.choices %}
+                <option
+                  value="{{ country.0 }}"
+                  {% if country.0 == form.country.value %}selected{% endif %}
+                >
+                  {{ country.1 }}
                 </option>
+                {% endfor %}
               </select>
             </div>
-            <div class="col-md-6">
-              <label for="id_city">City</label>
-              <select
-                id="id_city"
-                name="city"
-                class="form-control"
-                data-selected="{{ form.city.value }}"
-              >
-                <option value="{{ form.city.value }}">
-                  {{ coach.city.city_name }}
-                </option>
-              </select>
+
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="id_province">Province</label>
+                <select
+                  id="id_province"
+                  name="province"
+                  class="form-control"
+                  data-selected="{{ form.province.value }}"
+                >
+                  <option value="{{ form.province.value }}">
+                    {{ coach.province.province_name }}
+                  </option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label for="id_city">City</label>
+                <select
+                  id="id_city"
+                  name="city"
+                  class="form-control"
+                  data-selected="{{ form.city.value }}"
+                >
+                  <option value="{{ form.city.value }}">
+                    {{ coach.city.city_name }}
+                  </option>
+                </select>
+              </div>
             </div>
-          </div>
 
-          <!-- Professional Info -->
-          <div class="row mb-3">
-            <div class="col-md-4">{{ form.dojang_name|as_crispy_field }}</div>
-            <div class="col-md-4">{{ form.belt|as_crispy_field }}</div>
-            <div class="col-md-4">{{ form.status|as_crispy_field }}</div>
-          </div>
-           <!-- Bio and Achievements Section -->
-           <div class="row mb-3">
-            <div class="col-md-6">{{ form.bio|as_crispy_field }}</div>
-            <div class="col-md-6">{{ form.achievements|as_crispy_field }}</div>
-          </div>
-
-          <!-- Contact Info -->
-          <div class="row mb-3">
-            <div class="col-md-6">{{ form.phone_number|as_crispy_field }}</div>
-            <div class="col-md-6">{{ form.email|as_crispy_field }}</div>
-          </div>
-          <div class="mb-3">{{ form.photo|as_crispy_field }}</div>
-
-          <div class="d-flex justify-content-between align-items-center mb-3">
-            <input
-              type="submit"
-              value="Update"
-              class="btn btn-info text-white"
-              style="flex: 0 0 70%"
-            />
-            <div style="flex: 0 0 20%">
-              {% include 'partials/_cancel_button.html' %}
+            <!-- Professional Info -->
+            <div class="row mb-3">
+              <div class="col-md-4">{{ form.dojang_name|as_crispy_field }}</div>
+              <div class="col-md-4">{{ form.belt|as_crispy_field }}</div>
+              <div class="col-md-4">{{ form.status|as_crispy_field }}</div>
             </div>
-          </div>
-        </form>
+            <!-- Bio and Achievements Section -->
+            <div class="row mb-3">
+              <div class="col-md-6">{{ form.bio|as_crispy_field }}</div>
+              <div class="col-md-6">{{ form.achievements|as_crispy_field }}</div>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="row mb-3">
+              <div class="col-md-6">{{ form.phone_number|as_crispy_field }}</div>
+              <div class="col-md-6">{{ form.email|as_crispy_field }}</div>
+            </div>
+            <div class="mb-3">{{ form.photo|as_crispy_field }}</div>
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <input
+                type="submit"
+                value="Update"
+                class="btn btn-info text-white"
+                style="flex: 0 0 70%"
+              />
+              <div style="flex: 0 0 20%">
+                {% include 'partials/_cancel_button.html' %}
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
+
+  <!-- Error Modal -->
+
+  <div
+    class="modal fade"
+    id="errorModal"
+    tabindex="-1"
+    aria-labelledby="errorModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="errorModalLabel">Error</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body" id="errorModalBody">
+          <!-- Error message will be injected here -->
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <!-- Initialize Flatpickr -->
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -129,5 +165,4 @@
 });
 
     </script>
-
-{% endblock content %}
+  {% endblock content %}

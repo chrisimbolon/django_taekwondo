@@ -53,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'coachathlete.middleware.file_upload_limit.FileSizeLimitMiddleware',
 ]
 
 ROOT_URLCONF = 'coachathlete.urls'

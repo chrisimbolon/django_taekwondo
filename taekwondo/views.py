@@ -84,10 +84,19 @@ class CoachCreateView(LoginRequiredMixin, CreateView):
         instance = form.save(commit=False)
         instance.manager = self.request.user  # Assign the logged-in user as the manager
         instance.save()
+
+        # Check if it's an AJAX request
+        if self.request.headers.get('x-requested-with') == 'XMLHttpRequest':
+            return JsonResponse({'message': 'Coach added successfully!'}, status=200)
+
         messages.success(self.request, 'Coach added successfully')
         return redirect('coaches-list')
     
     def form_invalid(self, form):
+        # Handle AJAX requests
+        if self.request.headers.get('x-requested-with') == 'XMLHttpRequest':
+            return JsonResponse({'error': 'Failed to add coach.', 'errors': form.errors}, status=400)
+
         messages.error(self.request, "Failed to add coach. Please check the form and try again.")
         return super().form_invalid(form)
 
@@ -97,11 +106,29 @@ class CoachUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'update.html'
 
     def form_valid(self, form):
-        # Success message
+        instance = form.save()
+
         messages.success(self.request, "Coach updated successfully.")
+
+        # Handle AJAX requests
+        if self.request.headers.get('x-requested-with') == 'XMLHttpRequest':
+
+            messages_list = [
+            {"tags": "success", "message": "Coach updated successfully!"}
+            ]
+        
+            redirect_url = self.get_success_url()
+            return JsonResponse({'messages': messages_list, 'redirect_url': redirect_url}, status=200)
+            
+        
         return super().form_valid(form)
 
     def form_invalid(self, form):
+
+        # Handle AJAX requests
+        if self.request.headers.get('x-requested-with') == 'XMLHttpRequest':
+            return JsonResponse({'error': 'Failed to update coach.', 'errors': form.errors}, status=400)
+
         # Error message
         messages.error(self.request, "Failed to update coach. Please check the form.")
         return super().form_invalid(form)
