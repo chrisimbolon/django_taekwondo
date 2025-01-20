@@ -139,12 +139,13 @@ class CoachUpdateView(LoginRequiredMixin, UpdateView):
 
 class CoachDeleteView(LoginRequiredMixin, DeleteView):
     model = Coach
-    template_name = 'delete.html'
     success_url = '/coaches'
 
-    def delete(self, request, *args, **kwargs):
-        messages.success(self.request,'Coach deleted successfully')
-        return super().delete(self, request, *args, **kwargs)
+    def post(self, request, *args, **kwargs):
+        messages.success(request, 'Coach deleted successfully')
+        print("Post method triggered!")  # Debugging print
+        return self.delete(request, *args, **kwargs)
+
 
 class SignUpView(CreateView):
     form_class = UserCreationForm
