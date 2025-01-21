@@ -15,17 +15,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Update UI based on favorites and view mode
   const updateFavoritesUI = () => {
-    const visibleCards = isViewingFavorites
-      ? coachCards.filter((card) => favorites.includes(card.dataset.coachId)) // Show only favorites
-      : coachCards; // Show all
+    let visibleCards;
 
-    coachContainer.innerHTML = ""; // Clear current cards
-    visibleCards.forEach((card) => coachContainer.appendChild(card)); // Add visible cards
+    if (isViewingFavorites) {
+      // Filter for favorite cards
+      visibleCards = coachCards.filter((card) =>
+        favorites.includes(card.dataset.coachId)
+      );
 
-    // Update button text
-    viewFavoritesBtn.textContent = isViewingFavorites
-      ? "Show All"
-      : "View Favorites";
+      // Show a message if no favorites exist
+      if (visibleCards.length === 0) {
+        coachContainer.innerHTML = `
+          <div class="no-favorites-message" style="text-align: center; margin-top: 20px;">
+            <p>No favorites added yet. Start selecting your favorite coaches by clicking the favorite icon!</p>
+          </div>
+        `;
+      } else {
+        // If there are favorites, show them
+        coachContainer.innerHTML = ""; // Clear current cards
+        visibleCards.forEach((card) => coachContainer.appendChild(card));
+      }
+    } else {
+      // Show all cards when not viewing favorites
+      visibleCards = coachCards;
+      coachContainer.innerHTML = ""; // Clear current cards
+      visibleCards.forEach((card) => coachContainer.appendChild(card));
+    }
+
+    // ** Always update button text based on the view mode **
+    // If no favorites exist, ensure the button says "View Favorites"
+    viewFavoritesBtn.textContent =
+      isViewingFavorites && favorites.length > 0
+        ? "Show All"
+        : "View Favorites";
   };
 
   // Handle click on favorite buttons

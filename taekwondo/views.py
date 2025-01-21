@@ -143,7 +143,6 @@ class CoachDeleteView(LoginRequiredMixin, DeleteView):
 
     def post(self, request, *args, **kwargs):
         messages.success(request, 'Coach deleted successfully')
-        print("Post method triggered!")  # Debugging print
         return self.delete(request, *args, **kwargs)
 
 
