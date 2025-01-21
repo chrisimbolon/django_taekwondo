@@ -32,6 +32,13 @@ class CoachListView(FilterView):
     filterset_class = CoachFilter
     context_object_name = "Coaches"
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # Use the filterset's queryset to calculate if it's empty
+        filter_set = context['filter']
+        context['is_empty'] = not filter_set.qs.exists()
+        return context
+
 class CoachDetailView(LoginRequiredMixin, DetailView):
     template_name = 'detail.html'
     model = Coach
