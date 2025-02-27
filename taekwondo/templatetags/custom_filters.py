@@ -38,8 +38,8 @@ def profile_picture(coach):
     if coach.photo:
         return coach.photo.url
     if coach.sex == "male":
-        return static("images/c-man.png")
-    return static("images/c-woman.png")
+        return static("images/c-man.gif")
+    return static("images/c-woman.gif")
 
 @register.filter
 def calculate_age(date_of_birth):
