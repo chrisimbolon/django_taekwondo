@@ -91,9 +91,9 @@ WSGI_APPLICATION = 'coachathlete.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'django-taekwondo-DB',
-        'USER': 'chris-admin',
-        'PASSWORD': 'chris-admin-superuser7',
+        'NAME': 'django_taekwondo',
+        'USER': 'chris_admin',
+        'PASSWORD': 'chris_admin7',
         'HOST': 'localhost',  # Or your database server
         'PORT': '5432',       # Default PostgreSQL port
     }
