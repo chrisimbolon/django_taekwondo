@@ -1,6 +1,6 @@
 from django.test import TestCase
-from .forms import CoachForm
-from .models import Province, City, Belt, Coach
+from taekwondo.forms import CoachForm
+from taekwondo.models import Province, City, Belt, Coach
 from django.contrib.auth.models import User
 from django.utils.timezone import now
 

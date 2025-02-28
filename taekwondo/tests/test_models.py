@@ -1,5 +1,5 @@
 from django.test import TestCase
-from .models import Province, City, Belt, Coach
+from taekwondo.models import Province, City, Belt, Coach
 from django.contrib.auth.models import User
 from django.utils.timezone import now
 
