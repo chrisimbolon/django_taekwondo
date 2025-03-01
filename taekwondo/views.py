@@ -216,6 +216,7 @@ def login_view(request):
 
         # Handle login failure
         print("Login failed. Form errors:", form.errors)  # Debug log
+        messages.error(request, "Invalid username or password.")  # 🔹 Add Django message
         errors = form.errors.get_json_data()
 
         if request.headers.get("X-Requested-With") == "XMLHttpRequest":
