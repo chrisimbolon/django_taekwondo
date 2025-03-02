@@ -68,3 +68,30 @@ class AuthIntegrationTest(TestCase):
         response = self.client.post(reverse("logout"))  # Use POST instead of GET
         self.assertEqual(response.status_code, 302)  # Should redirect after logout
         self.assertRedirects(response, reverse("logged_out"))
+
+
+    def test_login_view_ajax_success(self):
+        """Test AJAX login success"""
+        response = self.client.post(
+            reverse("login"),
+            {"username": self.username, "password": self.password},
+            HTTP_X_REQUESTED_WITH="XMLHttpRequest"
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertJSONEqual(response.content, {"success": True})
+
+    def test_login_view_ajax_fail(self):
+        """Test AJAX login failure"""
+        response = self.client.post(
+            reverse("login"),
+            {"username": self.username, "password": "wrongpass"},
+            HTTP_X_REQUESTED_WITH="XMLHttpRequest"
+        )
+        self.assertEqual(response.status_code, 400)
+        self.assertIn("errors", response.json())
+
+    def test_get_csrf_token(self):
+        response = self.client.get(reverse("get_csrf_token"))
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("csrf_token", response.json())
+
