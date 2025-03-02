@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from django.contrib.auth import get_user_model
 from django.contrib.messages import get_messages
+from taekwondo.models import Province, City, Belt, Coach
+from django.utils.timezone import now  # Import this at the top
 
 
 User = get_user_model()
@@ -15,6 +17,28 @@ class AuthIntegrationTest(TestCase):
         self.password = "testpassword123"
         self.user = User.objects.create_user(username=self.username, password=self.password)
         
+        # Create test Province, City, and Belt
+        self.province = Province.objects.create(province_name="New York", country="US")
+        self.city = City.objects.create(city_name="Brooklyn", province=self.province)
+        self.belt = Belt.objects.create(rank_name="Black Belt", rank_level=1, is_black_belt=True)
+
+        self.coach = Coach.objects.create(
+            full_name="Test Coach",
+            registration_number="12345",
+            place_of_birth="Brooklyn",
+            date_of_birth="1990-01-01",
+            dojang_name="NYC Taekwondo",
+            sex="male",
+            country="US",
+            province=self.province,
+            city=self.city,
+            status="active",
+            belt=self.belt,
+            phone_number="1234567890",
+            email="johndoe@example.com",
+            input_date=now().date(),
+            manager=self.user,  # Assign the test user as the manager
+        )
 
     def test_signup_view(self):
         """Test user signup"""
@@ -56,9 +80,8 @@ class AuthIntegrationTest(TestCase):
         self.assertTrue(any("Invalid username or password." in str(msg) for msg in messages))
 
 
-
-    def test_login_required_redirect(self):
-        """Test that an unauthenticated user is redirected when trying to access a protected view"""
+    def test_unauthenticated_user_gets_redirected(self):
+        """Test that an unauthenticated user attempting to access a protected view gets a 302 redirect."""
         response = self.client.get(reverse("detail", kwargs={"pk": 1}))  # Random ID
         self.assertEqual(response.status_code, 302)  # Should redirect to login page
 
@@ -95,3 +118,20 @@ class AuthIntegrationTest(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn("csrf_token", response.json())
 
+    def test_unauthenticated_user_redirects_to_coaches_list(self):
+        """Test that an unauthenticated user is redirected to the coaches list when trying to access a protected view."""
+        response = self.client.get(reverse("detail", kwargs={"pk": self.coach.pk}), follow=True)
+
+        print(f"Redirect chain: {response.redirect_chain}")  # Debugging
+        expected_redirect_url = reverse("coaches-list")  # If your app redirects there
+
+        self.assertRedirects(response, expected_redirect_url)
+
+    def test_authenticated_user_can_access_protected_view(self):
+        """Test that a logged-in user can access a protected view"""
+        self.client.login(username=self.username, password=self.password)
+        response = self.client.get(reverse("detail", kwargs={"pk": self.coach.pk}))
+        
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "detail.html")
+        self.assertContains(response, "Test Coach")  # Ensure the coach name appears in the response
