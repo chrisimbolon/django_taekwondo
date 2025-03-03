@@ -13,7 +13,7 @@ services:
 
   web:
     build: .
-    command: gunicorn --bind 0.0.0.0:8000 taekwondo.wsgi:application
+    command: gunicorn --bind 0.0.0.0:8000 coachathlete.wsgi:application
     volumes:
       - .:/app
     ports:

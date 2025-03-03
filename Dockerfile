@@ -1,5 +1,5 @@
 # Use official Python image as base
-FROM python:3.11-slim
+FROM python:3.11-slim-bullseye
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -24,8 +24,7 @@ COPY . .
 # Expose the port the app runs on
 EXPOSE 8000
 
-# Run migrations and collect static files
-RUN python manage.py migrate
+# Run collect static files
 RUN python manage.py collectstatic --noinput
 
 # Start the Django server
