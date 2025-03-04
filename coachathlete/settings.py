@@ -84,6 +84,8 @@ WSGI_APPLICATION = 'coachathlete.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# Determine if running inside Docker
+IN_DOCKER = os.getenv("IN_DOCKER", "False").lower() == "true"
 
 DATABASES = {
     "default": {
@@ -91,10 +93,12 @@ DATABASES = {
         "NAME": os.getenv("POSTGRES_DB"),
         "USER": os.getenv("POSTGRES_USER"),
         "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
-        "HOST": os.getenv("POSTGRES_HOST"),
+        # "HOST": os.getenv("POSTGRES_HOST",'localhost'),
+        "HOST": "db" if IN_DOCKER else "localhost",
         "PORT": os.getenv("POSTGRES_PORT"),
     }
 }
+
 
 
 # Password validation

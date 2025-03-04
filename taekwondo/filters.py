@@ -40,6 +40,8 @@
 #     class Meta:
 #         model = Coach
 #         fields = ['country', 'belt_rank', 'status']
+
+
 import django_filters
 from .models import Coach, Belt
 from django_countries.fields import Country
