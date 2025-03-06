@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'import_export',
+    'django_countries'
 ]
 
 MIDDLEWARE = [
@@ -93,8 +94,8 @@ DATABASES = {
         "NAME": os.getenv("POSTGRES_DB"),
         "USER": os.getenv("POSTGRES_USER"),
         "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
-        # "HOST": os.getenv("POSTGRES_HOST",'localhost'),
-        "HOST": "db" if IN_DOCKER else "localhost",
+        "HOST": os.getenv("POSTGRES_HOST",'localhost'),
+        # "HOST": "db" if IN_DOCKER else "localhost",
         "PORT": os.getenv("POSTGRES_PORT"),
     }
 }
