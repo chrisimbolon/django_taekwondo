@@ -41,7 +41,7 @@ jobs:
             set -ex
 
             echo "🔹 Navigating to project directory..."
-            cd /home/apps/taekwondo-coach || { echo "❌ Folder not found!"; exit 1; }
+            cd /home/apps/taekwondo-coach || { echo "❌ Folder is not found!"; exit 1; }
 
             git pull origin main
             docker-compose down
