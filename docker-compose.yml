@@ -28,3 +28,7 @@ services:
       - static_volume:/var/www/static
       - media_volume:/var/www/media
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
+
+volumes:
+  static_volume:
+  media_volume:
