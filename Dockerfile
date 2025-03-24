@@ -13,7 +13,6 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
     && rm -rf /var/lib/apt/lists/*
 
-
 # Install dependencies
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
@@ -24,9 +23,5 @@ COPY . .
 # Expose the port the app runs on
 EXPOSE 8000
 
-# Run collect static files
-RUN python manage.py collectstatic --noinput
-
 # Start the Django server
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "taekwondo.wsgi:application"]
-
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "djangotaekwondocoach.wsgi:application"]
