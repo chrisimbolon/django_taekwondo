@@ -21,19 +21,6 @@ jobs:
           echo "POSTGRES_HOST=${{ secrets.POSTGRES_HOST }}"
           echo "POSTGRES_PORT=${{ secrets.POSTGRES_PORT }}"
 
-      - name: Create .env Locally
-        run: |
-          echo "POSTGRES_DB=${{ secrets.POSTGRES_DB }}" > .env
-          echo "POSTGRES_USER=${{ secrets.POSTGRES_USER }}" >> .env
-          echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> .env
-          echo "POSTGRES_HOST=${{ secrets.POSTGRES_HOST }}" >> .env
-          echo "POSTGRES_PORT=${{ secrets.POSTGRES_PORT }}" >> .env
-
-      - name: Upload .env via SCP
-        run: |
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > private_key && chmod 600 private_key
-          scp -o StrictHostKeyChecking=no -i private_key .env ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/apps/taekwondo-coach/.env
-
       - name: Set up SSH
         run: |
           mkdir -p ~/.ssh
@@ -42,6 +29,12 @@ jobs:
           ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
       - name: Deploy to Server
+        env:
+          POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+          POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
+          POSTGRES_PORT: ${{ secrets.POSTGRES_PORT }}
         run: |
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > private_key && chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
@@ -49,6 +42,13 @@ jobs:
 
             echo "🔹 Navigating to project directory..."
             cd /home/apps/taekwondo-coach || { echo "❌ Folder not found!"; exit 1; }
+
+            echo "🔹 Creating .env file..."
+            echo "POSTGRES_DB=${secrets.POSTGRES_DB}" > .env
+            echo "POSTGRES_USER=${secrets.POSTGRES_USER}" >> .env
+            echo "POSTGRES_PASSWORD=${secrets.POSTGRES_PASSWORD}" >> .env
+            echo "POSTGRES_HOST=${secrets.POSTGRES_HOST}" >> .env
+            echo "POSTGRES_PORT=${secrets.POSTGRES_PORT}" >> .env
 
             echo "🔹 Checking .env file contents..."
             cat .env  # Print to check
