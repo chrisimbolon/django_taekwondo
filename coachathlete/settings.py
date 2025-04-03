@@ -16,6 +16,8 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
+FORCE_SCRIPT_NAME = "/taekwondo-coach"  # 🔹 Fix for subpath issue
+USE_X_FORWARDED_HOST = True  # 🔹 Allow reverse proxy headers
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -137,7 +139,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
+
+STATIC_URL = FORCE_SCRIPT_NAME + "/static/"
 STATICFILES_DIRS = (
         os.path.join(BASE_DIR,'static'),
 )
@@ -145,7 +149,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 # Setting media files
-MEDIA_URL = '/media/'
+# MEDIA_URL = '/media/'
+MEDIA_URL = FORCE_SCRIPT_NAME + "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 #crispy form
