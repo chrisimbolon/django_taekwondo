@@ -42,6 +42,9 @@ jobs:
             echo "POSTGRES_HOST=${POSTGRES_HOST}" >> .env
             echo "POSTGRES_PORT=${POSTGRES_PORT}" >> .env
 
+            echo "🔹 Checking .env file contents..."
+            cat .env  # Print to verify
+            
             echo "🔹 Pulling latest code..."
             git pull origin main
 
