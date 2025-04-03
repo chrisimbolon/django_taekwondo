@@ -20,6 +20,7 @@ jobs:
           echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}"
           echo "POSTGRES_HOST=${{ secrets.POSTGRES_HOST }}"
           echo "POSTGRES_PORT=${{ secrets.POSTGRES_PORT }}"
+          echo "SECRET_KEY=${{ secrets.SECRET_KEY }}"
 
       - name: Create .env Locally
         run: |
@@ -28,6 +29,7 @@ jobs:
           echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}" >> .env
           echo "POSTGRES_HOST=${{ secrets.POSTGRES_HOST }}" >> .env
           echo "POSTGRES_PORT=${{ secrets.POSTGRES_PORT }}" >> .env
+          echo "SECRET_KEY=${{ secrets.SECRET_KEY }}" >> .env
 
       - name: Upload .env via SCP
         run: |
