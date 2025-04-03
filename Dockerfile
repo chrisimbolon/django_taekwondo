@@ -24,4 +24,5 @@ COPY . .
 EXPOSE 8000
 
 # Start the Django server
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "djangotaekwondocoach.wsgi:application"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "coachathlete.wsgi:application"]
+
