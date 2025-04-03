@@ -13,6 +13,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Debug Environment Variables in GitHub Actions
+        run: |
+          echo "POSTGRES_DB=${{ secrets.POSTGRES_DB }}"
+          echo "POSTGRES_USER=${{ secrets.POSTGRES_USER }}"
+          echo "POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}"
+          echo "POSTGRES_HOST=${{ secrets.POSTGRES_HOST }}"
+          echo "POSTGRES_PORT=${{ secrets.POSTGRES_PORT }}"
+
       - name: Set up SSH
         run: |
           mkdir -p ~/.ssh
