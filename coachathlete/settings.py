@@ -16,8 +16,10 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-FORCE_SCRIPT_NAME = "/taekwondo-coach"  # 🔹 Fix for subpath issue
-USE_X_FORWARDED_HOST = True  # 🔹 Allow reverse proxy headers
+
+USE_X_FORWARDED_HOST = True  
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
