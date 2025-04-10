@@ -89,15 +89,15 @@ body {
 
 /* Logout Button Styling */
 .greet-user .dropdown-menu button.nav-link {
-  display: block; /* Ensure block-level alignment */
-  width: 100%; /* Make button fill the dropdown width */
-  padding: 0.5rem; /* Add sufficient padding for touch targets */
-  background: transparent; /* Remove default button background */
-  border: none; /* Remove borders */
-  color: #000; /* Set text color to match dropdown */
-  text-align: center; /* Center-align the text */
-  font-size: 1rem; /* Ensure font size consistency */
-  cursor: pointer; /* Add pointer cursor for better UX */
+  display: block;
+  width: 100%;
+  padding: 0.5rem;
+  background: transparent;
+  border: none;
+  color: #000;
+  text-align: center;
+  font-size: 0.875rem;
+  cursor: pointer;
 }
 
 .greet-user .dropdown-menu button.nav-link:hover {
