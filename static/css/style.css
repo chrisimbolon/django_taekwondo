@@ -90,7 +90,7 @@ body {
 /* Logout Button Styling */
 .greet-user .dropdown-menu button.nav-link {
   display: block;
-  width: 100%;
+  width: 90%;
   padding: 0.5rem;
   background: transparent;
   border: none;
