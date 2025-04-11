@@ -26,8 +26,11 @@ body {
 
 .navbar {
   background-color: #dadada;
-  /* font-weight: bold;
-  font-size: 0.875rem; */
+}
+
+.nav-link {
+  font-weight: bold;
+  font-size: 0.875rem;
 }
 
 .navbar-actions {
@@ -173,7 +176,7 @@ body {
 }
 
 .btn-link i {
-  font-size: 1.2rem; /* Adjust icon size */
+  font-size: 1.2rem;
   color: #6c757d; /* Matches Bootstrap default text-muted color */
 }
 
