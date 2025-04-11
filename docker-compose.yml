@@ -7,7 +7,8 @@ services:
     command: >
       sh -c "python manage.py collectstatic --noinput && gunicorn coachathlete.wsgi:application --bind 0.0.0.0:8000"
     volumes:
-      - static_volume:/app/staticfiles
+      # - static_volume:/app/staticfiles
+      - static_volume:/var/www/static
       - media_volume:/app/media
     environment:
       - DJANGO_SETTINGS_MODULE=coachathlete.settings
