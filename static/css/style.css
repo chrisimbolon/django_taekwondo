@@ -26,8 +26,8 @@ body {
 
 .navbar {
   background-color: #dadada;
-  font-weight: bold;
-  font-size: 0.875rem;
+  /* font-weight: bold;
+  font-size: 0.875rem; */
 }
 
 .navbar-actions {
