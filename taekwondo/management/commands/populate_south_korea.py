@@ -6,7 +6,7 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         # Country data
-        country_name = "South Korea"
+        country_name = "KR"
 
         # Province and City data
         provinces_cities = {

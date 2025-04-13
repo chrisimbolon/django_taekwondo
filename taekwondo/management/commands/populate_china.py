@@ -60,3 +60,4 @@ class Command(BaseCommand):
                     )
 
         self.stdout.write(self.style.SUCCESS("Database successfully populated with China's provinces and cities!"))
+ 
