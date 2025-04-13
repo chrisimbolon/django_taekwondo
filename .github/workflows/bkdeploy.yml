@@ -43,7 +43,7 @@ jobs:
           chmod 600 ~/.ssh/github-actions-key
           ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
-      - name: Deploy to Server with Migrations and Seeding
+      - name: Deploy to Server
         run: |
           echo "${{ secrets.SSH_PRIVATE_KEY }}" > private_key && chmod 600 private_key
           ssh -o StrictHostKeyChecking=no -i private_key ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
@@ -53,7 +53,7 @@ jobs:
             cd /home/apps/taekwondo-coach || { echo "❌ Folder not found!"; exit 1; }
 
             echo "🔹 Checking .env file contents..."
-            cat .env
+            cat .env  # Print to check
 
             echo "🔹 Pulling latest code..."
             git pull origin main
@@ -61,21 +61,5 @@ jobs:
             echo "🔹 Restarting Docker containers..."
             docker-compose down
             docker-compose up -d --build
-
-            echo "🔹 Running migrations..."
-            docker exec djangotaekwondocoach-web python manage.py makemigrations --noinput
-            docker exec djangotaekwondocoach-web python manage.py migrate --noinput
-
-            echo "🔹 Seeding country/province/city data..."
-            docker exec djangotaekwondocoach-web python manage.py populate_taiwan
-            docker exec djangotaekwondocoach-web python manage.py populate_china
-            docker exec djangotaekwondocoach-web python manage.py populate_south_korea
-            docker exec djangotaekwondocoach-web python manage.py populate_turkiye
-            docker exec djangotaekwondocoach-web python manage.py populate_iran
-            docker exec djangotaekwondocoach-web python manage.py populate_germany
-            docker exec djangotaekwondocoach-web python manage.py populate_spain
-            docker exec djangotaekwondocoach-web python manage.py populate_us
-
-            echo "✅ Deployment, migration, and seeding completed!"
             exit
           EOF
