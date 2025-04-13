@@ -30,7 +30,11 @@ body {
 
 .nav-item {
   font-weight: bold;
-  font-size: 0.875rem;
+  font-size: 1.125rem;
+}
+
+.nav-item .nav-link {
+  white-space: nowrap;
 }
 
 .navbar-actions {
