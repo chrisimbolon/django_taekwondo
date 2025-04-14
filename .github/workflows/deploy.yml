@@ -75,6 +75,8 @@ jobs:
             echo "🔹 Creating superuser..."
             docker exec djangotaekwondocoach-web python manage.py create_initial_superuser
 
+            docker exec djangotaekwondocoach-web python manage.py populate_belts
+
             echo "🔹 Seeding country/province/city data..."
             for country in taiwan china south_korea turkiye iran germany spain us france mexico; do
               echo "🌍 Seeding $country..."
