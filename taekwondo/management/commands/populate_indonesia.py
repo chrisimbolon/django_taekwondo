@@ -20,7 +20,7 @@ class Command(BaseCommand):
             "Lampung": ["Bandar Lampung", "Metro", "Kotabumi"],
             "Banten": ["Serang", "Tangerang", "Cilegon"],
             "Jakarta": ["Central Jakarta", "South Jakarta", "East Jakarta", "North Jakarta", "West Jakarta"],
-            "West Java": ["Bandung", "Bekasi", "Bogor"],
+            "West Java": ["Bandung", "Bekasi", "Bogor", "Depok", "Tasikmalaya"],
             "Central Java": ["Semarang", "Surakarta", "Purwokerto"],
             "Yogyakarta": ["Yogyakarta", "Sleman", "Bantul"],
             "East Java": ["Surabaya", "Malang", "Kediri"],
