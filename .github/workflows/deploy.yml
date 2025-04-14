@@ -76,14 +76,10 @@ jobs:
             docker exec djangotaekwondocoach-web python manage.py create_initial_superuser
 
             echo "🔹 Seeding country/province/city data..."
-            docker exec djangotaekwondocoach-web python manage.py populate_taiwan
-            docker exec djangotaekwondocoach-web python manage.py populate_china
-            docker exec djangotaekwondocoach-web python manage.py populate_south_korea
-            docker exec djangotaekwondocoach-web python manage.py populate_turkiye
-            docker exec djangotaekwondocoach-web python manage.py populate_iran
-            docker exec djangotaekwondocoach-web python manage.py populate_germany
-            docker exec djangotaekwondocoach-web python manage.py populate_spain
-            docker exec djangotaekwondocoach-web python manage.py populate_us
+            for country in taiwan china south_korea turkiye iran germany spain us france mexico; do
+              echo "🌍 Seeding $country..."
+              docker exec djangotaekwondocoach-web python manage.py populate_$country
+            done
 
             echo "✅ Deployment, migration, and seeding completed!"
             exit
