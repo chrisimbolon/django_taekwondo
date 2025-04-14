@@ -27,7 +27,7 @@ class City(models.Model):  # City
 
 class Belt(models.Model):
     rank_name = models.CharField(max_length=50)
-    rank_level = models.PositiveIntegerField()  # Level (e.g., 1 for White, 2 for Yellow)
+    rank_level = models.PositiveIntegerField()  # Level (1 for White, 2 for Yellow)
     is_black_belt = models.BooleanField(default=False)
 
     def __str__(self):
