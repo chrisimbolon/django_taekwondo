@@ -81,7 +81,7 @@ jobs:
             for country in albania argentina australia austria belarus belgium bolivia bosnia_herzegovina brazil bulgaria canada chile \
                           china colombia croatia cuba czech_republic denmark ecuador egypt estonia ethiopia finland \
                           france germany greece hungary india indonesia iran ireland israel italy japan jordan kenya \
-                          latvia lithuania luxembourg malaysia mexico morocco netherlands nigeria norway paraguay \ 
+                          latvia lithuania luxembourg malaysia mexico morocco netherlands nigeria norway paraguay \
                           peru philippines poland portugal romania russia saudi_arabia serbia slovakia slovenia \
                           south_africa south_korea spain sweden switzerland taiwan thailand turkiye uk ukraine uruguay us vietnam; do
               echo "🌍 Seeding $country..."
