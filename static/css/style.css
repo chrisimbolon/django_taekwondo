@@ -325,8 +325,6 @@ body {
 }
 
 .btn-fav {
-  /* width: 150px;
-  height: 35px; */
   min-width: 120px;
   max-width: 150px;
   width: 100%;
@@ -344,8 +342,8 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.125rem;
-  color: rgb(121, 103, 3);
+  font-size: 1rem;
+  color: rgb(42, 37, 5);
   font-weight: 400;
   /* position: relative; */
   /* z-index: 2; */
