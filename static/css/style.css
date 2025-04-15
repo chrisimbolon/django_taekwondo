@@ -325,7 +325,11 @@ body {
 }
 
 .btn-fav {
-  width: 150px;
+  /* width: 150px;
+  height: 35px; */
+  min-width: 120px;
+  max-width: 150px;
+  width: 100%;
   height: 35px;
   border: none;
   border-radius: 10px;
@@ -757,6 +761,11 @@ footer {
 /* Responsive Adjustments */
 
 @media (max-width: 991px) {
+  .btn-fav {
+    align-self: stretch;
+    width: 100%;
+  }
+
   /* List text and View Favorites  */
   .list-text-viewfav {
     transform: scale(0.85);
@@ -836,6 +845,11 @@ footer {
 
 /* Adjust the form for smaller viewports */
 @media (max-width: 767px) {
+  .btn-fav {
+    align-self: stretch;
+    width: 100%;
+  }
+
   .list-text-viewfav {
     transform: scale(0.75);
     margin: 0;
@@ -948,6 +962,11 @@ footer {
 /* for distance purpose */
 
 @media (max-width: 768px) {
+  .btn-fav {
+    align-self: stretch;
+    width: 100%;
+  }
+
   .coaches-page .row > .col {
     flex: 0 0 calc(50% - 1.5rem);
     max-width: calc(50% - 1.5rem);
