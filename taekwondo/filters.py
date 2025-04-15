@@ -2,13 +2,16 @@ import django_filters
 from .models import Coach, Belt
 from django_countries.fields import Country
 from django.db.models.functions import Lower
+from django_countries import countries  
 
 def get_country_choices():
     try:
-        countries = Coach.objects.order_by(Lower('country')).values_list('country', flat=True).distinct()
-        return [('', 'Country')] + [(code, Country(code).name) for code in countries if code]
+        countries_qs = Coach.objects.order_by(Lower('country')).values_list('country', flat=True).distinct()
+        return [('', 'Country')] + [
+            (code, Country(code).name if code in dict(countries) else code)
+            for code in countries_qs if code
+        ]
     except Exception:
-        # Avoid breaking migrations by returning a default empty list if the DB isn't ready
         return [('', 'Country')]
 
 class CoachFilter(django_filters.FilterSet):
