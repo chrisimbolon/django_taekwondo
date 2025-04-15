@@ -360,8 +360,9 @@ body {
   animation: gradient 3s ease infinite;
   background-position: right;
   text-decoration: none;
-  font-size: 1.25rem;
+  font-size: 1.125rem;
 }
+
 /* Card Styles end */
 
 .modal-body .form-label {
