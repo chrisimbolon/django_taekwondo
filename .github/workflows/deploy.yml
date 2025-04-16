@@ -24,6 +24,7 @@ jobs:
           echo "DJANGO_SU_NAME=${{ secrets.DJANGO_SU_NAME }}" >> .env
           echo "DJANGO_SU_EMAIL=${{ secrets.DJANGO_SU_EMAIL }}" >> .env
           echo "DJANGO_SU_PASSWORD=${{ secrets.DJANGO_SU_PASSWORD }}" >> .env
+          echo "ALLOWED_HOSTS=${{ secrets.ALLOWED_HOSTS }}" >> .env
 
       - name: Create .env Locally
         run: |
@@ -36,6 +37,7 @@ jobs:
           echo "DJANGO_SU_NAME=${{ secrets.DJANGO_SU_NAME }}" >> .env
           echo "DJANGO_SU_EMAIL=${{ secrets.DJANGO_SU_EMAIL }}" >> .env
           echo "DJANGO_SU_PASSWORD=${{ secrets.DJANGO_SU_PASSWORD }}" >> .env
+          echo "ALLOWED_HOSTS=${{ secrets.ALLOWED_HOSTS }}" >> .env
 
       - name: Upload .env via SCP
         run: |
