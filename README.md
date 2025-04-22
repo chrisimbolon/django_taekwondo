@@ -73,10 +73,12 @@ Static and media files are served from mounted volumes.
 You can customize the deployment with a Caddyfile like:
 
 caddy
+
+```
 taekwondo-coach.chrisimbolon.dev {
-reverse
-\_proxy djangotaekwondocoach-nginx:80
+    reverse_proxy djangotaekwondocoach-nginx:80
 }
+```
 
 # CI/CD
 
@@ -104,7 +106,12 @@ GitHub Actions is used to:
 └── requirements.txt
 ```
 
-Author
-Christyan Simbolon
-🔗 chrisimbolon.dev
-🐙 github.com/chrisimbolon
+# 🙋‍♂️ Author
+
+**Christyan Simbolon**
+
+- 🌐 [Portfolio](https://chrisimbolon.dev)
+- 💻 [GitHub](https://github.com/chrisimbolon)
+- 🔗 [LinkedIn](https://linkedin.com/in/christyan-simbolon-60a854360)
+
+---
