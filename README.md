@@ -1,9 +1,9 @@
-## 🥋 Django Taekwondo Coach
+# 🥋 Django Taekwondo Coach
 
 Django Taekwondo Coach is a media-rich web application built to help coaches manage training videos, athlete resources, and performance data. Developed with Django and PostgreSQL, this app features media uploads, admin control, and production-grade deployment using Docker, a flexible CI/CD pipeline using GitHub Actions, NGINX, and Caddy.
 It runs under a custom subdomain and supports both local and production environments.
 
-## 🚀 Features
+# 🚀 Features
 
 - 🧑🏫 Coach & athlete management
 - 📦 Dockerized for local and production deployment
@@ -16,7 +16,7 @@ It runs under a custom subdomain and supports both local and production environm
 - 🧹 Static file collection via `collectstatic`
   `
 
-## 🧱 Tech Stack
+# 🧱 Tech Stack
 
 - Backend: Django, Gunicorn
 - Database: PostgreSQL 15
@@ -26,24 +26,24 @@ It runs under a custom subdomain and supports both local and production environm
 - CI/CD: GitHub Actions
 - Reverse Proxy: Caddy (subdomain routing + HTTPS)
 
-## 🚀 Live Demo
+# 🚀 Live Demo
 
 [https://taekwondo-coach.chrisimbolon.dev/]
 
-## 🛠 Local Development Setup
+# 🛠 Local Development Setup
 
 > This setup skips NGINX for simplicity.
 
-# 1. Clone the repo
+## 1. Clone the repo
 
 ```bash
 git clone https://github.com/yourusername/djangotaekwondocoach.git
 cd djangotaekwondocoach
 ```
 
-# 2. Create a .env file
+## 2. Create a .env file
 
-# .env
+### .env
 
 ```
 POSTGRES_DB=taekwondodb
@@ -55,13 +55,13 @@ SECRET_KEY=yourdjangosecret
 ALLOWED_HOSTS=localhost,127.0.0.1
 ```
 
-# 3. Run Docker Compose
+## 3. Run Docker Compose
 
 ```
 docker-compose up --build
 ```
 
-## Production Deployment
+# Production Deployment
 
 Production setup is intended for deployment on a server (e.g., DigitalOcean) behind Caddy as the main
 reverse proxy, and NGINX as an internal proxy to serve static files.
@@ -78,7 +78,7 @@ reverse
 \_proxy djangotaekwondocoach-nginx:80
 }
 
-## CI/CD
+# CI/CD
 
 GitHub Actions is used to:
 
@@ -88,7 +88,21 @@ GitHub Actions is used to:
 4. Rebuild and restart the app via Docker Compose.
    Sample GitHub Actions workflow file: .github/workflows/deploy.yml
 
-## Project Structure
+# Project Structure
+
+```
+├── Dockerfile
+├── docker-compose.yml
+├── docker-compose.override.yml
+├── coachathlete/
+│ └── settings.py
+├── taekwondo/
+│ └── views.py, models.py, ...
+├── templates/
+├── static/
+├── media/
+└── requirements.txt
+```
 
 Author
 Christyan Simbolon
