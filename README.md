@@ -1,15 +1,15 @@
-# 🥋 Django Taekwondo Coach
+## 🥋 Django Taekwondo Coach
 
 Django Taekwondo Coach is a media-rich web application built to help coaches manage training videos, athlete resources, and performance data. Developed with Django and PostgreSQL, this app features media uploads, admin control, and production-grade deployment using Docker, a flexible CI/CD pipeline using GitHub Actions, NGINX, and Caddy.
 It runs under a custom subdomain and supports both local and production environments.
 
-# 🚀 Features
+## 🚀 Features
 
 - 🧑🏫 Coach & athlete management
 - 📦 Dockerized for local and production deployment
 - 🐘 PostgreSQL database
 - 🌍 Subdomain-based routing support (e.g. taekwondo-coach.chrisimbolon.dev`)
-  ⚙ NGINX (Production only)
+- ⚙ NGINX (Production only)
 - 🔄 CI/CD with GitHub Actions
 - 🧪 Environment-based settings with ` .env python-dotenv
 - 💾 File/media upload support
@@ -26,11 +26,15 @@ It runs under a custom subdomain and supports both local and production environm
 - CI/CD: GitHub Actions
 - Reverse Proxy: Caddy (subdomain routing + HTTPS)
 
+## 🚀 Live Demo
+
+[https://taekwondo-coach.chrisimbolon.dev/]
+
 ## 🛠 Local Development Setup
 
 > This setup skips NGINX for simplicity.
 
-## 1. Clone the repo
+# 1. Clone the repo
 
 ```bash
 git clone https://github.com/yourusername/djangotaekwondocoach.git
@@ -41,13 +45,15 @@ cd djangotaekwondocoach
 
 # .env
 
-POSTGRES\*DB=taekwondodb
+```
+POSTGRES_DB=taekwondodb
 POSTGRES_USER=taekwondouser
 POSTGRES_PASSWORD=securepassword
 POSTGRES_PORT=5432
 POSTGRES_HOST=db
 SECRET_KEY=yourdjangosecret
 ALLOWED_HOSTS=localhost,127.0.0.1
+```
 
 # 3. Run Docker Compose
 
@@ -55,10 +61,10 @@ ALLOWED_HOSTS=localhost,127.0.0.1
 docker-compose up --build
 ```
 
-Production Deployment
+## Production Deployment
 
-Production setup is intended for deployment on a server (e.g., DigitalOcean) behind Caddy as the main reverse proxy, and
-NGINX as an internal proxy to serve static files.
+Production setup is intended for deployment on a server (e.g., DigitalOcean) behind Caddy as the main
+reverse proxy, and NGINX as an internal proxy to serve static files.
 Key differences in prod:
 nginx service is used.
 Caddy handles domain routing and HTTPS.
@@ -72,7 +78,8 @@ reverse
 \_proxy djangotaekwondocoach-nginx:80
 }
 
-CI/CD
+## CI/CD
+
 GitHub Actions is used to:
 
 1. Build the Docker image.
@@ -81,7 +88,7 @@ GitHub Actions is used to:
 4. Rebuild and restart the app via Docker Compose.
    Sample GitHub Actions workflow file: .github/workflows/deploy.yml
 
-Project Structure
+## Project Structure
 
 Author
 Christyan Simbolon
